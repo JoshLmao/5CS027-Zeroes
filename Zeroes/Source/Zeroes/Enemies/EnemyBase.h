@@ -6,7 +6,8 @@
 #include "GameFramework/Character.h"
 #include "EnemyBase.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FMinionAttackSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEnemyAttackSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEnemyDeathSignature);
 
 UCLASS()
 class ZEROES_API AEnemyBase : public ACharacter
@@ -31,6 +32,7 @@ public:
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 	/// Current health of the enemy
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Properties")
 	float Health;
 
 	/// Visibility range when Idle
@@ -47,7 +49,7 @@ public:
 	/// Duration in seconds to cooldown between attacks
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Properties")
 	float AtkCooldownDuration;
-	/// Amount of damage the minion deals
+	/// Amount of damage the enemy deals
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Properties")
 	float AttackDamage;
 	/// Minimum distance from target to attack
@@ -55,8 +57,13 @@ public:
 	float AttackMinDistance;
 
 	/* Events */
+	/// Triggered when enemy starts their attack
 	UPROPERTY(BlueprintAssignable)
-	FMinionAttackSignature OnMinionAttacking;
+	FEnemyAttackSignature OnEnemyBeginAttack;
+
+	/// Triggered when enemy has lost all health and is dead
+	UPROPERTY(BlueprintAssignable)
+	FEnemyDeathSignature OnEnemyDeath;
 
 private:
 	/// Reference to the current player pawn
@@ -67,10 +74,16 @@ private:
 	/// Start spawn location of the enemy
 	FVector m_spawnLocation;
 
-	/// Can the minion attack
+	/// Can the enemy attack
 	bool m_bCanAttack;
 
-	enum BehaviourStates { IDLE, CHASE, ATTACK };
+	/// Has the actor been dead for too long and needs to be destroyed
+	bool m_bDeathTimedOut;
+
+	///Rate at which to sink the actor into the floor
+	float m_deathSinkRate;
+
+	enum BehaviourStates { IDLE, CHASE, ATTACK, DEAD };
 	BehaviourStates State = BehaviourStates::IDLE;
 
 	enum GameEvents { ON_START, ON_UPDATE };
@@ -88,9 +101,13 @@ private:
 	void AttackStart();
 	void AttackUpdate();
 
+	void DeadStart();
+	void DeadUpdate();
+
 	FTimerHandle TimerHandle_AttackCooldown;
 	void OnAtkCooldownFinished();
 
 	void LookAtTarget(FVector target);
+
 
 };

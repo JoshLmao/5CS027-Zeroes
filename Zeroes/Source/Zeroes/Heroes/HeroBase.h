@@ -25,6 +25,9 @@ public:
 	/// Current health of the hero
 	float Health;
 
+	/// Time in seconds inbetween each attack
+	float AttackCooldown;
+
 	/// Amount of damage to inflict per attack
 	double AttackDamage;
 
@@ -87,4 +90,7 @@ private:
 	void OnUltimateCooldownFinished();
 
 	void OnAttackCooldownFinished();
+
+	UFUNCTION()
+	void HandleResetEngagement();
 };

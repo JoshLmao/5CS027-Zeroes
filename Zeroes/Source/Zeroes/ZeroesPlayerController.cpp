@@ -13,8 +13,16 @@ AZeroesPlayerController::AZeroesPlayerController()
 {
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Crosshairs;
+
 	m_reachedEnemy = false;
 	m_targetEnemy = nullptr;
+}
+
+void AZeroesPlayerController::ResetTargetEnemy()
+{
+	m_targetEnemy = nullptr;
+	m_reachedEnemy = false;
+	UE_LOG(LogZeroes, Log, TEXT("Reset Target Enemy"));
 }
 
 void AZeroesPlayerController::PlayerTick(float DeltaTime)
@@ -27,6 +35,7 @@ void AZeroesPlayerController::PlayerTick(float DeltaTime)
 		MoveToMouseCursor();
 	}
 
+	// Update every tick to get the latest enemy position (could be moving)
 	if (m_targetEnemy != nullptr  && !m_reachedEnemy)
 	{
 		SetNewEnemyDestination(m_targetEnemy);
@@ -54,12 +63,21 @@ void AZeroesPlayerController::MoveToMouseCursor()
 		AActor* actor = Hit.GetActor();
 		if (actor->IsA(AEnemyBase::StaticClass()))
 		{
+			// Set target enemy that player wants to kill
 			m_targetEnemy = actor;
 		}
 		else
 		{
 			// Move to floor location
 			SetNewMoveDestination(Hit.ImpactPoint);
+
+			if (m_targetEnemy != nullptr)
+			{
+				// Reset tracked enemy on issuing a walk command
+				if (OnResetEngagement.IsBound())
+					OnResetEngagement.Broadcast();
+				ResetTargetEnemy();
+			}
 		}
 	}
 	else
@@ -94,13 +112,12 @@ void AZeroesPlayerController::SetNewEnemyDestination(AActor* enemyActor)
 		{
 			UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, enemy->GetActorLocation());
 			m_reachedEnemy = false;
-			UE_LOG(LogZeroes, Log, TEXT("Moving towards enemy..."));
 		}
 		else
 		{
 			if (!m_reachedEnemy)
 			{
-				UE_LOG(LogZeroes, Log, TEXT("Controller reached enemy. Trigger event"))
+				//UE_LOG(LogZeroes, Log, TEXT("Controller reached enemy. Trigger event"))
 				if (OnReachedDestActor.IsBound())
 					OnReachedDestActor.Broadcast();
 			}

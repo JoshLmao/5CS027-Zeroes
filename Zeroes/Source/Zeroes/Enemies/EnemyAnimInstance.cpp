@@ -21,7 +21,8 @@ void UEnemyAnimInstance::NativeInitializeAnimation()
 		OwningEnemy = Cast<AEnemyBase>(m_owningPawn);
 		if (OwningEnemy)
 		{
-			OwningEnemy->OnMinionAttacking.AddDynamic(this, &UEnemyAnimInstance::OnAttacking);
+			OwningEnemy->OnEnemyBeginAttack.AddDynamic(this, &UEnemyAnimInstance::OnAttacking);
+			OwningEnemy->OnEnemyDeath.AddDynamic(this, &UEnemyAnimInstance::OnDeath);
 		}
 		else
 		{
@@ -48,6 +49,11 @@ void UEnemyAnimInstance::OnAttacking()
 {
 	bIsAttacking = true;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle_AttackExpired, this, &UEnemyAnimInstance::OnAttackComplete, 1.1f, false);
+}
+
+void UEnemyAnimInstance::OnDeath()
+{
+	bIsDead = true;
 }
 
 void UEnemyAnimInstance::OnAttackComplete()

@@ -7,6 +7,7 @@
 #include "ZeroesPlayerController.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerReachedDestinationActorSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerResetEngagement);
 
 UCLASS()
 class AZeroesPlayerController : public APlayerController
@@ -18,6 +19,11 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FControllerReachedDestinationActorSignature OnReachedDestActor;
+
+	UPROPERTY(BlueprintAssignable)
+	FControllerResetEngagement OnResetEngagement;
+
+	void ResetTargetEnemy();
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */

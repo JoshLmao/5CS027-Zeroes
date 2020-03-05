@@ -10,6 +10,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "AIController.h"
+#include "Components\SkeletalMeshComponent.h"
 
 // Sets default values
 AEnemyBase::AEnemyBase()
@@ -28,12 +29,17 @@ AEnemyBase::AEnemyBase()
 	ChaseSpeed = 2.5f;
 	AttackMinDistance = 150.0f;
 	m_bCanAttack = false;
+	m_bDeathTimedOut = false;
 	AtkCooldownDuration = 5.0f;
-	AttackDamage = 10.0f;
-	Health = 1000.0f;
+	AttackDamage = 15.0f;
+	Health = 250.0f;
+	m_deathSinkRate = 10.0f;
 
 	// Set maximum movemenet speed
 	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+
+	GetCapsuleComponent()->SetMassScale(NAME_None, 1000.0f);
+	GetMesh()->SetMassScale(NAME_None, 1000.0f);
 }
 
 // Called when the game starts or when spawned
@@ -71,8 +77,20 @@ float AEnemyBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent
 {
 	float damageValue = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	Health -= damageValue;
+	
+	if (Health <= 0)
+	{
+		UE_LOG(LogZeroes, Log, TEXT("No health remaining on enemy. Dying"));
+		if (OnEnemyDeath.IsBound())
+			OnEnemyDeath.Broadcast();
 
-	UE_LOG(LogZeroes, Log, TEXT("Enemy: Damage taken: %f - Health Remaining: %f"), damageValue, Health);
+		SetState(BehaviourStates::DEAD);
+	}
+	else
+	{
+		UE_LOG(LogZeroes, Log, TEXT("%s: Damage taken: %f - Health Remaining: %f"), *this->GetName(), damageValue, Health);
+	}
+
 	return damageValue;
 }
 
@@ -80,24 +98,30 @@ void AEnemyBase::FSMUpdate(float DeltaTime)
 {
 	switch (State)
 	{
-	case BehaviourStates::IDLE:
-		if (Event == GameEvents::ON_START)
-			IdleStart();
-		else if (Event == GameEvents::ON_UPDATE)
-			IdleUpdate();
-		break;
-	case BehaviourStates::CHASE:
-		if (Event == GameEvents::ON_START)
-			ChaseStart();
-		else if (Event == GameEvents::ON_UPDATE)
-			ChaseUpdate(DeltaTime);
-		break;
-	case BehaviourStates::ATTACK:
-		if (Event == GameEvents::ON_START)
-			AttackStart();
-		else if (Event == GameEvents::ON_UPDATE)
-			AttackUpdate();
-		break;
+		case BehaviourStates::IDLE:
+			if (Event == GameEvents::ON_START)
+				IdleStart();
+			else if (Event == GameEvents::ON_UPDATE)
+				IdleUpdate();
+			break;
+		case BehaviourStates::CHASE:
+			if (Event == GameEvents::ON_START)
+				ChaseStart();
+			else if (Event == GameEvents::ON_UPDATE)
+				ChaseUpdate(DeltaTime);
+			break;
+		case BehaviourStates::ATTACK:
+			if (Event == GameEvents::ON_START)
+				AttackStart();
+			else if (Event == GameEvents::ON_UPDATE)
+				AttackUpdate();
+			break;
+		case BehaviourStates::DEAD:
+			if (Event == GameEvents::ON_START)
+				DeadStart();
+			else if (Event == GameEvents::ON_UPDATE)
+				DeadUpdate();
+			break;
 	}
 }
 
@@ -183,8 +207,8 @@ void AEnemyBase::AttackUpdate()
 			PlayerPawn->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
 
 			// Broadcast IsAttacking event
-			if (OnMinionAttacking.IsBound())
-				OnMinionAttacking.Broadcast();
+			if (OnEnemyBeginAttack.IsBound())
+				OnEnemyBeginAttack.Broadcast();
 		}
 	}
 
@@ -197,6 +221,43 @@ void AEnemyBase::AttackUpdate()
 		SetState(BehaviourStates::CHASE);
 		UE_LOG(LogZeroes, Log, TEXT("Player went out of range. Go bk to them"));
 	}
+}
+
+void AEnemyBase::DeadStart()
+{
+	Event = GameEvents::ON_UPDATE;
+
+	UE_LOG(LogZeroes, Log, TEXT("Enemy Death Entry state begin"));
+
+	DetachFromControllerPendingDestroy();
+
+	// Configure cpasule component for physics
+	GetMovementComponent()->StopMovementImmediately();
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
+	
+	SetActorEnableCollision(true);
+	GetMesh()->SetCollisionProfileName(TEXT("Ragdoll"));
+
+	GetMesh()->SetAllBodiesSimulatePhysics(true);
+	GetMesh()->SetSimulatePhysics(true);
+	GetMesh()->WakeAllRigidBodies();
+	GetMesh()->bBlendPhysics = true;
+
+	UCharacterMovementComponent* CharacterComp = Cast<UCharacterMovementComponent>(GetMovementComponent());
+	if (CharacterComp)
+	{
+		CharacterComp->StopMovementImmediately();
+		CharacterComp->DisableMovement();
+		CharacterComp->SetComponentTickEnabled(false);
+	}
+
+	SetLifeSpan(10.0f);
+}
+
+void AEnemyBase::DeadUpdate()
+{
+	
 }
 
 void AEnemyBase::OnAtkCooldownFinished()

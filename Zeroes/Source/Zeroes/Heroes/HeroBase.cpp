@@ -21,8 +21,9 @@ AHeroBase::AHeroBase()
 	AbilityOneCooldown = AbilityTwoCooldown = AbilityThreeCooldown = 5.0f;
 	UltimateCooldown = 15.0f;
 	Health = 1000.0f;
-	AttackDamage = 10.0;
+	AttackDamage = 75.0;
 	m_bCanAttack = false;
+	AttackCooldown = 2.0f;
 }
 
 void AHeroBase::BeginPlay()
@@ -33,6 +34,7 @@ void AHeroBase::BeginPlay()
 	if (m_playerController)
 	{
 		m_playerController->OnReachedDestActor.AddDynamic(this, &AHeroBase::HandleReachedActor);
+		m_playerController->OnResetEngagement.AddDynamic(this, &AHeroBase::HandleResetEngagement);
 	}
 }
 
@@ -58,8 +60,15 @@ float AHeroBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent,
 	float value = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 
 	Health -= value;
+	if (Health <= 0)
+	{
+		// Player is Dead
+	}
+	else
+	{
+		UE_LOG(LogZeroes, Log, TEXT("Player: Damage taken: %f - Health Remaining: %f"), value, Health);
+	}
 
-	UE_LOG(LogZeroes, Log, TEXT("Player: Damage taken: %f - Health Remaining: %f"), value, Health);
 	return value;
 }
 
@@ -113,21 +122,31 @@ void AHeroBase::AttackUpdate()
 	if (m_bCanAttack)
 	{
 		AEnemyBase* enemy = Cast<AEnemyBase>(DestinationActor);
-		
+
 		if (enemy)
 		{
-			m_bCanAttack = false;
-			float cooldown = 2.0f;
-			GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AHeroBase::OnAttackCooldownFinished, cooldown, false);
-			UE_LOG(LogZeroes, Log, TEXT("Attacked '%s'. Cooling down for '%f' seconds"), *enemy->GetName(), cooldown);
+			if (enemy->Health > 0)
+			{
+				m_bCanAttack = false;
+				GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AHeroBase::OnAttackCooldownFinished, AttackCooldown, false);
+				UE_LOG(LogZeroes, Log, TEXT("Attacked '%s'. Cooling down for '%f' seconds"), *enemy->GetName(), AttackCooldown);
 
-			TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
-			FDamageEvent DamageEvent(ValidDamageTypeClass);
-			enemy->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
+				TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
+				FDamageEvent DamageEvent(ValidDamageTypeClass);
+				enemy->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
+				
+				if (enemy->Health <= 0)
+				{
+					// Enemy died on attack
+					m_playerController->ResetTargetEnemy();
+					// Reset state
+					SetState(PlayerStates::IDLE);
+				}
 
-			// Broadcast IsAttacking event
-			if (OnBeginAttacking.IsBound())
-				OnBeginAttacking.Broadcast();
+				// Broadcast IsAttacking event
+				if (OnBeginAttacking.IsBound())
+					OnBeginAttacking.Broadcast();
+			}
 		}
 	}
 }
@@ -207,4 +226,10 @@ void AHeroBase::OnUltimateCooldownFinished()
 void AHeroBase::OnAttackCooldownFinished()
 {
 	m_bCanAttack = true;
+}
+
+void AHeroBase::HandleResetEngagement()
+{
+	UE_LOG(LogZeroes, Log, TEXT("Resetting Player enegagement - idle state"));
+	SetState(PlayerStates::IDLE);
 }
