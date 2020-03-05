@@ -28,6 +28,7 @@ AMinion::AMinion()
 	ChaseSpeed = 2.5f;
 	AttackMinDistance = 150.0f;
 	bCanAttack = false;
+	bIsAttacking = false;
 	AtkCooldownDuration = 5.0f;
 	AttackDamage = 10.0f;
 
@@ -162,6 +163,7 @@ void AMinion::AttackUpdate()
 	if (bCanAttack)
 	{
 		bCanAttack = false;
+
 		GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AMinion::OnAtkCooldownFinished, AtkCooldownDuration);
 		UE_LOG(LogZeroes, Log, TEXT("Attacked enemy. Cooling down"));
 
@@ -170,6 +172,10 @@ void AMinion::AttackUpdate()
 			TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
 			FDamageEvent DamageEvent(ValidDamageTypeClass);
 			PlayerPawn->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
+
+			// Broadcast IsAttacking event
+			if (OnMinionAttacking.IsBound())
+				OnMinionAttacking.Broadcast(this);
 		}
 	}
 

@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "Minion.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMinionAttackSignature, AMinion*, minion);
+
 UCLASS()
 class ZEROES_API AMinion : public ACharacter
 {
@@ -41,6 +43,12 @@ public:
 	float AttackDamage = 10.0f;
 	/// Minimum distance from target to attack
 	float AttackMinDistance;
+
+	bool bIsAttacking;
+
+	/* Events */
+	UPROPERTY(BlueprintAssignable)
+	FMinionAttackSignature OnMinionAttacking;
 
 private:
 	/// Reference to the current player pawn
