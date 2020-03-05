@@ -4,17 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
-#include "EnemyAnimInstance.generated.h"
+#include "HeroAnimInstance.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class ZEROES_API UEnemyAnimInstance : public UAnimInstance
+class ZEROES_API UHeroAnimInstance : public UAnimInstance
 {
 	GENERATED_BODY()
-
-	UEnemyAnimInstance();
+	
+	UHeroAnimInstance();
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
@@ -23,15 +23,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
 	bool bIsAttacking;
 
-	class AEnemyBase* OwningEnemy;
+	class AHeroBase* OwningHero;
 
-	virtual void NativeInitializeAnimation() override; 
+	virtual void NativeInitializeAnimation() override;
 
 	virtual void NativeUpdateAnimation(float DeltaTimeX) override;
 
 protected:
-	UFUNCTION(BlueprintCallable)
-	void UpdateAnimationProperties();
 
 private:
 	FTimerHandle TimerHandle_AttackExpired;
@@ -42,4 +40,5 @@ private:
 	void OnAttacking();
 
 	void OnAttackComplete();
+
 };

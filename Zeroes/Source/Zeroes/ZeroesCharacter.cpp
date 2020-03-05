@@ -11,6 +11,9 @@
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
+#include "Zeroes.h"
+#include "Enemies\EnemyBase.h"
+#include "Materials/MaterialInstanceDynamic.h"
 
 AZeroesCharacter::AZeroesCharacter()
 {
@@ -47,7 +50,8 @@ AZeroesCharacter::AZeroesCharacter()
 	static ConstructorHelpers::FObjectFinder<UMaterial> DecalMaterialAsset(TEXT("Material'/Game/TopDownCPP/Blueprints/M_Cursor_Decal.M_Cursor_Decal'"));
 	if (DecalMaterialAsset.Succeeded())
 	{
-		CursorToWorld->SetDecalMaterial(DecalMaterialAsset.Object);
+		decalDynamicMaterial = UMaterialInstanceDynamic::Create(DecalMaterialAsset.Object, NULL);
+		CursorToWorld->SetDecalMaterial(decalDynamicMaterial);
 	}
 	CursorToWorld->DecalSize = FVector(16.0f, 32.0f, 32.0f);
 	CursorToWorld->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f).Quaternion());
@@ -61,6 +65,8 @@ void AZeroesCharacter::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
 
+	CheckForBlockingActor();
+
 	// Sets the location/rotation of the mouse to ground indicator
 	if (CursorToWorld != nullptr)
 	{
@@ -70,14 +76,45 @@ void AZeroesCharacter::Tick(float DeltaSeconds)
 			PC->GetHitResultUnderCursor(ECC_Visibility, true, TraceHitResult);
 			FVector CursorFV = TraceHitResult.ImpactNormal;
 			FRotator CursorR = CursorFV.Rotation();
-			if (CursorFV.Equals(FVector::ZeroVector)) {
+
+			// If cursor is out of window
+			if (CursorFV.Equals(FVector::ZeroVector)) 
+			{
 				CursorToWorld->SetWorldLocation(FVector(99999, 99999, 99999));
 			}
-			else {
+			else 
+			{
 				CursorToWorld->SetWorldLocation(TraceHitResult.Location);
 			}
 			
 			CursorToWorld->SetWorldRotation(CursorR);
+		}
+	}
+}
+
+void AZeroesCharacter::CheckForBlockingActor()
+{
+	if (CursorToWorld != nullptr)
+	{
+		if (APlayerController* PC = Cast<APlayerController>(GetController()))
+		{
+			FHitResult Hit;
+			PC->GetHitResultUnderCursor(ECC_Pawn, true, Hit);
+
+			if (Hit.bBlockingHit)
+			{
+				AActor* actor = Hit.GetActor();
+				FLinearColor color = FLinearColor::Green;
+				if (actor->IsA(AEnemyBase::StaticClass()))
+				{
+					//UE_LOG(LogZeroes, Log, TEXT("Hovering over an enemy"));
+					color = FLinearColor::Red;
+					DestinationActor = actor;
+				}
+				
+				decalDynamicMaterial->SetVectorParameterValue(TEXT("DecalColor"), color);
+				CursorToWorld->SetDecalMaterial(decalDynamicMaterial);
+			}
 		}
 	}
 }

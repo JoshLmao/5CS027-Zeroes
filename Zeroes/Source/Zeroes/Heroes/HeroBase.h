@@ -6,6 +6,8 @@
 #include "ZeroesCharacter.h"
 #include "HeroBase.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHeroBeginAttackSignature);
+
 UCLASS()
 class ZEROES_API AHeroBase : public AZeroesCharacter
 {
@@ -23,12 +25,19 @@ public:
 	/// Current health of the hero
 	float Health;
 
+	/// Amount of damage to inflict per attack
+	double AttackDamage;
+
+	/* Events */
+	UPROPERTY(BlueprintAssignable)
+	FHeroBeginAttackSignature OnBeginAttacking;
+
 protected:
 	virtual void BeginPlay() override;
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent);
+	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
@@ -37,14 +46,34 @@ protected:
 	virtual void UseAbilityThree();
 	virtual void UseUltimate();
 
+	UFUNCTION()
+	void HandleReachedActor();
+
 private:
+	class AZeroesPlayerController* m_playerController;
+
 	FTimerHandle TimerHandle_AbilityOneCooldown;
 	FTimerHandle TimerHandle_AbilityTwoCooldown;
 	FTimerHandle TimerHandle_AbilityThreeCooldown;
 	FTimerHandle TimerHandle_UltimateCooldown;
-	
+	FTimerHandle TimerHandle_AttackCooldown;
+
 	bool m_bCanUseAbilOne, m_bCanUseAbilTwo, m_bCanUseAbilThree;
 	bool m_bCanUseUltimate;
+
+	bool m_bCanAttack;
+
+	enum PlayerStates { IDLE, ATTACKING, WALKING };
+	PlayerStates State = PlayerStates::IDLE;
+
+	enum StateEvents { ON_START, ON_UPDATE };
+	StateEvents StateEvent = StateEvents::ON_START;
+
+	void SM_Update();
+	void SetState(PlayerStates newState);
+
+	void AttackStart();
+	void AttackUpdate();
 
 	/*Input handlers for Ability/Ultimate*/
 	void UseAbilityOnePressed();
@@ -56,4 +85,6 @@ private:
 	void OnAbilTwoCooldownFinished();
 	void OnAbilThreeCooldownFinished();
 	void OnUltimateCooldownFinished();
+
+	void OnAttackCooldownFinished();
 };

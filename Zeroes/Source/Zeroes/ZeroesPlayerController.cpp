@@ -6,11 +6,15 @@
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "ZeroesCharacter.h"
 #include "Engine/World.h"
+#include "Enemies\EnemyBase.h"
+#include "Zeroes.h"
 
 AZeroesPlayerController::AZeroesPlayerController()
 {
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Crosshairs;
+	m_reachedEnemy = false;
+	m_targetEnemy = nullptr;
 }
 
 void AZeroesPlayerController::PlayerTick(float DeltaTime)
@@ -21,6 +25,11 @@ void AZeroesPlayerController::PlayerTick(float DeltaTime)
 	if (bMoveToMouseCursor)
 	{
 		MoveToMouseCursor();
+	}
+
+	if (m_targetEnemy != nullptr  && !m_reachedEnemy)
+	{
+		SetNewEnemyDestination(m_targetEnemy);
 	}
 }
 
@@ -37,24 +46,66 @@ void AZeroesPlayerController::MoveToMouseCursor()
 {
 	// Trace to see what is under the mouse cursor
 	FHitResult Hit;
-	GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+	GetHitResultUnderCursor(ECC_Pawn, false, Hit);
 
 	if (Hit.bBlockingHit)
 	{
-		// We hit something, move there
-		SetNewMoveDestination(Hit.ImpactPoint);
+		// Check if hovering over enemy
+		AActor* actor = Hit.GetActor();
+		if (actor->IsA(AEnemyBase::StaticClass()))
+		{
+			m_targetEnemy = actor;
+		}
+		else
+		{
+			// Move to floor location
+			SetNewMoveDestination(Hit.ImpactPoint);
+		}
+	}
+	else
+	{
+		UE_LOG(LogZeroes, Warning, TEXT("Nothing blocking MoveTo hit result"));
 	}
 }
 
-void AZeroesPlayerController::SetNewMoveDestination(const FVector DestLocation)
+void AZeroesPlayerController::SetNewMoveDestination(const FVector DestLocation, float rangeTolerance)
 {
 	APawn* const MyPawn = GetPawn();
 	if (MyPawn)
 	{
 		float const Distance = FVector::Dist(DestLocation, MyPawn->GetActorLocation());
 		// We need to issue move command only if far enough in order for walk animation to play correctly
-		if ((Distance > 50.0f))
+		if ((Distance > rangeTolerance))
 			UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, DestLocation);
+	}
+}
+
+void AZeroesPlayerController::SetNewEnemyDestination(AActor* enemyActor)
+{
+	AEnemyBase* enemy = Cast<AEnemyBase>(enemyActor);
+	float range = 175.0f;
+	
+	APawn* const MyPawn = GetPawn();
+	if (MyPawn)
+	{
+		float const Distance = FVector::Dist(enemy->GetActorLocation(), MyPawn->GetActorLocation());
+		
+		if (Distance > range)
+		{
+			UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, enemy->GetActorLocation());
+			m_reachedEnemy = false;
+			UE_LOG(LogZeroes, Log, TEXT("Moving towards enemy..."));
+		}
+		else
+		{
+			if (!m_reachedEnemy)
+			{
+				UE_LOG(LogZeroes, Log, TEXT("Controller reached enemy. Trigger event"))
+				if (OnReachedDestActor.IsBound())
+					OnReachedDestActor.Broadcast();
+			}
+			m_reachedEnemy = true;
+		}
 	}
 }
 
@@ -69,4 +120,6 @@ void AZeroesPlayerController::OnSetDestinationReleased()
 	// clear flag to indicate we should stop updating the destination
 	bMoveToMouseCursor = false;
 }
+
+
 

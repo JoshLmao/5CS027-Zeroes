@@ -3,7 +3,7 @@
 
 #include "EnemyAnimInstance.h"
 #include "Zeroes.h"
-#include "Enemies\Minion.h"
+#include "Enemies\EnemyBase.h"
 #include "TimerManager.h"
 
 UEnemyAnimInstance::UEnemyAnimInstance()
@@ -15,23 +15,27 @@ void UEnemyAnimInstance::NativeInitializeAnimation()
 {
 	Super::NativeInitializeAnimation();
 
-	OwningPawn = TryGetPawnOwner();
-	if (OwningPawn)
+	m_owningPawn = TryGetPawnOwner();
+	if (m_owningPawn)
 	{
-		OwningMinion = Cast<AMinion>(OwningPawn);
-		OwningMinion->OnMinionAttacking.AddDynamic(this, &UEnemyAnimInstance::OnAttacking);
-	}
-	else
-	{
-		UE_LOG(LogZeroes, Warning, TEXT("Unable to cast pawn to minion"));
+		OwningEnemy = Cast<AEnemyBase>(m_owningPawn);
+		if (OwningEnemy)
+		{
+			OwningEnemy->OnMinionAttacking.AddDynamic(this, &UEnemyAnimInstance::OnAttacking);
+		}
+		else
+		{
+			UE_LOG(LogZeroes, Warning, TEXT("Unable to cast pawn to minion"));
+		}
 	}
 }
 
 void UEnemyAnimInstance::NativeUpdateAnimation(float DeltaTimeX)
 {
-	if (OwningMinion)
+	Super::NativeUpdateAnimation(DeltaTimeX);
+	if (OwningEnemy)
 	{
-		SpeedSq = OwningMinion->GetVelocity().SizeSquared();
+		SpeedSq = OwningEnemy->GetVelocity().SizeSquared();
 	}
 }
 
@@ -40,7 +44,7 @@ void UEnemyAnimInstance::UpdateAnimationProperties()
 
 }
 
-void UEnemyAnimInstance::OnAttacking(AMinion* minion)
+void UEnemyAnimInstance::OnAttacking()
 {
 	bIsAttacking = true;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle_AttackExpired, this, &UEnemyAnimInstance::OnAttackComplete, 1.1f, false);

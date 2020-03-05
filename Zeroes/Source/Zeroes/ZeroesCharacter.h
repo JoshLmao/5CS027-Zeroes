@@ -36,5 +36,13 @@ protected:
 	/** A decal that projects to the cursor location. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UDecalComponent* CursorToWorld;
+
+	/// Current actor selected to walk towards
+	AActor* DestinationActor;
+
+private:
+	void CheckForBlockingActor();
+
+	class UMaterialInstanceDynamic* decalDynamicMaterial;
 };
 

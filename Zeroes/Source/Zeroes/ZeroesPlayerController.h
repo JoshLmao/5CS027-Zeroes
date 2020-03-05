@@ -6,6 +6,8 @@
 #include "GameFramework/PlayerController.h"
 #include "ZeroesPlayerController.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerReachedDestinationActorSignature);
+
 UCLASS()
 class AZeroesPlayerController : public APlayerController
 {
@@ -13,6 +15,9 @@ class AZeroesPlayerController : public APlayerController
 
 public:
 	AZeroesPlayerController();
+
+	UPROPERTY(BlueprintAssignable)
+	FControllerReachedDestinationActorSignature OnReachedDestActor;
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
@@ -27,12 +32,18 @@ protected:
 	void MoveToMouseCursor();
 
 	/** Navigate player to the given world location. */
-	void SetNewMoveDestination(const FVector DestLocation);
+	void SetNewMoveDestination(const FVector DestLocation, float rangeTolerance = 70.0f);
+
+	/** Navigate to enemy for combat */
+	void SetNewEnemyDestination(AActor* actor);
 
 	/** Input handlers for SetDestination action. */
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
 
+private:
+	AActor* m_targetEnemy;
+	bool m_reachedEnemy;
 };
 
 
