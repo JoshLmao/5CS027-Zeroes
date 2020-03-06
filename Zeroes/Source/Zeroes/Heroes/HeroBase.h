@@ -31,6 +31,13 @@ public:
 	/// Amount of damage to inflict per attack
 	double AttackDamage;
 
+	/// Normal camera zoom value
+	float DefaultCameraZoom;
+	/// Maximum amount for camera zoom
+	float MaxCameraZoom;
+	/// Minimum amount for camera zoom
+	float MinCameraZoom;
+
 	/* Events */
 	UPROPERTY(BlueprintAssignable)
 	FHeroBeginAttackSignature OnBeginAttacking;
@@ -93,4 +100,7 @@ private:
 
 	UFUNCTION()
 	void HandleResetEngagement();
+
+	void ResetCameraZoom();
+	void CameraZoomChanged(float Value);
 };

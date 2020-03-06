@@ -70,6 +70,7 @@ private:
 	class APawn* PlayerPawn;
 	/// Reference to the AI Controller to control path finding
 	class AAIController* AIController;
+	class UEnemyAnimInstance* AnimInstance;
 
 	/// Start spawn location of the enemy
 	FVector m_spawnLocation;

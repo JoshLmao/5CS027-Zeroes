@@ -6,9 +6,11 @@
 #include "Zeroes.h"
 #include "TimerManager.h"
 #include "Components/InputComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "ZeroesPlayerController.h"
 #include "Enemies\EnemyBase.h"
 #include "TimerManager.h"
+#include "GameFramework\SpringArmComponent.h"
 
 // Sets default values
 AHeroBase::AHeroBase()
@@ -24,11 +26,16 @@ AHeroBase::AHeroBase()
 	AttackDamage = 75.0;
 	m_bCanAttack = false;
 	AttackCooldown = 2.0f;
+	DefaultCameraZoom = 800.0f;
+	MinCameraZoom = 800.0f;
+	MaxCameraZoom = 1400.0f;
 }
 
 void AHeroBase::BeginPlay()
 {
 	Super::BeginPlay();
+
+	ResetCameraZoom();
 
 	m_playerController = Cast<AZeroesPlayerController>(GetController());
 	if (m_playerController)
@@ -48,11 +55,15 @@ void AHeroBase::Tick(float DeltaTime)
 
 void AHeroBase::SetupPlayerInputComponent(UInputComponent* InputComponent)
 {
+	Super::SetupPlayerInputComponent(InputComponent);
+
 	// Listen to ability keys
 	InputComponent->BindAction("Ability1", IE_Pressed, this, &AHeroBase::UseAbilityOnePressed);
 	InputComponent->BindAction("Ability2", IE_Pressed, this, &AHeroBase::UseAbilityTwoPressed);
 	InputComponent->BindAction("Ability3", IE_Pressed, this, &AHeroBase::UseAbilityThreePressed);
 	InputComponent->BindAction("Ultimate", IE_Pressed, this, &AHeroBase::UseUltimatePressed);
+
+	InputComponent->BindAxis("CameraZoom", this, &AHeroBase::CameraZoomChanged);
 }
 
 float AHeroBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -123,30 +134,27 @@ void AHeroBase::AttackUpdate()
 	{
 		AEnemyBase* enemy = Cast<AEnemyBase>(DestinationActor);
 
-		if (enemy)
+		if (enemy && enemy->Health > 0)
 		{
-			if (enemy->Health > 0)
-			{
-				m_bCanAttack = false;
-				GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AHeroBase::OnAttackCooldownFinished, AttackCooldown, false);
-				UE_LOG(LogZeroes, Log, TEXT("Attacked '%s'. Cooling down for '%f' seconds"), *enemy->GetName(), AttackCooldown);
+			m_bCanAttack = false;
+			GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AHeroBase::OnAttackCooldownFinished, AttackCooldown, false);
+			UE_LOG(LogZeroes, Log, TEXT("Attacked '%s'. Cooling down for '%f' seconds"), *enemy->GetName(), AttackCooldown);
 
-				TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
-				FDamageEvent DamageEvent(ValidDamageTypeClass);
-				enemy->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
+			TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
+			FDamageEvent DamageEvent(ValidDamageTypeClass);
+			enemy->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
 				
-				if (enemy->Health <= 0)
-				{
-					// Enemy died on attack
-					m_playerController->ResetTargetEnemy();
-					// Reset state
-					SetState(PlayerStates::IDLE);
-				}
-
-				// Broadcast IsAttacking event
-				if (OnBeginAttacking.IsBound())
-					OnBeginAttacking.Broadcast();
+			if (enemy->Health <= 0)
+			{
+				// Enemy died on attack
+				m_playerController->ResetTargetEnemy();
+				// Reset state
+				SetState(PlayerStates::IDLE);
 			}
+
+			// Broadcast IsAttacking event
+			if (OnBeginAttacking.IsBound())
+				OnBeginAttacking.Broadcast();
 		}
 	}
 }
@@ -232,4 +240,36 @@ void AHeroBase::HandleResetEngagement()
 {
 	UE_LOG(LogZeroes, Log, TEXT("Resetting Player enegagement - idle state"));
 	SetState(PlayerStates::IDLE);
+}
+
+void AHeroBase::ResetCameraZoom()
+{
+	GetCameraBoom()->TargetArmLength = DefaultCameraZoom;
+	UE_LOG(LogZeroes, Log, TEXT("Reset camera length"));
+}
+
+void AHeroBase::CameraZoomChanged(float Value)
+{
+	float zoomRate = 20.0f;
+
+	// Camera scroll zoom
+	if (Value > 0.0f)
+	{
+		// Player is Dead
+		float existing = GetCameraBoom()->TargetArmLength;
+		float newValue = existing - (zoomRate * Value);
+		if (newValue < MinCameraZoom)
+			newValue = MinCameraZoom;
+
+		GetCameraBoom()->TargetArmLength = newValue;
+	}
+	else if (Value < 0.0f)
+	{
+		float existing = GetCameraBoom()->TargetArmLength;
+		float newValue = existing + (zoomRate * std::abs(Value));
+		if (newValue > MaxCameraZoom)
+			newValue = MaxCameraZoom;
+
+		GetCameraBoom()->TargetArmLength = newValue;
+	}
 }

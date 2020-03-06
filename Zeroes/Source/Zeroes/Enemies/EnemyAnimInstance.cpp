@@ -48,7 +48,8 @@ void UEnemyAnimInstance::UpdateAnimationProperties()
 void UEnemyAnimInstance::OnAttacking()
 {
 	bIsAttacking = true;
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle_AttackExpired, this, &UEnemyAnimInstance::OnAttackComplete, 1.1f, false);
+	float attackAnimDuration = 1.1f;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle_AttackExpired, this, &UEnemyAnimInstance::OnAttackComplete, attackAnimDuration, false);
 }
 
 void UEnemyAnimInstance::OnDeath()

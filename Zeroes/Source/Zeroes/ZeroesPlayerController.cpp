@@ -8,6 +8,9 @@
 #include "Engine/World.h"
 #include "Enemies\EnemyBase.h"
 #include "Zeroes.h"
+#include "GameFramework/Pawn.h"
+#include "Heroes\HeroAnimInstance.h"
+#include "Components/SkeletalMeshComponent.h"
 
 AZeroesPlayerController::AZeroesPlayerController()
 {
@@ -57,6 +60,9 @@ void AZeroesPlayerController::MoveToMouseCursor()
 	FHitResult Hit;
 	GetHitResultUnderCursor(ECC_Pawn, false, Hit);
 
+	USkeletalMeshComponent* mesh = Cast<USkeletalMeshComponent>(GetPawn()->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
+	UHeroAnimInstance* animInstance = Cast<UHeroAnimInstance>(mesh->GetAnimInstance());
+
 	if (Hit.bBlockingHit)
 	{
 		// Check if hovering over enemy
@@ -68,15 +74,18 @@ void AZeroesPlayerController::MoveToMouseCursor()
 		}
 		else
 		{
-			// Move to floor location
-			SetNewMoveDestination(Hit.ImpactPoint);
-
-			if (m_targetEnemy != nullptr)
+			if (animInstance && !animInstance->bIsAttacking)
 			{
-				// Reset tracked enemy on issuing a walk command
-				if (OnResetEngagement.IsBound())
-					OnResetEngagement.Broadcast();
-				ResetTargetEnemy();
+				// Move to floor location
+				SetNewMoveDestination(Hit.ImpactPoint);
+
+				if (m_targetEnemy != nullptr)
+				{
+					// Reset tracked enemy on issuing a walk command
+					if (OnResetEngagement.IsBound())
+						OnResetEngagement.Broadcast();
+					ResetTargetEnemy();
+				}
 			}
 		}
 	}

@@ -11,6 +11,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "AIController.h"
 #include "Components\SkeletalMeshComponent.h"
+#include "Enemies\EnemyAnimInstance.h"
 
 // Sets default values
 AEnemyBase::AEnemyBase()
@@ -56,6 +57,10 @@ void AEnemyBase::BeginPlay()
 	AIController = Cast<AAIController>(GetController());
 	if (!AIController)
 		UE_LOG(LogZeroes, Error, TEXT("No reference to AI Controller!"));
+
+	AnimInstance = Cast<UEnemyAnimInstance>(GetMesh()->GetAnimInstance());
+	if (!AnimInstance)
+		UE_LOG(LogZeroes, Error, TEXT("No reference to an EnemyAnimInstance on enemy '%s'"), *this->GetName());
 }
 
 // Called every frame
@@ -215,8 +220,9 @@ void AEnemyBase::AttackUpdate()
 	// Always look at player whilst waiting to attack
 	LookAtTarget(PlayerPawn->GetActorLocation());
 
+	// Transition to chase once player is out of attack distance and enemy isn't attacking
 	float distance = FVector::Distance(this->GetActorLocation(), PlayerPawn->GetActorLocation());
-	if (distance > AttackMinDistance)
+	if (distance > AttackMinDistance && AnimInstance && !AnimInstance->bIsAttacking)
 	{
 		SetState(BehaviourStates::CHASE);
 		UE_LOG(LogZeroes, Log, TEXT("Player went out of range. Go bk to them"));
@@ -227,7 +233,7 @@ void AEnemyBase::DeadStart()
 {
 	Event = GameEvents::ON_UPDATE;
 
-	UE_LOG(LogZeroes, Log, TEXT("Enemy Death Entry state begin"));
+	UE_LOG(LogZeroes, Log, TEXT("'%s' Death Entry state begin"), *this->GetName());
 
 	DetachFromControllerPendingDestroy();
 
