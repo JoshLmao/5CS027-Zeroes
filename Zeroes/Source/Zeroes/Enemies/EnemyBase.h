@@ -35,6 +35,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Properties")
 	float Health;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Properties")
+	float MaxHealth;
+
 	/// Visibility range when Idle
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Properties")
 	float IdleRange;
@@ -56,6 +59,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Properties")
 	float AttackMinDistance;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class USActorWidgetComponent* WidgetComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category  = "Enemy Properties")
+	TSubclassOf<class USActorWidget> HealthbarWidget;
+
 	/* Events */
 	/// Triggered when enemy starts their attack
 	UPROPERTY(BlueprintAssignable)
@@ -64,6 +73,10 @@ public:
 	/// Triggered when enemy has lost all health and is dead
 	UPROPERTY(BlueprintAssignable)
 	FEnemyDeathSignature OnEnemyDeath;
+
+	/* Functions */
+	float GetHealth();
+	float GetMaxHealth();
 
 private:
 	/// Reference to the current player pawn

@@ -12,6 +12,10 @@
 #include "AIController.h"
 #include "Components\SkeletalMeshComponent.h"
 #include "Enemies\EnemyAnimInstance.h"
+#include "UI\SActorWidget.h"
+#include "UI/SActorWidgetComponent.h"
+#include "ConstructorHelpers.h"
+#include "UI/Enemies/EnemyHealthbar.h"
 
 // Sets default values
 AEnemyBase::AEnemyBase()
@@ -25,6 +29,7 @@ AEnemyBase::AEnemyBase()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 
+	Health = MaxHealth = 250.0f;
 	IdleRange = 750.0f;
 	ChaseRange = 1000.0f;
 	ChaseSpeed = 2.5f;
@@ -33,7 +38,6 @@ AEnemyBase::AEnemyBase()
 	m_bDeathTimedOut = false;
 	AtkCooldownDuration = 5.0f;
 	AttackDamage = 15.0f;
-	Health = 250.0f;
 	m_deathSinkRate = 10.0f;
 
 	// Set maximum movemenet speed
@@ -41,6 +45,19 @@ AEnemyBase::AEnemyBase()
 
 	GetCapsuleComponent()->SetMassScale(NAME_None, 1000.0f);
 	GetMesh()->SetMassScale(NAME_None, 1000.0f);
+
+	WidgetComponent = CreateDefaultSubobject<USActorWidgetComponent>("PopupWidget");
+	WidgetComponent->SetupAttachment(RootComponent);
+	// Always face camera by setting to screen
+	WidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
+	// Set position to be above enemy head 
+	WidgetComponent->SetRelativeLocationAndRotation(FVector(0, 0, 100.0f), FQuat::Identity);
+	// WidgetClass should inherit from EnemyHealthbar
+	//WidgetComponent->SetWidgetClass(UEnemyHealthbar::StaticClass());
+	WidgetComponent->SetTickWhenOffscreen(true);
+	//WidgetComponent->SetDrawAtDesiredSize(false);
+	HealthbarWidget = UEnemyHealthbar::StaticClass();
+	
 }
 
 // Called when the game starts or when spawned
@@ -61,6 +78,12 @@ void AEnemyBase::BeginPlay()
 	AnimInstance = Cast<UEnemyAnimInstance>(GetMesh()->GetAnimInstance());
 	if (!AnimInstance)
 		UE_LOG(LogZeroes, Error, TEXT("No reference to an EnemyAnimInstance on enemy '%s'"), *this->GetName());
+
+	// Assign blueprint to component
+	if (HealthbarWidget)
+	{
+		WidgetComponent->SetWidgetClass(HealthbarWidget.Get());
+	}
 }
 
 // Called every frame
@@ -97,6 +120,16 @@ float AEnemyBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent
 	}
 
 	return damageValue;
+}
+
+float AEnemyBase::GetHealth()
+{
+	return Health;
+}
+
+float AEnemyBase::GetMaxHealth()
+{
+	return MaxHealth;
 }
 
 void AEnemyBase::FSMUpdate(float DeltaTime)
@@ -258,7 +291,11 @@ void AEnemyBase::DeadStart()
 		CharacterComp->SetComponentTickEnabled(false);
 	}
 
+	// Set time destroy after duration
 	SetLifeSpan(10.0f);
+
+	// Destroy UI for health
+	//WidgetComponent->DestroyComponent();
 }
 
 void AEnemyBase::DeadUpdate()
