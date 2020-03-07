@@ -52,12 +52,9 @@ AEnemyBase::AEnemyBase()
 	WidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
 	// Set position to be above enemy head 
 	WidgetComponent->SetRelativeLocationAndRotation(FVector(0, 0, 100.0f), FQuat::Identity);
-	// WidgetClass should inherit from EnemyHealthbar
-	//WidgetComponent->SetWidgetClass(UEnemyHealthbar::StaticClass());
 	WidgetComponent->SetTickWhenOffscreen(true);
-	//WidgetComponent->SetDrawAtDesiredSize(false);
-	HealthbarWidget = UEnemyHealthbar::StaticClass();
 	
+	HealthbarWidget = UEnemyHealthbar::StaticClass();
 }
 
 // Called when the game starts or when spawned
@@ -295,7 +292,7 @@ void AEnemyBase::DeadStart()
 	SetLifeSpan(10.0f);
 
 	// Destroy UI for health
-	//WidgetComponent->DestroyComponent();
+	WidgetComponent->DestroyComponent();
 }
 
 void AEnemyBase::DeadUpdate()

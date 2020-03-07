@@ -34,7 +34,6 @@ void USActorWidgetComponent::InitWidget()
 			// Assign the owner, now we have easy access in the widget itself
 			WidgetInst->SetOwningActor(GetOwner());
 		}
-		UE_LOG(LogZeroes, Error, TEXT("Widget is %s, IsValid: %s"), *Widget->GetName(), GetOwner() ? TEXT("YES") : TEXT("NO"));
 	}
 
 }

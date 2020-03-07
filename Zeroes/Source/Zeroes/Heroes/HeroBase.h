@@ -22,9 +22,6 @@ public:
 	float AbilityThreeCooldown;
 	float UltimateCooldown;
 
-	/// Current health of the hero
-	float Health;
-
 	/// Time in seconds inbetween each attack
 	float AttackCooldown;
 
@@ -61,6 +58,7 @@ protected:
 
 private:
 	class AZeroesPlayerController* m_playerController;
+	class AHeroState* m_heroState;
 
 	FTimerHandle TimerHandle_AbilityOneCooldown;
 	FTimerHandle TimerHandle_AbilityTwoCooldown;
@@ -70,8 +68,6 @@ private:
 
 	bool m_bCanUseAbilOne, m_bCanUseAbilTwo, m_bCanUseAbilThree;
 	bool m_bCanUseUltimate;
-
-	bool m_bCanAttack;
 
 	enum PlayerStates { IDLE, ATTACKING, WALKING };
 	PlayerStates State = PlayerStates::IDLE;
@@ -103,4 +99,6 @@ private:
 
 	void ResetCameraZoom();
 	void CameraZoomChanged(float Value);
+
+	void RegenerateHealth(float DeltaTime);
 };

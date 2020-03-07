@@ -11,6 +11,7 @@
 #include "Enemies\EnemyBase.h"
 #include "TimerManager.h"
 #include "GameFramework\SpringArmComponent.h"
+#include "Heroes\HeroState.h"
 
 // Sets default values
 AHeroBase::AHeroBase()
@@ -22,9 +23,7 @@ AHeroBase::AHeroBase()
 	m_bCanUseAbilOne = m_bCanUseAbilTwo = m_bCanUseAbilThree = m_bCanUseUltimate = true;
 	AbilityOneCooldown = AbilityTwoCooldown = AbilityThreeCooldown = 5.0f;
 	UltimateCooldown = 15.0f;
-	Health = 1000.0f;
 	AttackDamage = 75.0;
-	m_bCanAttack = false;
 	AttackCooldown = 2.0f;
 	DefaultCameraZoom = 800.0f;
 	MinCameraZoom = 800.0f;
@@ -43,12 +42,24 @@ void AHeroBase::BeginPlay()
 		m_playerController->OnReachedDestActor.AddDynamic(this, &AHeroBase::HandleReachedActor);
 		m_playerController->OnResetEngagement.AddDynamic(this, &AHeroBase::HandleResetEngagement);
 	}
+
+	AHeroState* state = Cast<AHeroState>(GetPlayerState());
+	if (state)
+	{
+		m_heroState = state;
+
+		// Set State default values
+		m_heroState->SetCanAttack(true);
+	}
 }
 
 // Called every frame
 void AHeroBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	// Regenerate Health every frame
+	RegenerateHealth(DeltaTime);
 
 	SM_Update();
 }
@@ -70,14 +81,14 @@ float AHeroBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent,
 {
 	float value = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 
-	Health -= value;
-	if (Health <= 0)
+	m_heroState->RemoveHealth(value);
+	if (m_heroState->GetHealth() <= 0)
 	{
 		// Player is Dead
 	}
 	else
 	{
-		UE_LOG(LogZeroes, Log, TEXT("Player: Damage taken: %f - Health Remaining: %f"), value, Health);
+		UE_LOG(LogZeroes, Log, TEXT("Player: Damage taken: %f - Health Remaining: %f"), value, m_heroState->GetHealth());
 	}
 
 	return value;
@@ -124,19 +135,19 @@ void AHeroBase::SetState(PlayerStates newState)
 
 void AHeroBase::AttackStart()
 {
-	m_bCanAttack = true;
 	StateEvent = StateEvents::ON_UPDATE;
 }
 
 void AHeroBase::AttackUpdate()
 {
-	if (m_bCanAttack)
+	if (m_heroState->GetCanAttack())
 	{
 		AEnemyBase* enemy = Cast<AEnemyBase>(DestinationActor);
 
 		if (enemy && enemy->Health > 0)
 		{
-			m_bCanAttack = false;
+			m_heroState->SetCanAttack(false);
+
 			GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AHeroBase::OnAttackCooldownFinished, AttackCooldown, false);
 			UE_LOG(LogZeroes, Log, TEXT("Attacked '%s'. Cooling down for '%f' seconds"), *enemy->GetName(), AttackCooldown);
 
@@ -233,7 +244,8 @@ void AHeroBase::OnUltimateCooldownFinished()
 
 void AHeroBase::OnAttackCooldownFinished()
 {
-	m_bCanAttack = true;
+	// Once attack cooldown is finished, enable attacking again
+	m_heroState->SetCanAttack(true);
 }
 
 void AHeroBase::HandleResetEngagement()
@@ -272,4 +284,9 @@ void AHeroBase::CameraZoomChanged(float Value)
 
 		GetCameraBoom()->TargetArmLength = newValue;
 	}
+}
+
+void AHeroBase::RegenerateHealth(float DeltaTime)
+{
+	m_heroState->AddHealth(m_heroState->GetHealthRegenRate() * DeltaTime);
 }
