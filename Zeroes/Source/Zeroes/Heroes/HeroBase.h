@@ -66,7 +66,7 @@ private:
 	FTimerHandle TimerHandle_UltimateCooldown;
 	FTimerHandle TimerHandle_AttackCooldown;
 
-	bool m_bCanUseAbilOne, m_bCanUseAbilTwo, m_bCanUseAbilThree;
+	bool m_bCanUseAbilTwo, m_bCanUseAbilThree;
 	bool m_bCanUseUltimate;
 
 	enum PlayerStates { IDLE, ATTACKING, WALKING };

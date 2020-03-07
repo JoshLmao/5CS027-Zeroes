@@ -24,6 +24,9 @@ class ZEROES_API UPlayerUIWidget : public UUserWidget
 
 	UFUNCTION(BlueprintCallable)
 	float GetHealthRegenRate();
+	
+	UFUNCTION(BlueprintCallable)
+	bool GetAbilityCanUse(int index);
 
 public:
 	class AHeroState* PlayerState;

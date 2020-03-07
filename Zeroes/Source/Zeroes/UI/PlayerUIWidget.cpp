@@ -19,6 +19,11 @@ float UPlayerUIWidget::GetHealthRegenRate()
 	return PlayerState ? PlayerState->GetHealthRegenRate() : 0.0f;
 }
 
+bool UPlayerUIWidget::GetAbilityCanUse(int index)
+{
+	return PlayerState ? PlayerState->GetAbilityCanUse(index) : false;
+}
+
 void UPlayerUIWidget::NativeConstruct()
 {
 	Super::NativeConstruct();

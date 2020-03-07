@@ -20,7 +20,7 @@ AHeroBase::AHeroBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Set default values
-	m_bCanUseAbilOne = m_bCanUseAbilTwo = m_bCanUseAbilThree = m_bCanUseUltimate = true;
+	m_bCanUseAbilTwo = m_bCanUseAbilThree = m_bCanUseUltimate = true;
 	AbilityOneCooldown = AbilityTwoCooldown = AbilityThreeCooldown = 5.0f;
 	UltimateCooldown = 15.0f;
 	AttackDamage = 75.0;
@@ -50,6 +50,10 @@ void AHeroBase::BeginPlay()
 
 		// Set State default values
 		m_heroState->SetCanAttack(true);
+		// Add ability states so they can be used
+		for (int i = 0; i < 4; i++) {
+			m_heroState->SetAbilityCanUse(i, true);
+		}
 	}
 }
 
@@ -172,11 +176,11 @@ void AHeroBase::AttackUpdate()
 
 void AHeroBase::UseAbilityOnePressed()
 {
-	if (m_bCanUseAbilOne)
+	if (m_heroState->GetAbilityCanUse(0))
 	{
 		UE_LOG(LogZeroes, Log, TEXT("Using Ability One!"));
 		GetWorldTimerManager().SetTimer(TimerHandle_AbilityOneCooldown, this, &AHeroBase::OnAbilOneCooldownFinished, AbilityOneCooldown, false);
-		m_bCanUseAbilOne = false;
+		m_heroState->SetAbilityCanUse(0, false);
 
 		UseAbilityOne();
 	}
@@ -184,11 +188,11 @@ void AHeroBase::UseAbilityOnePressed()
 
 void AHeroBase::UseAbilityTwoPressed()
 {
-	if (m_bCanUseAbilTwo)
+	if (m_heroState->GetAbilityCanUse(1))
 	{
 		UE_LOG(LogZeroes, Log, TEXT("Using Ability Two!"));
 		GetWorldTimerManager().SetTimer(TimerHandle_AbilityTwoCooldown, this, &AHeroBase::OnAbilTwoCooldownFinished, AbilityTwoCooldown, false);
-		m_bCanUseAbilTwo = false;
+		m_heroState->SetAbilityCanUse(1, false);
 
 		UseAbilityTwo();
 	}
@@ -196,11 +200,11 @@ void AHeroBase::UseAbilityTwoPressed()
 
 void AHeroBase::UseAbilityThreePressed()
 {
-	if (m_bCanUseAbilThree)
+	if (m_heroState->GetAbilityCanUse(2))
 	{
 		UE_LOG(LogZeroes, Log, TEXT("Using Ability Three!"));
 		GetWorldTimerManager().SetTimer(TimerHandle_AbilityThreeCooldown, this, &AHeroBase::OnAbilThreeCooldownFinished, AbilityThreeCooldown, false);
-		m_bCanUseAbilThree = false;
+		m_heroState->SetAbilityCanUse(2, false);
 
 		UseAbilityThree();
 	}
@@ -208,11 +212,11 @@ void AHeroBase::UseAbilityThreePressed()
 
 void AHeroBase::UseUltimatePressed()
 {
-	if (m_bCanUseUltimate)
+	if (m_heroState->GetAbilityCanUse(3))
 	{
 		UE_LOG(LogZeroes, Log, TEXT("Using Ultimate"));
 		GetWorldTimerManager().SetTimer(TimerHandle_UltimateCooldown, this, &AHeroBase::OnUltimateCooldownFinished, UltimateCooldown, false);
-		m_bCanUseUltimate = false;
+		m_heroState->SetAbilityCanUse(3, false);
 
 		UseUltimate();
 	}
@@ -220,25 +224,25 @@ void AHeroBase::UseUltimatePressed()
 
 void AHeroBase::OnAbilOneCooldownFinished()
 {
-	m_bCanUseAbilOne = true;
+	m_heroState->SetAbilityCanUse(0, true);
 	UE_LOG(LogZeroes, Log, TEXT("Can use Ability ONE"));
 }
 
 void AHeroBase::OnAbilTwoCooldownFinished()
 {
-	m_bCanUseAbilTwo = true;
+	m_heroState->SetAbilityCanUse(1, true);
 	UE_LOG(LogZeroes, Log, TEXT("Can use Ability TWO"));
 }
 
 void AHeroBase::OnAbilThreeCooldownFinished()
 {
-	m_bCanUseAbilThree = true;
+	m_heroState->SetAbilityCanUse(2, true);
 	UE_LOG(LogZeroes, Log, TEXT("Can use Ability THREE"));
 }
 
 void AHeroBase::OnUltimateCooldownFinished()
 {
-	m_bCanUseUltimate = true;
+	m_heroState->SetAbilityCanUse(3, true);
 	UE_LOG(LogZeroes, Log, TEXT("Ultimate cooldown expired. Can use ultimate"));
 }
 

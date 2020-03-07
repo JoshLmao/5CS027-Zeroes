@@ -41,6 +41,9 @@ public:
 	/// Sets the current regenerate rate per second of health for the player
 	void SetHealthRegenRate(float healthRegenRate);
 
+	bool GetAbilityCanUse(int index);
+	void SetAbilityCanUse(int index, bool isInUse);
+
 private:
 	/// Current health of the player
 	float Health;
@@ -50,4 +53,6 @@ private:
 	float HealthRegenRate;
 	/// Can the player attack an enemy
 	bool bCanAttack;
+
+	class TMap<int, bool> AbilityStates;
 };

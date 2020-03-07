@@ -66,3 +66,19 @@ void AHeroState::SetHealthRegenRate(float healthRegenRate)
 {
 	HealthRegenRate = healthRegenRate;
 }
+
+bool AHeroState::GetAbilityCanUse(int index)
+{
+	if (AbilityStates.Contains(index))
+		return AbilityStates[index];
+	else
+		return false;
+}
+
+void AHeroState::SetAbilityCanUse(int index, bool isInUse)
+{
+	if (AbilityStates.Contains(index))
+		AbilityStates[index] = isInUse;
+	else
+		AbilityStates.Add(index, isInUse);
+}
