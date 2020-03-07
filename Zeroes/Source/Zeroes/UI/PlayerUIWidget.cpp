@@ -9,6 +9,16 @@ bool UPlayerUIWidget::GetCanAttackBoolean()
 	return PlayerState ? PlayerState->GetCanAttack() : false;
 }
 
+float UPlayerUIWidget::GetHealth()
+{
+	return PlayerState ? PlayerState->GetHealth() : 0.0f;
+}
+
+float UPlayerUIWidget::GetMaxHealth()
+{
+	return PlayerState ? PlayerState->GetMaxHealth() : 0.0f;
+}
+
 float UPlayerUIWidget::GetHealthPercentage()
 {
 	return PlayerState ? PlayerState->GetHealth() / PlayerState->GetMaxHealth() : 0.5f;

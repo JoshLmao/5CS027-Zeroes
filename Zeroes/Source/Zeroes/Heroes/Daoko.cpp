@@ -21,7 +21,7 @@ void ADaoko::UseAbilityTwo()
 {
 	Super::UseAbilityTwo();
 
-	float duration = 0.1f;
+	float duration = 0.25f;
 	GetWorldTimerManager().SetTimer(TimerHandle_BlinkDelay, this, &ADaoko::OnBlinkDelayComplete, duration, false);
 }
 

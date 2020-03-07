@@ -18,6 +18,12 @@ class ZEROES_API UPlayerUIWidget : public UUserWidget
 	UFUNCTION(BlueprintCallable)
 	bool GetCanAttackBoolean();
 
+	UFUNCTION(BlueprintCallable)
+	float GetHealth();
+
+	UFUNCTION(BlueprintCallable)
+	float GetMaxHealth();
+
 	/// Returns a value between 0 and 1 of the player's health
 	UFUNCTION(BlueprintCallable)
 	float GetHealthPercentage();

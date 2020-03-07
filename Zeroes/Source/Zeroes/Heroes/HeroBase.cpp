@@ -23,7 +23,7 @@ AHeroBase::AHeroBase()
 	AbilityOneCooldown = AbilityTwoCooldown = AbilityThreeCooldown = 5.0f;
 	UltimateCooldown = 15.0f;
 	AttackDamage = 75.0;
-	AttackCooldown = 2.0f;
+	AttackCooldown = 1.0f;
 	DefaultCameraZoom = 800.0f;
 	MinCameraZoom = 800.0f;
 	MaxCameraZoom = 1400.0f;
