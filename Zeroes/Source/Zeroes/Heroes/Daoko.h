@@ -6,6 +6,7 @@
 #include "Heroes/HeroBase.h"
 #include "Daoko.generated.h"
 
+
 /**
  * 
  */
@@ -17,9 +18,16 @@ class ZEROES_API ADaoko : public AHeroBase
 public:
 	ADaoko();
 
+	/// Amount in units to blink forward
+	float BlinkDistance;
+
 protected:
 	virtual void UseAbilityOne() override;
 	virtual void UseAbilityTwo() override;
 	virtual void UseAbilityThree() override;
 	virtual void UseUltimate() override;
+
+	FTimerHandle TimerHandle_BlinkDelay;
+
+	void OnBlinkDelayComplete();
 };

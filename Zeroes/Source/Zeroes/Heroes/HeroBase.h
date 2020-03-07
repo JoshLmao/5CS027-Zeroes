@@ -7,6 +7,9 @@
 #include "HeroBase.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHeroBeginAttackSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHeroCompleteAttackSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHeroBeginAbilitySignature, int, abilityIndex);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHeroCompleteAbilitySignature, int, abilityIndex);
 
 UCLASS()
 class ZEROES_API AHeroBase : public AZeroesCharacter
@@ -39,6 +42,15 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FHeroBeginAttackSignature OnBeginAttacking;
 
+	UPROPERTY(BlueprintAssignable)
+	FHeroCompleteAttackSignature OnCompletedAttacking;
+
+	UPROPERTY(BlueprintAssignable)
+	FHeroBeginAbilitySignature OnBeginAbility;
+
+	UPROPERTY(BlueprintAssignable)
+	FHeroCompleteAbilitySignature OnCompleteAbility;
+
 protected:
 	virtual void BeginPlay() override;
 	// Called every frame
@@ -66,9 +78,6 @@ private:
 	FTimerHandle TimerHandle_UltimateCooldown;
 	FTimerHandle TimerHandle_AttackCooldown;
 
-	bool m_bCanUseAbilTwo, m_bCanUseAbilThree;
-	bool m_bCanUseUltimate;
-
 	enum PlayerStates { IDLE, ATTACKING, WALKING };
 	PlayerStates State = PlayerStates::IDLE;
 
@@ -86,6 +95,8 @@ private:
 	void UseAbilityTwoPressed();
 	void UseAbilityThreePressed();
 	void UseUltimatePressed();
+
+	void UseAbility(int index);
 
 	void OnAbilOneCooldownFinished();
 	void OnAbilTwoCooldownFinished();

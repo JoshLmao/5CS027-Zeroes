@@ -80,6 +80,8 @@ void AEnemyBase::BeginPlay()
 	if (HealthbarWidget)
 	{
 		WidgetComponent->SetWidgetClass(HealthbarWidget.Get());
+		// Set wanted size of healthbar
+		WidgetComponent->SetDrawSize(FVector2D(160, 20));
 	}
 }
 

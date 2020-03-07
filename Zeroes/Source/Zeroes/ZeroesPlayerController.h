@@ -25,6 +25,9 @@ public:
 
 	void ResetTargetEnemy();
 
+	void SetDisableMovement(bool disable);
+	bool GetDisableMovement();
+
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
 	uint32 bMoveToMouseCursor : 1;
@@ -50,6 +53,7 @@ protected:
 private:
 	AActor* m_targetEnemy;
 	bool m_reachedEnemy;
+	bool m_disableMovement;
 };
 
 

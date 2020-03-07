@@ -20,7 +20,6 @@ AHeroBase::AHeroBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Set default values
-	m_bCanUseAbilTwo = m_bCanUseAbilThree = m_bCanUseUltimate = true;
 	AbilityOneCooldown = AbilityTwoCooldown = AbilityThreeCooldown = 5.0f;
 	UltimateCooldown = 15.0f;
 	AttackDamage = 75.0;
@@ -176,49 +175,56 @@ void AHeroBase::AttackUpdate()
 
 void AHeroBase::UseAbilityOnePressed()
 {
-	if (m_heroState->GetAbilityCanUse(0))
-	{
-		UE_LOG(LogZeroes, Log, TEXT("Using Ability One!"));
-		GetWorldTimerManager().SetTimer(TimerHandle_AbilityOneCooldown, this, &AHeroBase::OnAbilOneCooldownFinished, AbilityOneCooldown, false);
-		m_heroState->SetAbilityCanUse(0, false);
-
-		UseAbilityOne();
-	}
+	UseAbility(0);
 }
 
 void AHeroBase::UseAbilityTwoPressed()
 {
-	if (m_heroState->GetAbilityCanUse(1))
-	{
-		UE_LOG(LogZeroes, Log, TEXT("Using Ability Two!"));
-		GetWorldTimerManager().SetTimer(TimerHandle_AbilityTwoCooldown, this, &AHeroBase::OnAbilTwoCooldownFinished, AbilityTwoCooldown, false);
-		m_heroState->SetAbilityCanUse(1, false);
-
-		UseAbilityTwo();
-	}
+	UseAbility(1);
 }
 
 void AHeroBase::UseAbilityThreePressed()
 {
-	if (m_heroState->GetAbilityCanUse(2))
-	{
-		UE_LOG(LogZeroes, Log, TEXT("Using Ability Three!"));
-		GetWorldTimerManager().SetTimer(TimerHandle_AbilityThreeCooldown, this, &AHeroBase::OnAbilThreeCooldownFinished, AbilityThreeCooldown, false);
-		m_heroState->SetAbilityCanUse(2, false);
-
-		UseAbilityThree();
-	}
+	UseAbility(2);
 }
 
 void AHeroBase::UseUltimatePressed()
 {
-	if (m_heroState->GetAbilityCanUse(3))
-	{
-		UE_LOG(LogZeroes, Log, TEXT("Using Ultimate"));
-		GetWorldTimerManager().SetTimer(TimerHandle_UltimateCooldown, this, &AHeroBase::OnUltimateCooldownFinished, UltimateCooldown, false);
-		m_heroState->SetAbilityCanUse(3, false);
+	UseAbility(3);
+}
 
-		UseUltimate();
+void AHeroBase::UseAbility(int index)
+{
+	if (m_heroState->GetAbilityCanUse(index))
+	{
+		UE_LOG(LogZeroes, Log, TEXT("Using Ability %d!"), (index + 1));
+		m_heroState->SetAbilityCanUse(index, false);
+
+		// Trigger Begin Ability event to any listeners
+		if (OnBeginAbility.IsBound())
+			OnBeginAbility.Broadcast(index);
+
+		switch (index)
+		{
+			case 0:
+				UseAbilityOne();
+				GetWorldTimerManager().SetTimer(TimerHandle_AbilityOneCooldown, this, &AHeroBase::OnAbilOneCooldownFinished, AbilityOneCooldown, false);
+				break;
+			case 1:
+				UseAbilityTwo();
+				GetWorldTimerManager().SetTimer(TimerHandle_AbilityTwoCooldown, this, &AHeroBase::OnAbilTwoCooldownFinished, AbilityTwoCooldown, false);
+				break;
+			case 2:
+				UseAbilityThree();
+				GetWorldTimerManager().SetTimer(TimerHandle_AbilityThreeCooldown, this, &AHeroBase::OnAbilThreeCooldownFinished, AbilityThreeCooldown, false);
+				break;
+			case 3:
+				UseUltimate();
+				GetWorldTimerManager().SetTimer(TimerHandle_UltimateCooldown, this, &AHeroBase::OnUltimateCooldownFinished, UltimateCooldown, false);
+				break;
+			default:
+				UE_LOG(LogZeroes, Error, TEXT("No ability index found for '%f'"), index);
+		}
 	}
 }
 
@@ -226,30 +232,46 @@ void AHeroBase::OnAbilOneCooldownFinished()
 {
 	m_heroState->SetAbilityCanUse(0, true);
 	UE_LOG(LogZeroes, Log, TEXT("Can use Ability ONE"));
+
+	// Broadcast ABilityComplete event
+	if (OnCompleteAbility.IsBound())
+		OnCompleteAbility.Broadcast(0);
 }
 
 void AHeroBase::OnAbilTwoCooldownFinished()
 {
 	m_heroState->SetAbilityCanUse(1, true);
 	UE_LOG(LogZeroes, Log, TEXT("Can use Ability TWO"));
+
+	if (OnCompleteAbility.IsBound())
+		OnCompleteAbility.Broadcast(1);
 }
 
 void AHeroBase::OnAbilThreeCooldownFinished()
 {
 	m_heroState->SetAbilityCanUse(2, true);
 	UE_LOG(LogZeroes, Log, TEXT("Can use Ability THREE"));
+
+	if (OnCompleteAbility.IsBound())
+		OnCompleteAbility.Broadcast(2);
 }
 
 void AHeroBase::OnUltimateCooldownFinished()
 {
 	m_heroState->SetAbilityCanUse(3, true);
 	UE_LOG(LogZeroes, Log, TEXT("Ultimate cooldown expired. Can use ultimate"));
+
+	if (OnCompleteAbility.IsBound())
+		OnCompleteAbility.Broadcast(3);
 }
 
 void AHeroBase::OnAttackCooldownFinished()
 {
 	// Once attack cooldown is finished, enable attacking again
 	m_heroState->SetCanAttack(true);
+
+	if (OnCompletedAttacking.IsBound())
+		OnCompletedAttacking.Broadcast();
 }
 
 void AHeroBase::HandleResetEngagement()

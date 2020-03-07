@@ -32,6 +32,9 @@ void AZeroesPlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
 
+	if (m_disableMovement)
+		return;
+
 	// keep updating the destination every tick while desired
 	if (bMoveToMouseCursor)
 	{
@@ -145,6 +148,16 @@ void AZeroesPlayerController::OnSetDestinationReleased()
 {
 	// clear flag to indicate we should stop updating the destination
 	bMoveToMouseCursor = false;
+}
+
+void AZeroesPlayerController::SetDisableMovement(bool disable)
+{
+	m_disableMovement = disable;
+}
+
+bool AZeroesPlayerController::GetDisableMovement()
+{
+	return m_disableMovement;
 }
 
 

@@ -4,9 +4,12 @@
 #include "Daoko.h"
 
 #include "Zeroes.h"
+#include "TimerManager.h"
+#include "ZeroesPlayerController.h"
 
 ADaoko::ADaoko()
 {
+	BlinkDistance = 500.0f;
 }
 
 void ADaoko::UseAbilityOne()
@@ -18,9 +21,8 @@ void ADaoko::UseAbilityTwo()
 {
 	Super::UseAbilityTwo();
 
-	// Blink Strike
-	FVector blinkLocation = this->GetActorLocation() + this->GetActorForwardVector() * 250.0f;
-	this->SetActorLocation(blinkLocation);
+	float duration = 0.1f;
+	GetWorldTimerManager().SetTimer(TimerHandle_BlinkDelay, this, &ADaoko::OnBlinkDelayComplete, duration, false);
 }
 
 void ADaoko::UseAbilityThree()
@@ -33,4 +35,11 @@ void ADaoko::UseUltimate()
 {
 	Super::UseUltimate();
 
+}
+
+void ADaoko::OnBlinkDelayComplete()
+{
+	// Blink Strike
+	FVector blinkLocation = this->GetActorLocation() + this->GetActorForwardVector() * BlinkDistance;
+	this->SetActorLocation(blinkLocation);
 }

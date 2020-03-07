@@ -23,8 +23,18 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
 	bool bIsAttacking;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
+	bool bAbilityOneUse;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
+	bool bAbilityTwoUse;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
+	bool bPlayingBlinkAnim;
+
 	class AHeroBase* OwningHero;
 
+	virtual void NativeBeginPlay() override;
 	virtual void NativeInitializeAnimation() override;
 
 	virtual void NativeUpdateAnimation(float DeltaTimeX) override;
@@ -32,13 +42,20 @@ public:
 protected:
 
 private:
-	FTimerHandle TimerHandle_AttackExpired;
-
 	APawn* m_owningPawn;
+	struct FAnimNode_StateMachine* m_animStateMachine;
+
+	FTimerHandle TimerHandle_BlinkAnimFinished;
 
 	UFUNCTION()
 	void OnAttacking();
 
+	UFUNCTION()
 	void OnAttackComplete();
 
+	UFUNCTION()
+	void OnBeginAbility(int abilityIndex);
+
+	UFUNCTION()
+	void OnCompleteAbility(int abilityIndex);
 };
