@@ -7,7 +7,6 @@
 
 void UEnemyHealthbar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
-	m_enemy = Cast<AEnemyBase>(OwningActor);
 	if (m_enemy)
 	{
 		Health = m_enemy->GetHealth();
@@ -15,4 +14,11 @@ void UEnemyHealthbar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 		HealthPercent = Health / MaxHealth;
 	}
 	//UE_LOG(LogZeroes, Log, TEXT("Ticking Enemy is: %s - Health: %f"), m_enemy ? TEXT("YES") : TEXT("NO"), Health);
+}
+
+void UEnemyHealthbar::SetOwningActor(AActor* NewOwner)
+{
+	Super::SetOwningActor(NewOwner);
+
+	m_enemy = Cast<AEnemyBase>(NewOwner);
 }

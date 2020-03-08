@@ -53,7 +53,7 @@ AEnemyBase::AEnemyBase()
 	// Set position to be above enemy head 
 	WidgetComponent->SetRelativeLocationAndRotation(FVector(0, 0, 100.0f), FQuat::Identity);
 	WidgetComponent->SetTickWhenOffscreen(true);
-	
+
 	HealthbarWidget = UEnemyHealthbar::StaticClass();
 }
 
@@ -77,12 +77,16 @@ void AEnemyBase::BeginPlay()
 		UE_LOG(LogZeroes, Error, TEXT("No reference to an EnemyAnimInstance on enemy '%s'"), *this->GetName());
 
 	// Assign blueprint to component
-	if (HealthbarWidget)
-	{
-		WidgetComponent->SetWidgetClass(HealthbarWidget.Get());
-		// Set wanted size of healthbar
-		WidgetComponent->SetDrawSize(FVector2D(160, 20));
-	}
+	WidgetComponent->SetWidgetClass(HealthbarWidget.Get());
+	// Set wanted size of healthbar
+	WidgetComponent->SetDrawSize(FVector2D(160, 20));
+}
+
+void AEnemyBase::OnAttack(AActor* attackEnemy)
+{
+	TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
+	FDamageEvent DamageEvent(ValidDamageTypeClass);
+	PlayerPawn->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
 }
 
 // Called every frame
@@ -239,9 +243,7 @@ void AEnemyBase::AttackUpdate()
 
 		if (PlayerPawn)
 		{
-			TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
-			FDamageEvent DamageEvent(ValidDamageTypeClass);
-			PlayerPawn->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
+			OnAttack(PlayerPawn);
 
 			// Broadcast IsAttacking event
 			if (OnEnemyBeginAttack.IsBound())

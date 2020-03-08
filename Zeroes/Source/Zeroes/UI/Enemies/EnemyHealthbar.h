@@ -28,6 +28,7 @@ public:
 protected:
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 
+	virtual void SetOwningActor(AActor* NewOwner) override;
 private:
 	class AEnemyBase* m_enemy;
 };

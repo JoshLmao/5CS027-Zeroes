@@ -18,6 +18,4 @@ class ZEROES_API USActorWidgetComponent : public UWidgetComponent
 
 public:
 	virtual void InitWidget() override;
-
-	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 };

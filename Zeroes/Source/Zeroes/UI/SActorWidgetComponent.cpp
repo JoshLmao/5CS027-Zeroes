@@ -35,10 +35,4 @@ void USActorWidgetComponent::InitWidget()
 			WidgetInst->SetOwningActor(GetOwner());
 		}
 	}
-
-}
-
-void USActorWidgetComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 }
