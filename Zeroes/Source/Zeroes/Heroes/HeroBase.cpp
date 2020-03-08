@@ -12,6 +12,8 @@
 #include "TimerManager.h"
 #include "GameFramework\SpringArmComponent.h"
 #include "Heroes\HeroState.h"
+#include "Kismet\KismetMathLibrary.h"
+#include "ZeroesHelper.h"
 
 // Sets default values
 AHeroBase::AHeroBase()
@@ -146,8 +148,11 @@ void AHeroBase::AttackUpdate()
 	if (m_heroState->GetCanAttack())
 	{
 		AEnemyBase* enemy = Cast<AEnemyBase>(DestinationActor);
+		// Look at attacking target
+		FRotator rotation = UZeroesHelper::LookAtTarget(this->GetActorLocation(), enemy->GetActorLocation(), this->GetActorRotation());
+		this->SetActorRotation(rotation);
 
-		if (enemy && enemy->Health > 0)
+		if (enemy && enemy->GetHealth() > 0)
 		{
 			m_heroState->SetCanAttack(false);
 
@@ -158,7 +163,7 @@ void AHeroBase::AttackUpdate()
 			FDamageEvent DamageEvent(ValidDamageTypeClass);
 			enemy->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
 				
-			if (enemy->Health <= 0)
+			if (enemy->GetHealth() <= 0)
 			{
 				// Enemy died on attack
 				m_playerController->ResetTargetEnemy();

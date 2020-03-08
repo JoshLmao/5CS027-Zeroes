@@ -16,6 +16,7 @@
 #include "UI/SActorWidgetComponent.h"
 #include "ConstructorHelpers.h"
 #include "UI/Enemies/EnemyHealthbar.h"
+#include "ZeroesHelper.h"
 
 // Sets default values
 AEnemyBase::AEnemyBase()
@@ -252,7 +253,7 @@ void AEnemyBase::AttackUpdate()
 	}
 
 	// Always look at player whilst waiting to attack
-	LookAtTarget(PlayerPawn->GetActorLocation());
+	UZeroesHelper::LookAtTarget(this->GetActorLocation(), PlayerPawn->GetActorLocation(), this->GetActorRotation());
 
 	// Transition to chase once player is out of attack distance and enemy isn't attacking
 	float distance = FVector::Distance(this->GetActorLocation(), PlayerPawn->GetActorLocation());
@@ -308,12 +309,4 @@ void AEnemyBase::OnAtkCooldownFinished()
 {
 	m_bCanAttack = true;
 	UE_LOG(LogZeroes, Log, TEXT("Cooldown finished. Can atk again"));
-}
-
-void AEnemyBase::LookAtTarget(FVector target)
-{
-	FRotator lookAtRotator = UKismetMathLibrary::FindLookAtRotation(this->GetActorLocation(), target);
-	FRotator currentRotation = this->GetActorRotation();
-	currentRotation.Yaw = lookAtRotator.Yaw;
-	SetActorRotation(currentRotation);
 }

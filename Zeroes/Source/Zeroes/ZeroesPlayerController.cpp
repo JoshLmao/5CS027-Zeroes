@@ -70,7 +70,7 @@ void AZeroesPlayerController::MoveToMouseCursor()
 	{
 		// Check if hovering over enemy
 		AActor* actor = Hit.GetActor();
-		if (actor->IsA(AEnemyBase::StaticClass()))
+		if (actor->IsA(AEnemyBase::StaticClass()) && !m_targetEnemy)
 		{
 			// Set target enemy that player wants to kill
 			m_targetEnemy = actor;

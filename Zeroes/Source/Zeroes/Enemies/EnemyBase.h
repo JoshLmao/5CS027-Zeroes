@@ -123,7 +123,4 @@ private:
 	FTimerHandle TimerHandle_AttackCooldown;
 	void OnAtkCooldownFinished();
 
-	void LookAtTarget(FVector target);
-
-
 };
