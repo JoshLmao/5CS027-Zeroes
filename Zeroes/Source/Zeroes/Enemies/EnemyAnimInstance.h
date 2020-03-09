@@ -18,22 +18,29 @@ class ZEROES_API UEnemyAnimInstance : public UAnimInstance
 
 public:
 	/// Current speed squared of the enemy
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
 	float SpeedSq;
 
 	/// Is the enemy currently attacking
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
 	bool bIsAttacking;
 
 	/// Is the enemy dead
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
 	bool bIsDead;
+
+	/// Current amount of attacks
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
+	int AttackCount;
 
 	class AEnemyBase* OwningEnemy;
 
 	virtual void NativeInitializeAnimation() override; 
 
 	virtual void NativeUpdateAnimation(float DeltaTimeX) override;
+
+	/// Called from AnimNotify to stop attacking
+	void OnAttackComplete();
 
 protected:
 	UFUNCTION(BlueprintCallable)
@@ -49,6 +56,4 @@ private:
 
 	UFUNCTION()
 	void OnDeath();
-
-	void OnAttackComplete();
 };

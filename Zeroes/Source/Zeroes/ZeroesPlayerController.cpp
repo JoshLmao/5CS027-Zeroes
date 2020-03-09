@@ -61,7 +61,7 @@ void AZeroesPlayerController::MoveToMouseCursor()
 {
 	// Trace to see what is under the mouse cursor
 	FHitResult Hit;
-	GetHitResultUnderCursor(ECC_Pawn, false, Hit);
+	GetHitResultUnderCursor(ECC_PhysicsBody, false, Hit);
 
 	USkeletalMeshComponent* mesh = Cast<USkeletalMeshComponent>(GetPawn()->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 	UHeroAnimInstance* animInstance = Cast<UHeroAnimInstance>(mesh->GetAnimInstance());
@@ -70,12 +70,12 @@ void AZeroesPlayerController::MoveToMouseCursor()
 	{
 		// Check if hovering over enemy
 		AActor* actor = Hit.GetActor();
-		if (actor->IsA(AEnemyBase::StaticClass()) && !m_targetEnemy)
+		if (actor->IsA(AEnemyBase::StaticClass()))
 		{
 			// Set target enemy that player wants to kill
 			m_targetEnemy = actor;
 		}
-		else
+		else if (!actor->IsA(APawn::StaticClass()))
 		{
 			if (animInstance && !animInstance->bIsAttacking)
 			{
@@ -113,14 +113,14 @@ void AZeroesPlayerController::SetNewMoveDestination(const FVector DestLocation, 
 void AZeroesPlayerController::SetNewEnemyDestination(AActor* enemyActor)
 {
 	AEnemyBase* enemy = Cast<AEnemyBase>(enemyActor);
-	float range = 175.0f;
+	float attackRange = 175.0f;
 	
 	APawn* const MyPawn = GetPawn();
 	if (MyPawn)
 	{
 		float const Distance = FVector::Dist(enemy->GetActorLocation(), MyPawn->GetActorLocation());
 		
-		if (Distance > range)
+		if (Distance > attackRange)
 		{
 			UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, enemy->GetActorLocation());
 			m_reachedEnemy = false;
@@ -132,8 +132,8 @@ void AZeroesPlayerController::SetNewEnemyDestination(AActor* enemyActor)
 				//UE_LOG(LogZeroes, Log, TEXT("Controller reached enemy. Trigger event"))
 				if (OnReachedDestActor.IsBound())
 					OnReachedDestActor.Broadcast();
+				m_reachedEnemy = true;
 			}
-			m_reachedEnemy = true;
 		}
 	}
 }

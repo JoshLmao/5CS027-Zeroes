@@ -37,7 +37,13 @@ void UEnemyAnimInstance::NativeUpdateAnimation(float DeltaTimeX)
 	if (OwningEnemy)
 	{
 		SpeedSq = OwningEnemy->GetVelocity().SizeSquared();
+		AttackCount = OwningEnemy->GetAttackCount();
 	}
+}
+
+void UEnemyAnimInstance::OnAttackComplete()
+{
+	bIsAttacking = false;
 }
 
 void UEnemyAnimInstance::UpdateAnimationProperties()
@@ -48,16 +54,9 @@ void UEnemyAnimInstance::UpdateAnimationProperties()
 void UEnemyAnimInstance::OnAttacking()
 {
 	bIsAttacking = true;
-	float attackAnimDuration = 1.1f;
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle_AttackExpired, this, &UEnemyAnimInstance::OnAttackComplete, attackAnimDuration, false);
 }
 
 void UEnemyAnimInstance::OnDeath()
 {
 	bIsDead = true;
-}
-
-void UEnemyAnimInstance::OnAttackComplete()
-{
-	bIsAttacking = false;
 }

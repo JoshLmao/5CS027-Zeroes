@@ -162,7 +162,7 @@ void AHeroBase::AttackUpdate()
 			TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
 			FDamageEvent DamageEvent(ValidDamageTypeClass);
 			enemy->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
-				
+			
 			if (enemy->GetHealth() <= 0)
 			{
 				// Enemy died on attack

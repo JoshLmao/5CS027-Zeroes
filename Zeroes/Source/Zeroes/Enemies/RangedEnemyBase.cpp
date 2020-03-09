@@ -26,6 +26,6 @@ void ARangedEnemyBase::OnAttack(AActor* attackEnemy)
 		ARangedProjectile* projectile = world->SpawnActor<ARangedProjectile>(Projectile, spawnLocation, spawnRotation);
 		projectile->SetDamage(AttackDamage);
 
-		UE_LOG(LogZeroes, Log, TEXT("Spawned projectile at %s"), *spawnLocation.ToString());
+		//UE_LOG(LogZeroes, Log, TEXT("Spawned projectile at %s"), *spawnLocation.ToString());
 	}
 }

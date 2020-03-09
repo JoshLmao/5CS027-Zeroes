@@ -61,6 +61,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Properties")
 	float AttackMinDistance;
 
+	/// Amount of attack the enemy has performed
+	UPROPERTY(BlueprintReadOnly)
+	int AttackCount;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USActorWidgetComponent* WidgetComponent;
 
@@ -79,6 +83,12 @@ public:
 	/* Functions */
 	float GetHealth();
 	float GetMaxHealth();
+	int GetAttackCount();
+
+	/// Called by AnimNotify to deal damage to the current taregt
+	void DealDamageToTarget();
+
+	void Notify_FinishedAttackAnim();
 
 private:
 	/// Reference to the current player pawn

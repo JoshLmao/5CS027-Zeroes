@@ -40,6 +40,7 @@ AEnemyBase::AEnemyBase()
 	AtkCooldownDuration = 5.0f;
 	AttackDamage = 15.0f;
 	m_deathSinkRate = 10.0f;
+	AttackCount = 0;
 
 	// Set maximum movemenet speed
 	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
@@ -88,6 +89,8 @@ void AEnemyBase::OnAttack(AActor* attackEnemy)
 	TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
 	FDamageEvent DamageEvent(ValidDamageTypeClass);
 	PlayerPawn->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
+
+	AttackCount++;
 }
 
 // Called every frame
@@ -134,6 +137,28 @@ float AEnemyBase::GetHealth()
 float AEnemyBase::GetMaxHealth()
 {
 	return MaxHealth;
+}
+
+int AEnemyBase::GetAttackCount()
+{
+	return AttackCount;
+}
+
+void AEnemyBase::DealDamageToTarget()
+{
+	if (PlayerPawn)
+	{
+		OnAttack(PlayerPawn);
+	}
+}
+
+void AEnemyBase::Notify_FinishedAttackAnim()
+{
+	UEnemyAnimInstance* animInstance = this->AnimInstance;
+	if (animInstance)
+	{
+		animInstance->OnAttackComplete();
+	}
 }
 
 void AEnemyBase::FSMUpdate(float DeltaTime)
@@ -244,8 +269,6 @@ void AEnemyBase::AttackUpdate()
 
 		if (PlayerPawn)
 		{
-			OnAttack(PlayerPawn);
-
 			// Broadcast IsAttacking event
 			if (OnEnemyBeginAttack.IsBound())
 				OnEnemyBeginAttack.Broadcast();
@@ -253,7 +276,8 @@ void AEnemyBase::AttackUpdate()
 	}
 
 	// Always look at player whilst waiting to attack
-	UZeroesHelper::LookAtTarget(this->GetActorLocation(), PlayerPawn->GetActorLocation(), this->GetActorRotation());
+	 FRotator rotation = UZeroesHelper::LookAtTarget(this->GetActorLocation(), PlayerPawn->GetActorLocation(), this->GetActorRotation());
+	 this->SetActorRotation(rotation);
 
 	// Transition to chase once player is out of attack distance and enemy isn't attacking
 	float distance = FVector::Distance(this->GetActorLocation(), PlayerPawn->GetActorLocation());
