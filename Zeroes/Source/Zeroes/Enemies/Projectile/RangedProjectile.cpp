@@ -20,7 +20,7 @@ ARangedProjectile::ARangedProjectile()
 	m_sphere = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
 	m_sphere->InitSphereRadius(5.0f);
 	m_sphere->BodyInstance.SetCollisionProfileName("Projectile");
-	m_sphere->OnComponentHit.AddDynamic(this, &ARangedProjectile::OnHit);		// set up a notification for when this component hits something blocking
+	m_sphere->OnComponentHit.AddDynamic(this, &ARangedProjectile::OnHit);
 
 	// Players can't walk on it
 	m_sphere->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));

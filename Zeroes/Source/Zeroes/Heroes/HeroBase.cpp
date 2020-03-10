@@ -132,6 +132,11 @@ void AHeroBase::HandleReachedActor()
 	SetState(PlayerStates::ATTACKING);
 }
 
+AZeroesPlayerController* AHeroBase::GetZeroesPlayerController()
+{
+	return m_playerController;
+}
+
 void AHeroBase::SM_Update()
 {
 	if (State == PlayerStates::ATTACKING)
@@ -237,7 +242,7 @@ void AHeroBase::UseAbility(int index)
 				GetWorldTimerManager().SetTimer(TimerHandle_UltimateCooldown, this, &AHeroBase::OnUltimateCooldownFinished, UltimateCooldown, false);
 				break;
 			default:
-				UE_LOG(LogZeroes, Error, TEXT("No ability index found for '%f'"), index);
+				UE_LOG(LogZeroes, Error, TEXT("%s - No ability index found for '%f'"), *this->GetName(), index);
 		}
 	}
 }

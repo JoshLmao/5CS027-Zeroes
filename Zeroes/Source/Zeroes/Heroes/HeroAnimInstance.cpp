@@ -76,7 +76,11 @@ void UHeroAnimInstance::OnAttackComplete()
 
 void UHeroAnimInstance::OnBeginAbility(int abilityIndex)
 {
-	if (abilityIndex == 1)
+	if (abilityIndex == 0)
+	{
+		bAbilityOneUse = true;
+	}
+	else if (abilityIndex == 1)
 	{
 		bAbilityTwoUse = true;
 		UE_LOG(LogZeroes, Log, TEXT("Ability %d AbilityTwoUse"), abilityIndex+1);
@@ -85,7 +89,11 @@ void UHeroAnimInstance::OnBeginAbility(int abilityIndex)
 
 void UHeroAnimInstance::OnCompleteAbility(int abilityIndex)
 {
-	if (abilityIndex == 1)
+	if (abilityIndex == 0)
+	{
+		bAbilityOneUse = false;
+	}
+	else if (abilityIndex == 1)
 	{
 		bAbilityTwoUse = false;
 		bPlayingBlinkAnim = false;

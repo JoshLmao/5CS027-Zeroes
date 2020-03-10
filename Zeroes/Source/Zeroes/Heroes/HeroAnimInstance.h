@@ -17,19 +17,19 @@ class ZEROES_API UHeroAnimInstance : public UAnimInstance
 	UHeroAnimInstance();
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Hero")
 	float SpeedSq;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Hero")
 	bool bIsAttacking;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability")
 	bool bAbilityOneUse;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability")
 	bool bAbilityTwoUse;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability")
 	bool bPlayingBlinkAnim;
 
 	class AHeroBase* OwningHero;

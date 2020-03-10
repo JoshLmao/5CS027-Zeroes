@@ -14,6 +14,7 @@
 #include "Zeroes.h"
 #include "Enemies\EnemyBase.h"
 #include "Materials/MaterialInstanceDynamic.h"
+#include "ZeroesPlayerController.h"
 
 AZeroesCharacter::AZeroesCharacter()
 {
@@ -85,11 +86,21 @@ void AZeroesCharacter::Tick(float DeltaSeconds)
 			else 
 			{
 				CursorToWorld->SetWorldLocation(TraceHitResult.Location);
+				CurrentMouseWorldPosition = TraceHitResult.Location;
 			}
 			
 			CursorToWorld->SetWorldRotation(CursorR);
 		}
 	}
+}
+
+void AZeroesCharacter::SetPreventMovement(bool shouldPreventMovement)
+{
+	AZeroesPlayerController* pc = Cast<AZeroesPlayerController>(GetController());
+	pc->SetDisableMovement(shouldPreventMovement);
+	
+	if (shouldPreventMovement)
+		GetController()->StopMovement();
 }
 
 void AZeroesCharacter::CheckForBlockingActor()

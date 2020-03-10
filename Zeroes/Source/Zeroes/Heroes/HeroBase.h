@@ -70,6 +70,8 @@ protected:
 	UFUNCTION()
 	void HandleReachedActor();
 
+	class AZeroesPlayerController* GetZeroesPlayerController();
+
 private:
 	class AZeroesPlayerController* m_playerController;
 	class AHeroState* m_heroState;

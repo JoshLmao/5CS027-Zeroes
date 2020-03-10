@@ -39,6 +39,11 @@ protected:
 
 	/// Current actor selected to walk towards
 	AActor* DestinationActor;
+	/// Current world position where the mouse hits the world
+	FVector CurrentMouseWorldPosition;
+
+	/// Sets if the character should prevent movement from the player. Stops any movement if true
+	void SetPreventMovement(bool shouldPreventMovement);
 
 private:
 	void CheckForBlockingActor();

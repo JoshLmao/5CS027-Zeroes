@@ -28,6 +28,14 @@ protected:
 	virtual void UseUltimate() override;
 
 	FTimerHandle TimerHandle_BlinkDelay;
+	FTimerHandle TimerHandle_SpawnSpikes;
+	FTimerHandle TimerHandle_PreventMovement;
+
+	int m_spikeCount;
+	FVector m_spikeStartVector;
+	FVector m_spikeEndVector;
 
 	void OnBlinkDelayComplete();
+	void SpawnSpike();
+	void OnPreventMovementFinished();
 };
