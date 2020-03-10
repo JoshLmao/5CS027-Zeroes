@@ -115,6 +115,17 @@ void AHeroBase::UseUltimate()
 {
 }
 
+void AHeroBase::DealDamageToTarget()
+{
+	AEnemyBase* enemy = Cast<AEnemyBase>(DestinationActor);
+	if (!enemy)
+		return;
+
+	TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
+	FDamageEvent DamageEvent(ValidDamageTypeClass);
+	enemy->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
+}
+
 void AHeroBase::HandleReachedActor()
 {
 	UE_LOG(LogZeroes, Log, TEXT("Hero reached actor. Entering Attacking state"));
@@ -159,9 +170,7 @@ void AHeroBase::AttackUpdate()
 			GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AHeroBase::OnAttackCooldownFinished, AttackCooldown, false);
 			UE_LOG(LogZeroes, Log, TEXT("Attacked '%s'. Cooling down for '%f' seconds"), *enemy->GetName(), AttackCooldown);
 
-			TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
-			FDamageEvent DamageEvent(ValidDamageTypeClass);
-			enemy->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
+			//DealDamageToTarget();
 			
 			if (enemy->GetHealth() <= 0)
 			{

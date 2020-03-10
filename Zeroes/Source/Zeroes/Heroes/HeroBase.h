@@ -51,6 +51,8 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FHeroCompleteAbilitySignature OnCompleteAbility;
 
+	void DealDamageToTarget();
+
 protected:
 	virtual void BeginPlay() override;
 	// Called every frame
