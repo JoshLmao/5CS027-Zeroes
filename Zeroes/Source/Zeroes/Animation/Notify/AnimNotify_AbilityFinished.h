@@ -14,6 +14,10 @@ class ZEROES_API UAnimNotify_AbilityFinished : public UAnimNotify
 {
 	GENERATED_BODY()
 
+	/// Set the index of the ability that has just finished to notify the AnimInstance
+	UPROPERTY(EditAnywhere)
+	int AbilityIndex;
+
 public:
 	virtual void Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation) override;
 };

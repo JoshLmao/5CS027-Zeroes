@@ -30,7 +30,10 @@ public:
 	bool bAbilityTwoUse;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability")
-	bool bPlayingBlinkAnim;
+	bool bAbilityThreeUse;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability")
+	bool bAbilityUltimateUse;
 
 	class AHeroBase* OwningHero;
 

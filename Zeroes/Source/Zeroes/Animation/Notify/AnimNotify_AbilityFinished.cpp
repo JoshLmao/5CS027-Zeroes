@@ -15,6 +15,14 @@ void UAnimNotify_AbilityFinished::Notify(USkeletalMeshComponent* MeshComp, UAnim
 	if (hero)
 	{
 		UHeroAnimInstance* sequence = Cast<UHeroAnimInstance>(hero->GetMesh()->GetAnimInstance());
-		sequence->bAbilityOneUse = false;
+		//UE_LOG(LogZeroes, Log, TEXT("AnimNotify Ability Finished: %d"), AbilityIndex);
+		if (AbilityIndex == 0)
+			sequence->bAbilityOneUse = false;
+		else if (AbilityIndex == 1)
+			sequence->bAbilityTwoUse = false;
+		else if (AbilityIndex == 2)
+			sequence->bAbilityThreeUse = false;
+		else if (AbilityIndex == 3)
+			sequence->bAbilityUltimateUse = false;
 	}
 }

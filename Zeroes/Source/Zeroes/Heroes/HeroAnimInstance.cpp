@@ -10,7 +10,6 @@
 
 UHeroAnimInstance::UHeroAnimInstance()
 {
-	bPlayingBlinkAnim = false;
 }
 
 void UHeroAnimInstance::NativeBeginPlay()
@@ -53,15 +52,6 @@ void UHeroAnimInstance::NativeUpdateAnimation(float DeltaTimeX)
 	{
 		SpeedSq = OwningHero->GetVelocity().SizeSquared();
 	}
-
-	if (m_animStateMachine && !bPlayingBlinkAnim)
-	{
-		FName name = m_animStateMachine->GetCurrentStateName();
-		if (name == TEXT("Ability2_Blink"))
-		{
-			bPlayingBlinkAnim = true;
-		}
-	}
 }
 
 void UHeroAnimInstance::OnAttacking()
@@ -83,7 +73,14 @@ void UHeroAnimInstance::OnBeginAbility(int abilityIndex)
 	else if (abilityIndex == 1)
 	{
 		bAbilityTwoUse = true;
-		UE_LOG(LogZeroes, Log, TEXT("Ability %d AbilityTwoUse"), abilityIndex+1);
+	}
+	else if (abilityIndex == 2)
+	{
+		bAbilityThreeUse = true;
+	}
+	else if (abilityIndex == 3)
+	{
+		bAbilityUltimateUse = true;
 	}
 }
 
@@ -96,7 +93,14 @@ void UHeroAnimInstance::OnCompleteAbility(int abilityIndex)
 	else if (abilityIndex == 1)
 	{
 		bAbilityTwoUse = false;
-		bPlayingBlinkAnim = false;
+	}
+	else if (abilityIndex == 2)
+	{
+		bAbilityThreeUse = false;
+	}
+	else if (abilityIndex == 3)
+	{
+		bAbilityUltimateUse = false;
 	}
 }
 
