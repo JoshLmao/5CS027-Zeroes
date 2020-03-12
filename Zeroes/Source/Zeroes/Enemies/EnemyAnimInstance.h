@@ -14,6 +14,7 @@ class ZEROES_API UEnemyAnimInstance : public UAnimInstance
 {
 	GENERATED_BODY()
 
+public:
 	UEnemyAnimInstance();
 
 public:

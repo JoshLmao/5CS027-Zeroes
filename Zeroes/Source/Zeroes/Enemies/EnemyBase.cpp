@@ -119,7 +119,7 @@ float AEnemyBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent
 		if (OnEnemyDeath.IsBound())
 			OnEnemyDeath.Broadcast();
 
-		SetState(BehaviourStates::DEAD);
+		SetState(EBehaviourStates::DEAD);
 	}
 	else
 	{
@@ -165,25 +165,25 @@ void AEnemyBase::FSMUpdate(float DeltaTime)
 {
 	switch (State)
 	{
-		case BehaviourStates::IDLE:
+		case EBehaviourStates::IDLE:
 			if (Event == GameEvents::ON_START)
 				IdleStart();
 			else if (Event == GameEvents::ON_UPDATE)
 				IdleUpdate();
 			break;
-		case BehaviourStates::CHASE:
+		case EBehaviourStates::CHASE:
 			if (Event == GameEvents::ON_START)
 				ChaseStart();
 			else if (Event == GameEvents::ON_UPDATE)
 				ChaseUpdate(DeltaTime);
 			break;
-		case BehaviourStates::ATTACK:
+		case EBehaviourStates::ATTACK:
 			if (Event == GameEvents::ON_START)
 				AttackStart();
 			else if (Event == GameEvents::ON_UPDATE)
 				AttackUpdate();
 			break;
-		case BehaviourStates::DEAD:
+		case EBehaviourStates::DEAD:
 			if (Event == GameEvents::ON_START)
 				DeadStart();
 			else if (Event == GameEvents::ON_UPDATE)
@@ -192,7 +192,7 @@ void AEnemyBase::FSMUpdate(float DeltaTime)
 	}
 }
 
-void AEnemyBase::SetState(BehaviourStates newState)
+void AEnemyBase::SetState(EBehaviourStates newState)
 {
 	State = newState;
 	Event = GameEvents::ON_START;
@@ -213,7 +213,7 @@ void AEnemyBase::IdleUpdate()
 		if (distance <= IdleRange)
 		{
 			UE_LOG(LogZeroes, Log, TEXT("Player in range, chasing!"));
-			SetState(BehaviourStates::CHASE);
+			SetState(EBehaviourStates::CHASE);
 		}
 	}
 }
@@ -236,7 +236,7 @@ void AEnemyBase::ChaseUpdate(float DeltaTime)
 		// Stop movement to attack
 		AIController->StopMovement();
 
-		SetState(BehaviourStates::ATTACK);
+		SetState(EBehaviourStates::ATTACK);
 		UE_LOG(LogZeroes, Log, TEXT("In range of player, attacking them"));
 	}
 	else if (distance >= ChaseRange)
@@ -247,7 +247,7 @@ void AEnemyBase::ChaseUpdate(float DeltaTime)
 		if (this->GetActorLocation().Equals(m_spawnLocation))
 		{
 			// Returned home
-			SetState(BehaviourStates::IDLE);
+			SetState(EBehaviourStates::IDLE);
 		}
 	}
 }
@@ -283,7 +283,7 @@ void AEnemyBase::AttackUpdate()
 	float distance = FVector::Distance(this->GetActorLocation(), PlayerPawn->GetActorLocation());
 	if (distance > AttackMinDistance && AnimInstance && !AnimInstance->bIsAttacking)
 	{
-		SetState(BehaviourStates::CHASE);
+		SetState(EBehaviourStates::CHASE);
 		UE_LOG(LogZeroes, Log, TEXT("Player went out of range. Go bk to them"));
 	}
 }

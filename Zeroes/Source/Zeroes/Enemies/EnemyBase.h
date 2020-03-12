@@ -6,6 +6,16 @@
 #include "GameFramework/Character.h"
 #include "EnemyBase.generated.h"
 
+UENUM(BlueprintType)
+enum class EBehaviourStates : uint8
+{
+	IDLE,
+	CHASE,
+	ATTACK,
+	ABILITY,
+	DEAD,
+};
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEnemyAttackSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEnemyDeathSignature);
 
@@ -71,6 +81,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category  = "Enemy Properties")
 	TSubclassOf<class USActorWidget> HealthbarWidget;
 
+	EBehaviourStates State = EBehaviourStates::IDLE;
+
+	enum GameEvents { ON_START, ON_UPDATE };
+	GameEvents Event = GameEvents::ON_START;
+
 	/* Events */
 	/// Triggered when enemy starts their attack
 	UPROPERTY(BlueprintAssignable)
@@ -90,6 +105,10 @@ public:
 
 	void Notify_FinishedAttackAnim();
 
+	virtual void FSMUpdate(float DeltaTime);
+
+	void SetState(EBehaviourStates newState);
+
 private:
 	/// Reference to the current player pawn
 	class APawn* PlayerPawn;
@@ -108,15 +127,6 @@ private:
 
 	///Rate at which to sink the actor into the floor
 	float m_deathSinkRate;
-
-	enum BehaviourStates { IDLE, CHASE, ATTACK, DEAD };
-	BehaviourStates State = BehaviourStates::IDLE;
-
-	enum GameEvents { ON_START, ON_UPDATE };
-	GameEvents Event = GameEvents::ON_START;
-
-	void FSMUpdate(float DeltaTime);
-	void SetState(BehaviourStates newState);
 
 	void IdleStart();
 	void IdleUpdate();
