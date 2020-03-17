@@ -35,7 +35,7 @@ AEnemyBase::AEnemyBase()
 	ChaseRange = 1000.0f;
 	ChaseSpeed = 2.5f;
 	AttackMinDistance = 150.0f;
-	m_bCanAttack = false;
+	bCanPerformAttack = false;
 	m_bDeathTimedOut = false;
 	AtkCooldownDuration = 5.0f;
 	AttackDamage = 15.0f;
@@ -89,8 +89,6 @@ void AEnemyBase::OnAttack(AActor* attackEnemy)
 	TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
 	FDamageEvent DamageEvent(ValidDamageTypeClass);
 	PlayerPawn->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
-
-	AttackCount++;
 }
 
 // Called every frame
@@ -149,6 +147,7 @@ void AEnemyBase::DealDamageToTarget()
 	if (PlayerPawn)
 	{
 		OnAttack(PlayerPawn);
+		AttackCount++;
 	}
 }
 
@@ -255,14 +254,14 @@ void AEnemyBase::ChaseUpdate(float DeltaTime)
 void AEnemyBase::AttackStart()
 {
 	Event = GameEvents::ON_UPDATE;
-	m_bCanAttack = true;
+	bCanPerformAttack = true;
 }
 
 void AEnemyBase::AttackUpdate()
 {
-	if (m_bCanAttack)
+	if (bCanPerformAttack)
 	{
-		m_bCanAttack = false;
+		bCanPerformAttack = false;
 
 		GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AEnemyBase::OnAtkCooldownFinished, AtkCooldownDuration);
 		UE_LOG(LogZeroes, Log, TEXT("Attacked Player. Cooling down"));
@@ -331,6 +330,6 @@ void AEnemyBase::DeadUpdate()
 
 void AEnemyBase::OnAtkCooldownFinished()
 {
-	m_bCanAttack = true;
+	bCanPerformAttack = true;
 	UE_LOG(LogZeroes, Log, TEXT("Cooldown finished. Can atk again"));
 }

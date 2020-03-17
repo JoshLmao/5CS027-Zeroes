@@ -2,20 +2,23 @@
 
 
 #include "LeaderBase.h"
+#include "Zeroes.h"
+#include "TimerManager.h"
 
 ALeaderBase::ALeaderBase()
 {
-
+	AttacksBetweenAbility = 2;
 }
 
 void ALeaderBase::OnAttack(AActor* attackEnemy)
 {
 	Super::OnAttack(attackEnemy);
 
-	int abilityThreshold = 10;
-	if (AttackCount % abilityThreshold == 0)
+	int abilityThreshold = 2;
+	if (AttackCount > 0 && (AttackCount % abilityThreshold) == 0)
 	{
 		SetState(EBehaviourStates::ABILITY);
+		UE_LOG(LogZeroes, Log, TEXT("Using '%s' Leader ability on next attack!"), *this->GetName());
 	}
 }
 
@@ -36,8 +39,22 @@ void ALeaderBase::FSMUpdate(float DeltaTime)
 
 void ALeaderBase::AbilityStart()
 {
+	Event = GameEvents::ON_UPDATE;
 }
 
 void ALeaderBase::AbilityUpdate()
+{
+	if (bCanPerformAttack)
+	{
+		bCanPerformAttack = false;
+
+		if (OnLeaderBeginAbility.IsBound())
+			OnLeaderBeginAbility.Broadcast();
+
+		PerformAbility();
+	}
+}
+
+void ALeaderBase::PerformAbility()
 {
 }

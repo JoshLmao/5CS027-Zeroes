@@ -4,4 +4,4 @@
 
 #include "CoreMinimal.h"
 
-DECLARE_LOG_CATEGORY_EXTERN(LogZeroes, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogZeroes, Log, All)

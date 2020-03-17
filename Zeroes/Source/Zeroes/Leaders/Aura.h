@@ -17,7 +17,17 @@ class ZEROES_API AAura : public ALeaderBase
 public:
 	AAura();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura Properties")
+	float AbilityDamage;
+
 protected:
 	virtual void AbilityStart() override;
 	virtual void AbilityUpdate() override;
+
+	virtual void PerformAbility() override;
+
+private:
+	FTimerHandle TimerHandle_AbilityFinish;
+
+	void OnAbilityFinish();
 };

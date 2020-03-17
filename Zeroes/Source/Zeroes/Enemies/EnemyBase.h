@@ -95,6 +95,9 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FEnemyDeathSignature OnEnemyDeath;
 
+	/// Can the enemy attack
+	bool bCanPerformAttack;
+
 	/* Functions */
 	float GetHealth();
 	float GetMaxHealth();
@@ -119,8 +122,6 @@ private:
 	/// Start spawn location of the enemy
 	FVector m_spawnLocation;
 
-	/// Can the enemy attack
-	bool m_bCanAttack;
 
 	/// Has the actor been dead for too long and needs to be destroyed
 	bool m_bDeathTimedOut;
