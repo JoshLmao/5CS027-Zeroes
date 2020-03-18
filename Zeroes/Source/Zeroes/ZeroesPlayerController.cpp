@@ -160,15 +160,5 @@ bool AZeroesPlayerController::GetDisableMovement()
 	return m_disableMovement;
 }
 
-bool AZeroesPlayerController::IsInRangeOfEnemy()
-{
-	if (m_targetEnemy) 
-	{
-		float const Distance = FVector::Dist(enemy->GetActorLocation(), MyPawn->GetActorLocation());
-
-		return Distance > attackRange;
-	}
-}
-
 
 

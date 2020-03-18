@@ -28,8 +28,6 @@ public:
 	void SetDisableMovement(bool disable);
 	bool GetDisableMovement();
 
-	bool IsInRangeOfEnemy();
-
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
 	uint32 bMoveToMouseCursor : 1;

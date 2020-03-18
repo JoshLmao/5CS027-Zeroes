@@ -14,6 +14,7 @@
 #include "Heroes\HeroState.h"
 #include "Kismet\KismetMathLibrary.h"
 #include "ZeroesHelper.h"
+#include "ZeroesPlayerController.h"
 
 // Sets default values
 AHeroBase::AHeroBase()
@@ -167,8 +168,6 @@ void AHeroBase::AttackUpdate()
 		// Look at attacking target
 		FRotator rotation = UZeroesHelper::LookAtTarget(this->GetActorLocation(), enemy->GetActorLocation(), this->GetActorRotation());
 		this->SetActorRotation(rotation);
-
-
 
 		if (enemy && enemy->GetHealth() > 0)
 		{
