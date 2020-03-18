@@ -25,16 +25,25 @@ void AAura::AbilityUpdate()
 
 void AAura::PerformAbility()
 {
-	// 0.5s finish drawing circle
+	// Draw AoE circle and delay for animation
 	float radius = 200.0f;
 	float duration = 2.0f;
 	GetWorldTimerManager().SetTimer(TimerHandle_AbilityFinish, this, &AAura::OnAbilityFinish, duration);
 	DrawDebugCylinder(GetWorld(), this->GetActorLocation(), this->GetActorLocation() + FVector(0.0f, 0.0f, 50.0f), radius, 50, FColor::Black, false, duration);
-
 }
 
 void AAura::OnAbilityFinish()
 {
+	// Once anim complete, check if player in range and deal damage
+	float dist = FVector::Dist(this->GetActorLocation(), PlayerPawn->GetActorLocation());
+	float radius = 200.0f;
+	if (dist <= radius)
+	{
+		const FDamageEvent dmgEvent;
+		PlayerPawn->TakeDamage(AbilityDamage, dmgEvent, this->GetController(), this);
+		UE_LOG(LogZeroes, Log, TEXT("Hitting Player for '%f' damage from Aura Ability"), AbilityDamage);
+	}
+
 	SetState(EBehaviourStates::ATTACK);
 	UE_LOG(LogZeroes, Log, TEXT("Aura ability finshed. Returning to Attacking!"));
 }

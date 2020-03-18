@@ -168,6 +168,8 @@ void AHeroBase::AttackUpdate()
 		FRotator rotation = UZeroesHelper::LookAtTarget(this->GetActorLocation(), enemy->GetActorLocation(), this->GetActorRotation());
 		this->SetActorRotation(rotation);
 
+
+
 		if (enemy && enemy->GetHealth() > 0)
 		{
 			m_heroState->SetCanAttack(false);

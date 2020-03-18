@@ -9,11 +9,18 @@
 UENUM(BlueprintType)
 enum class EBehaviourStates : uint8
 {
+	/// Enemy is idle, waiting for combat
 	IDLE,
+	/// Chases the player to within melee/ranged distance
 	CHASE,
+	/// Enemy uses their standard attack
 	ATTACK,
+	/// Enemy use their ability
 	ABILITY,
+	/// Enemy is dead
 	DEAD,
+	/// Circle strafe around the enemy
+	STRAFE,
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEnemyAttackSignature);
@@ -112,16 +119,17 @@ public:
 
 	void SetState(EBehaviourStates newState);
 
-private:
+protected:
 	/// Reference to the current player pawn
 	class APawn* PlayerPawn;
 	/// Reference to the AI Controller to control path finding
 	class AAIController* AIController;
+	/// Reference to animation instance
 	class UEnemyAnimInstance* AnimInstance;
 
+private:
 	/// Start spawn location of the enemy
 	FVector m_spawnLocation;
-
 
 	/// Has the actor been dead for too long and needs to be destroyed
 	bool m_bDeathTimedOut;

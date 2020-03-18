@@ -25,7 +25,7 @@ void AZeroesPlayerController::ResetTargetEnemy()
 {
 	m_targetEnemy = nullptr;
 	m_reachedEnemy = false;
-	UE_LOG(LogZeroes, Log, TEXT("Reset Target Enemy"));
+	UE_LOG(LogZeroes, Log, TEXT("ZeroesPlayerController: Reset Target Enemy"));
 }
 
 void AZeroesPlayerController::PlayerTick(float DeltaTime)
@@ -158,6 +158,16 @@ void AZeroesPlayerController::SetDisableMovement(bool disable)
 bool AZeroesPlayerController::GetDisableMovement()
 {
 	return m_disableMovement;
+}
+
+bool AZeroesPlayerController::IsInRangeOfEnemy()
+{
+	if (m_targetEnemy) 
+	{
+		float const Distance = FVector::Dist(enemy->GetActorLocation(), MyPawn->GetActorLocation());
+
+		return Distance > attackRange;
+	}
 }
 
 
