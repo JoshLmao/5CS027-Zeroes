@@ -17,6 +17,8 @@
 #include "ConstructorHelpers.h"
 #include "UI/Enemies/EnemyHealthbar.h"
 #include "ZeroesHelper.h"
+#include "Heroes\HeroState.h"
+#include "Heroes/HeroBase.h"
 
 // Sets default values
 AEnemyBase::AEnemyBase()
@@ -204,7 +206,7 @@ void AEnemyBase::IdleStart()
 
 void AEnemyBase::IdleUpdate()
 {
-	if (PlayerPawn)
+	if (PlayerPawn && !Cast<AHeroBase>(PlayerPawn)->bIsDead)
 	{
 		float distance = FVector::Distance(this->GetActorLocation(), PlayerPawn->GetActorLocation());
 		//UE_LOG(LogZeroes, Log, TEXT("Dist: %f - Range: %f"), distance, IdleRange);
@@ -260,7 +262,15 @@ void AEnemyBase::AttackStart()
 void AEnemyBase::AttackUpdate()
 {
 	if (bCanPerformAttack)
-	{
+	{		
+		AHeroState* state = Cast<AHeroState>(PlayerPawn->GetPlayerState());
+		if (state->GetHealth() <= 0)
+		{
+			UE_LOG(LogZeroes, Log, TEXT("Player died while attacking. Idling..."));
+			SetState(EBehaviourStates::IDLE);
+			return;
+		}
+
 		bCanPerformAttack = false;
 
 		GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AEnemyBase::OnAtkCooldownFinished, AtkCooldownDuration);
@@ -275,8 +285,8 @@ void AEnemyBase::AttackUpdate()
 	}
 
 	// Always look at player whilst waiting to attack
-	 FRotator rotation = UZeroesHelper::LookAtTarget(this->GetActorLocation(), PlayerPawn->GetActorLocation(), this->GetActorRotation());
-	 this->SetActorRotation(rotation);
+	FRotator rotation = UZeroesHelper::LookAtTarget(this->GetActorLocation(), PlayerPawn->GetActorLocation(), this->GetActorRotation());
+	this->SetActorRotation(rotation);
 
 	// Transition to chase once player is out of attack distance and enemy isn't attacking
 	float distance = FVector::Distance(this->GetActorLocation(), PlayerPawn->GetActorLocation());

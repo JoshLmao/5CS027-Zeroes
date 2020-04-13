@@ -12,6 +12,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHeroCancelAttackingSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHeroBeginAbilitySignature, int, abilityIndex);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHeroCompleteAbilitySignature, int, abilityIndex);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHeroDeathSignature);
+
 UCLASS()
 class ZEROES_API AHeroBase : public AZeroesCharacter
 {
@@ -39,6 +41,9 @@ public:
 	/// Minimum amount for camera zoom
 	float MinCameraZoom;
 
+	/// Is the hero dead
+	bool bIsDead;
+
 	/* Events */
 	UPROPERTY(BlueprintAssignable)
 	FHeroBeginAttackSignature OnBeginAttacking;
@@ -54,6 +59,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FHeroCompleteAbilitySignature OnCompleteAbility;
+
+	UPROPERTY(BlueprintAssignable)
+	FHeroDeathSignature OnHeroDeath;
 
 	void DealDamageToTarget();
 

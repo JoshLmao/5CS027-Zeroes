@@ -13,6 +13,15 @@ class AZeroesGameMode : public AGameModeBase
 
 public:
 	AZeroesGameMode();
+
+	virtual void StartPlay() override;
+
+private:
+	UFUNCTION()
+	void OnPlayerDeath();
+
+	UFUNCTION()
+	void OnBossDeath();
 };
 
 

@@ -76,7 +76,6 @@ void AZeroesPlayerController::MoveToMouseCursor()
 			return;
 		}
 
-		UE_LOG(LogZeroes, Log, TEXT("MouseDetect: Actor Name '%s'"), *actor->GetName());
 		if (actor->IsA(AEnemyBase::StaticClass()))
 		{
 			// Set target enemy that player wants to kill

@@ -67,12 +67,14 @@ void AZeroesCharacter::Tick(float DeltaSeconds)
     Super::Tick(DeltaSeconds);
 
 	CheckForBlockingActor();
-
+	
 	// Sets the location/rotation of the mouse to ground indicator
 	if (CursorToWorld != nullptr)
 	{
 		if (APlayerController* PC = Cast<APlayerController>(GetController()))
 		{
+			
+
 			FHitResult TraceHitResult;
 			PC->GetHitResultUnderCursor(ECC_Visibility, true, TraceHitResult);
 			FVector CursorFV = TraceHitResult.ImpactNormal;

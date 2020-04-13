@@ -95,6 +95,11 @@ float AHeroBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent,
 	if (m_heroState->GetHealth() <= 0)
 	{
 		// Player is Dead
+		if (OnHeroDeath.IsBound())
+			OnHeroDeath.Broadcast();
+
+		bIsDead = true;
+		SetPreventMovement(true);
 	}
 	else
 	{
