@@ -33,6 +33,7 @@ void UHeroAnimInstance::NativeInitializeAnimation()
 		{
 			OwningHero->OnBeginAttacking.AddDynamic(this, &UHeroAnimInstance::OnAttacking);
 			OwningHero->OnCompletedAttacking.AddDynamic(this, &UHeroAnimInstance::OnAttackComplete);
+			OwningHero->OnCancelAttacking.AddDynamic(this, &UHeroAnimInstance::OnAttackComplete);
 
 			OwningHero->OnBeginAbility.AddDynamic(this, &UHeroAnimInstance::OnBeginAbility);
 			OwningHero->OnCompleteAbility.AddDynamic(this, &UHeroAnimInstance::OnCompleteAbility);

@@ -16,6 +16,8 @@ AZeroesPlayerController::AZeroesPlayerController()
 {
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Crosshairs;
+	
+	m_currentTargetVector = FVector::ZeroVector;
 
 	m_reachedEnemy = false;
 	m_targetEnemy = nullptr;
@@ -39,7 +41,7 @@ void AZeroesPlayerController::PlayerTick(float DeltaTime)
 	if (bMoveToMouseCursor)
 	{
 		MoveToMouseCursor();
-	}
+	} 
 
 	// Update every tick to get the latest enemy position (could be moving)
 	if (m_targetEnemy != nullptr  && !m_reachedEnemy)
@@ -106,7 +108,25 @@ void AZeroesPlayerController::SetNewMoveDestination(const FVector DestLocation, 
 		float const Distance = FVector::Dist(DestLocation, MyPawn->GetActorLocation());
 		// We need to issue move command only if far enough in order for walk animation to play correctly
 		if ((Distance > rangeTolerance))
+		{
+			if (m_currentTargetVector == FVector::ZeroVector) {
+				if (OnStartMovement.IsBound()) {
+					OnStartMovement.Broadcast();
+				}
+			}
+
 			UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, DestLocation);
+			m_currentTargetVector = DestLocation;
+		}
+		else {
+			if (m_currentTargetVector != FVector::ZeroVector) {
+				if (OnEndedMovement.IsBound()) {
+					OnEndedMovement.Broadcast();
+				}
+			}
+
+			m_currentTargetVector = FVector::ZeroVector;
+		}
 	}
 }
 
@@ -150,6 +170,13 @@ void AZeroesPlayerController::OnSetDestinationReleased()
 	bMoveToMouseCursor = false;
 }
 
+void AZeroesPlayerController::CancelMovement()
+{
+	if (!GetPawn()->GetVelocity().IsZero()) {
+		StopMovement();
+	}
+}
+
 void AZeroesPlayerController::SetDisableMovement(bool disable)
 {
 	m_disableMovement = disable;
@@ -159,6 +186,5 @@ bool AZeroesPlayerController::GetDisableMovement()
 {
 	return m_disableMovement;
 }
-
 
 

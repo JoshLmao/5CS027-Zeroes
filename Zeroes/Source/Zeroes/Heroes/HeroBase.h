@@ -8,6 +8,7 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHeroBeginAttackSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHeroCompleteAttackSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHeroCancelAttackingSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHeroBeginAbilitySignature, int, abilityIndex);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHeroCompleteAbilitySignature, int, abilityIndex);
 
@@ -46,6 +47,9 @@ public:
 	FHeroCompleteAttackSignature OnCompletedAttacking;
 
 	UPROPERTY(BlueprintAssignable)
+	FHeroCancelAttackingSignature OnCancelAttacking;
+
+	UPROPERTY(BlueprintAssignable)
 	FHeroBeginAbilitySignature OnBeginAbility;
 
 	UPROPERTY(BlueprintAssignable)
@@ -66,6 +70,8 @@ protected:
 	virtual void UseAbilityTwo();
 	virtual void UseAbilityThree();
 	virtual void UseUltimate();
+
+	virtual void CancelAttack();
 
 	UFUNCTION()
 	void HandleReachedActor();
@@ -99,6 +105,8 @@ private:
 	void UseAbilityTwoPressed();
 	void UseAbilityThreePressed();
 	void UseUltimatePressed();
+	// Input handler for CancelCommand
+	void UseCancelCommandPressed();
 
 	void UseAbility(int index);
 
@@ -111,6 +119,12 @@ private:
 
 	UFUNCTION()
 	void HandleResetEngagement();
+
+	UFUNCTION()
+	void HandleStartMovement();
+
+	UFUNCTION()
+	void HandleEndedMovement();
 
 	void ResetCameraZoom();
 	void CameraZoomChanged(float Value);

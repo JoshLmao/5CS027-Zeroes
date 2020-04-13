@@ -8,6 +8,8 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerReachedDestinationActorSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerResetEngagement);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerStartMovement);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerEndedMovement);
 
 UCLASS()
 class AZeroesPlayerController : public APlayerController
@@ -23,10 +25,19 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FControllerResetEngagement OnResetEngagement;
 
+	UPROPERTY(BlueprintAssignable)
+	FControllerStartMovement OnStartMovement;
+
+	UPROPERTY(BlueprintAssignable)
+	FControllerEndedMovement OnEndedMovement;
+
 	void ResetTargetEnemy();
 
 	void SetDisableMovement(bool disable);
 	bool GetDisableMovement();
+
+	/// Cancels the current movement command
+	void CancelMovement();
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
@@ -50,10 +61,13 @@ protected:
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
 
+
 private:
 	AActor* m_targetEnemy;
+
 	bool m_reachedEnemy;
 	bool m_disableMovement;
+	// Current vector the player is wanting to move to
+	FVector m_currentTargetVector;
 };
-
 

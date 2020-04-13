@@ -43,6 +43,8 @@ void AHeroBase::BeginPlay()
 	{
 		m_playerController->OnReachedDestActor.AddDynamic(this, &AHeroBase::HandleReachedActor);
 		m_playerController->OnResetEngagement.AddDynamic(this, &AHeroBase::HandleResetEngagement);
+		m_playerController->OnStartMovement.AddDynamic(this, &AHeroBase::HandleStartMovement);
+		m_playerController->OnEndedMovement.AddDynamic(this, &AHeroBase::HandleEndedMovement);
 	}
 
 	AHeroState* state = Cast<AHeroState>(GetPlayerState());
@@ -65,7 +67,8 @@ void AHeroBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	// Regenerate Health every frame
-	RegenerateHealth(DeltaTime);
+	if (m_heroState->GetHealth() > 0)
+		RegenerateHealth(DeltaTime);
 
 	SM_Update();
 }
@@ -79,6 +82,7 @@ void AHeroBase::SetupPlayerInputComponent(UInputComponent* InputComponent)
 	InputComponent->BindAction("Ability2", IE_Pressed, this, &AHeroBase::UseAbilityTwoPressed);
 	InputComponent->BindAction("Ability3", IE_Pressed, this, &AHeroBase::UseAbilityThreePressed);
 	InputComponent->BindAction("Ultimate", IE_Pressed, this, &AHeroBase::UseUltimatePressed);
+	InputComponent->BindAction("CancelCommand", IE_Pressed, this, &AHeroBase::UseCancelCommandPressed);
 
 	InputComponent->BindAxis("CameraZoom", this, &AHeroBase::CameraZoomChanged);
 }
@@ -114,6 +118,23 @@ void AHeroBase::UseAbilityThree()
 
 void AHeroBase::UseUltimate()
 {
+}
+
+void AHeroBase::CancelAttack()
+{
+	// If can't attack
+	if (!m_heroState->GetCanAttack())
+	{
+		UE_LOG(LogZeroes, Log, TEXT("Cancelling current player attack"));
+		GetWorldTimerManager().ClearTimer(TimerHandle_AttackCooldown);
+
+		m_heroState->SetCanAttack(true);
+
+		if (OnCancelAttacking.IsBound())
+			OnCancelAttacking.Broadcast();
+
+		SetState(PlayerStates::IDLE);
+	}
 }
 
 void AHeroBase::DealDamageToTarget()
@@ -175,8 +196,6 @@ void AHeroBase::AttackUpdate()
 
 			GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AHeroBase::OnAttackCooldownFinished, AttackCooldown, false);
 			UE_LOG(LogZeroes, Log, TEXT("Attacked '%s'. Cooling down for '%f' seconds"), *enemy->GetName(), AttackCooldown);
-
-			//DealDamageToTarget();
 			
 			if (enemy->GetHealth() <= 0)
 			{
@@ -185,10 +204,12 @@ void AHeroBase::AttackUpdate()
 				// Reset state
 				SetState(PlayerStates::IDLE);
 			}
-
-			// Broadcast IsAttacking event
-			if (OnBeginAttacking.IsBound())
-				OnBeginAttacking.Broadcast();
+			else 
+			{
+				// Broadcast IsAttacking event
+				if (OnBeginAttacking.IsBound())
+					OnBeginAttacking.Broadcast();
+			}
 		}
 	}
 }
@@ -211,6 +232,17 @@ void AHeroBase::UseAbilityThreePressed()
 void AHeroBase::UseUltimatePressed()
 {
 	UseAbility(3);
+}
+
+void AHeroBase::UseCancelCommandPressed()
+{
+	UE_LOG(LogZeroes, Log, TEXT("Cancel pressed!"));
+	if (State == PlayerStates::ATTACKING) {
+		CancelAttack();
+	}
+	else if (true) {
+		m_playerController->CancelMovement();
+	}
 }
 
 void AHeroBase::UseAbility(int index)
@@ -297,6 +329,16 @@ void AHeroBase::OnAttackCooldownFinished()
 void AHeroBase::HandleResetEngagement()
 {
 	UE_LOG(LogZeroes, Log, TEXT("Resetting Player enegagement - idle state"));
+	SetState(PlayerStates::IDLE);
+}
+
+void AHeroBase::HandleStartMovement()
+{
+	SetState(PlayerStates::WALKING);
+}
+
+void AHeroBase::HandleEndedMovement()
+{
 	SetState(PlayerStates::IDLE);
 }
 
