@@ -9,6 +9,9 @@
 #include "Heroes\HeroState.h"
 #include "Kismet\GameplayStatics.h"
 #include "Heroes\HeroBase.h"
+#include "UI\PlayerUIWidget.h"
+#include "Leaders/Aura.h"
+#include "EngineUtils.h"
 
 AZeroesGameMode::AZeroesGameMode()
 {
@@ -23,25 +26,79 @@ AZeroesGameMode::AZeroesGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
+	// Assign GameOver UI widget
+	static ConstructorHelpers::FClassFinder<UUserWidget> GOClass(TEXT("/Game/UI/DeathUI_BP"));
+	if (GOClass.Class)
+		GameOverWidgetClass = GOClass.Class;
+
+	// Assign Win UI widget
+	static ConstructorHelpers::FClassFinder<UUserWidget> WinClass(TEXT("/Game/UI/WinUI_BP"));
+	if (WinClass.Class)
+		WinWidgetClass = WinClass.Class;
 }
 
 void AZeroesGameMode::StartPlay()
 {
 	Super::StartPlay();
 	
+	// Listen to player death event to determine loss of game
 	const UWorld* world = GetWorld();
 	AHeroBase* player = Cast<AHeroBase>(UGameplayStatics::GetPlayerPawn(Cast<UObject>(world), 0));
 	if (player)
 	{
 		player->OnHeroDeath.AddDynamic(this, &AZeroesGameMode::OnPlayerDeath);
 	}
+	else
+	{
+		UE_LOG(LogZeroes, Error, TEXT("Unable to find player and listen to Death event. Won't be able to lose game"));
+	}
+
+	// Listen to main leader death for win of game
+	AAura* auraLeader = FindAura();
+	if (auraLeader)
+	{
+		auraLeader->OnDeath.AddDynamic(this, &AZeroesGameMode::OnBossDeath);
+	}
+	else
+	{
+		UE_LOG(LogZeroes, Error, TEXT("Unable to find Aura enemy. Won't be able to win the game!"));
+	}
 }
 
 void AZeroesGameMode::OnPlayerDeath()
 {
-	UE_LOG(LogZeroes, Log, TEXT("PLAYER HAS DIED!"));
+	UE_LOG(LogZeroes, Log, TEXT("Player has died"));
+
+	if (GameOverWidgetClass)
+	{
+		GameOverWidget = CreateWidget<UUserWidget>(GetWorld(), GameOverWidgetClass);
+		GameOverWidget->AddToViewport();
+	}
 }
 
 void AZeroesGameMode::OnBossDeath()
 {
+	UE_LOG(LogZeroes, Log, TEXT("Aura has been killed! Player has won."));
+
+	if (WinWidgetClass)
+	{
+		WinWidget = CreateWidget<UUserWidget>(GetWorld(), WinWidgetClass);
+		WinWidget->AddToViewport();
+	}
+}
+
+AAura* AZeroesGameMode::FindAura()
+{
+	for (TActorIterator<ALeaderBase> TargetIter(GetWorld()); TargetIter; ++TargetIter) 
+	{ 
+		//TargetArray.Add(*TargetIter);
+		ALeaderBase* leader = *TargetIter;
+		if (leader && leader->IsA(AAura::StaticClass()))
+		{
+			return Cast<AAura>(leader);
+		}
+	}
+
+	return nullptr;
 }

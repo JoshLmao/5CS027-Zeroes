@@ -11,6 +11,8 @@ AAura::AAura()
 	AbilityDamage = 100.0f;
 }
 
+
+
 void AAura::AbilityStart()
 {
 	Super::AbilityStart();

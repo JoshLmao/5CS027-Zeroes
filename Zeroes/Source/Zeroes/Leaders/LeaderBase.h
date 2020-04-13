@@ -7,6 +7,7 @@
 #include "LeaderBase.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FLeaderBeginAbilitySignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FLeaderDeathSignature);
 
 /**
  * 
@@ -45,6 +46,9 @@ public:
 	/// Triggered when enemy starts their attack
 	UPROPERTY(BlueprintAssignable)
 	FLeaderBeginAbilitySignature OnLeaderBeginAbility;
+
+	UPROPERTY(BlueprintAssignable)
+	FLeaderDeathSignature OnDeath;
 
 protected:
 	virtual void OnAttack(AActor* attackEnemy) override;

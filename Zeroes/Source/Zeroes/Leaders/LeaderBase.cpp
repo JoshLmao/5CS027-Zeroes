@@ -37,6 +37,12 @@ float ALeaderBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEven
 		}
 	}
 
+	if (Health <= 0)
+	{
+		if (OnDeath.IsBound())
+			OnDeath.Broadcast();
+	}
+
 	return dmg;
 }
 
