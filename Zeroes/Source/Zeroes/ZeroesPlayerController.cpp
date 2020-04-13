@@ -63,7 +63,7 @@ void AZeroesPlayerController::MoveToMouseCursor()
 {
 	// Trace to see what is under the mouse cursor
 	FHitResult Hit;
-	GetHitResultUnderCursor(ECC_PhysicsBody, false, Hit);
+	GetHitResultUnderCursor(ECC_Pawn, false, Hit);
 
 	USkeletalMeshComponent* mesh = Cast<USkeletalMeshComponent>(GetPawn()->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 	UHeroAnimInstance* animInstance = Cast<UHeroAnimInstance>(mesh->GetAnimInstance());
@@ -72,6 +72,11 @@ void AZeroesPlayerController::MoveToMouseCursor()
 	{
 		// Check if hovering over enemy
 		AActor* actor = Hit.GetActor();
+		if (!actor) {
+			return;
+		}
+
+		UE_LOG(LogZeroes, Log, TEXT("MouseDetect: Actor Name '%s'"), *actor->GetName());
 		if (actor->IsA(AEnemyBase::StaticClass()))
 		{
 			// Set target enemy that player wants to kill

@@ -116,7 +116,7 @@ void AZeroesCharacter::CheckForBlockingActor()
 			{
 				AActor* actor = Hit.GetActor();
 				FLinearColor color = FLinearColor::Green;
-				if (actor->IsA(AEnemyBase::StaticClass()))
+				if (actor && actor->IsA(AEnemyBase::StaticClass()))
 				{
 					//UE_LOG(LogZeroes, Log, TEXT("Hovering over an enemy"));
 					color = FLinearColor::Red;
