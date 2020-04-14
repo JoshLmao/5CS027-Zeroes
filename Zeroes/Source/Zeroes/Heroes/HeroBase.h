@@ -44,11 +44,14 @@ public:
 	/// Is the hero dead
 	bool bIsDead;
 
+	/// Amount of time in seconds to play foot steps
+	float WalkLoopDelay;
+
 	/* Events */
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY(BlueprintAssignable, EditAnywhere)
 	FHeroBeginAttackSignature OnBeginAttacking;
 
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY(BlueprintAssignable, EditAnywhere)
 	FHeroCompleteAttackSignature OnCompletedAttacking;
 
 	UPROPERTY(BlueprintAssignable)
@@ -66,6 +69,14 @@ public:
 	void DealDamageToTarget();
 
 protected:
+	class USoundBase* AttackSound;
+	class USoundBase* WalkingSound;
+	class USoundBase* DeathSound;
+	class USoundBase* AbilityOneSound;
+	class USoundBase* AbilityTwoSound;
+	class USoundBase* AbilityThreeSound;
+	class USoundBase* AbilityUltimateSound;
+
 	virtual void BeginPlay() override;
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -81,6 +92,8 @@ protected:
 
 	virtual void CancelAttack();
 
+	virtual void OnDeath();
+
 	UFUNCTION()
 	void HandleReachedActor();
 
@@ -95,6 +108,7 @@ private:
 	FTimerHandle TimerHandle_AbilityThreeCooldown;
 	FTimerHandle TimerHandle_UltimateCooldown;
 	FTimerHandle TimerHandle_AttackCooldown;
+	FTimerHandle TimerHandle_WalkSoundLoop;
 
 	enum PlayerStates { IDLE, ATTACKING, WALKING };
 	PlayerStates State = PlayerStates::IDLE;
@@ -138,4 +152,6 @@ private:
 	void CameraZoomChanged(float Value);
 
 	void RegenerateHealth(float DeltaTime);
+
+	void PlayWalkSound();
 };

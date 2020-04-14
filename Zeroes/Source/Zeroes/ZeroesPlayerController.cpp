@@ -38,15 +38,28 @@ void AZeroesPlayerController::PlayerTick(float DeltaTime)
 		return;
 
 	// keep updating the destination every tick while desired
-	if (bMoveToMouseCursor)
-	{
+	if (bMoveToMouseCursor) {
 		MoveToMouseCursor();
-	} 
+	}
 
 	// Update every tick to get the latest enemy position (could be moving)
 	if (m_targetEnemy != nullptr  && !m_reachedEnemy)
 	{
 		SetNewEnemyDestination(m_targetEnemy);
+	}
+
+	/// Check for when SimpleMoveToLocation() has reached its destination
+	if (m_currentTargetVector != FVector::ZeroVector)
+	{
+		float dist = FVector::Dist(GetPawn()->GetActorLocation(), m_currentTargetVector);
+		UE_LOG(LogZeroes, Log, TEXT("Dist to Target: %f %s"), dist, *m_currentTargetVector.ToString());
+		if (dist < 110.0f)
+		{
+			if (OnEndedMovement.IsBound()) {
+				OnEndedMovement.Broadcast();
+			}
+			m_currentTargetVector = FVector::ZeroVector;
+		}
 	}
 }
 
@@ -158,6 +171,7 @@ void AZeroesPlayerController::SetNewEnemyDestination(AActor* enemyActor)
 					OnReachedDestActor.Broadcast();
 				m_reachedEnemy = true;
 			}
+			
 		}
 	}
 }

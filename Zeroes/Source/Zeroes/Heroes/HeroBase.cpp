@@ -15,6 +15,8 @@
 #include "Kismet\KismetMathLibrary.h"
 #include "ZeroesHelper.h"
 #include "ZeroesPlayerController.h"
+#include "ConstructorHelpers.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AHeroBase::AHeroBase()
@@ -30,6 +32,7 @@ AHeroBase::AHeroBase()
 	DefaultCameraZoom = 800.0f;
 	MinCameraZoom = 800.0f;
 	MaxCameraZoom = 1400.0f;
+	WalkLoopDelay = 0.30f;
 }
 
 void AHeroBase::BeginPlay()
@@ -94,12 +97,7 @@ float AHeroBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent,
 	m_heroState->RemoveHealth(value);
 	if (m_heroState->GetHealth() <= 0)
 	{
-		// Player is Dead
-		if (OnHeroDeath.IsBound())
-			OnHeroDeath.Broadcast();
-
-		bIsDead = true;
-		SetPreventMovement(true);
+		OnDeath();
 	}
 	else
 	{
@@ -111,18 +109,26 @@ float AHeroBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent,
 
 void AHeroBase::UseAbilityOne()
 {
+	if (AbilityOneSound)
+		UGameplayStatics::PlaySoundAtLocation(this, AbilityOneSound, GetActorLocation());
 }
 
 void AHeroBase::UseAbilityTwo()
 {
+	if (AbilityTwoSound)
+		UGameplayStatics::PlaySoundAtLocation(this, AbilityTwoSound, GetActorLocation());
 }
 
 void AHeroBase::UseAbilityThree()
 {
+	if (AbilityThreeSound)
+		UGameplayStatics::PlaySoundAtLocation(this, AbilityThreeSound, GetActorLocation());
 }
 
 void AHeroBase::UseUltimate()
 {
+	if (AbilityUltimateSound)
+		UGameplayStatics::PlaySoundAtLocation(this, AbilityUltimateSound, GetActorLocation());
 }
 
 void AHeroBase::CancelAttack()
@@ -142,6 +148,22 @@ void AHeroBase::CancelAttack()
 	}
 }
 
+void AHeroBase::OnDeath()
+{
+	// Set is dead and stop movement
+	bIsDead = true;
+	SetPreventMovement(true);
+
+	// Move state incase attacking
+	SetState(PlayerStates::IDLE);
+
+	if (DeathSound)
+		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
+
+	if (OnHeroDeath.IsBound())
+		OnHeroDeath.Broadcast();
+}
+
 void AHeroBase::DealDamageToTarget()
 {
 	AEnemyBase* enemy = Cast<AEnemyBase>(DestinationActor);
@@ -157,6 +179,12 @@ void AHeroBase::HandleReachedActor()
 {
 	UE_LOG(LogZeroes, Log, TEXT("Hero reached actor. Entering Attacking state"));
 	SetState(PlayerStates::ATTACKING);
+
+	// End walking sound loop
+	if (GetWorldTimerManager().IsTimerActive(TimerHandle_WalkSoundLoop))
+	{
+		GetWorldTimerManager().ClearTimer(TimerHandle_WalkSoundLoop);
+	}
 }
 
 AZeroesPlayerController* AHeroBase::GetZeroesPlayerController()
@@ -202,6 +230,9 @@ void AHeroBase::AttackUpdate()
 			GetWorldTimerManager().SetTimer(TimerHandle_AttackCooldown, this, &AHeroBase::OnAttackCooldownFinished, AttackCooldown, false);
 			UE_LOG(LogZeroes, Log, TEXT("Attacked '%s'. Cooling down for '%f' seconds"), *enemy->GetName(), AttackCooldown);
 			
+			if (AttackSound) 
+				UGameplayStatics::PlaySoundAtLocation(this, AttackSound, GetActorLocation());
+
 			if (enemy->GetHealth() <= 0)
 			{
 				// Enemy died on attack
@@ -340,11 +371,23 @@ void AHeroBase::HandleResetEngagement()
 void AHeroBase::HandleStartMovement()
 {
 	SetState(PlayerStates::WALKING);
+
+	// Start walking sound loop
+	if (!GetWorldTimerManager().IsTimerActive(TimerHandle_WalkSoundLoop))
+	{
+		GetWorldTimerManager().SetTimer(TimerHandle_WalkSoundLoop, this, &AHeroBase::PlayWalkSound, WalkLoopDelay, true);
+	}
 }
 
 void AHeroBase::HandleEndedMovement()
 {
 	SetState(PlayerStates::IDLE);
+
+	// End walking sound loop
+	if (GetWorldTimerManager().IsTimerActive(TimerHandle_WalkSoundLoop))
+	{
+		GetWorldTimerManager().ClearTimer(TimerHandle_WalkSoundLoop);
+	}
 }
 
 void AHeroBase::ResetCameraZoom()
@@ -382,4 +425,10 @@ void AHeroBase::CameraZoomChanged(float Value)
 void AHeroBase::RegenerateHealth(float DeltaTime)
 {
 	m_heroState->AddHealth(m_heroState->GetHealthRegenRate() * DeltaTime);
+}
+
+void AHeroBase::PlayWalkSound()
+{
+	if (WalkingSound)
+		UGameplayStatics::PlaySoundAtLocation(this, WalkingSound, GetActorLocation(), 1.0f, FMath::RandRange(0.65f, 1.35f));
 }

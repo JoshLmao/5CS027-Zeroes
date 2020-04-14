@@ -55,14 +55,14 @@ void AZeroesGameMode::StartPlay()
 	}
 
 	// Listen to main leader death for win of game
-	AAura* auraLeader = FindAura();
+	ALeaderBase* auraLeader = FindLeader();
 	if (auraLeader)
 	{
-		auraLeader->OnDeath.AddDynamic(this, &AZeroesGameMode::OnBossDeath);
+		auraLeader->OnDeath.AddDynamic(this, &AZeroesGameMode::OnLeaderDeath);
 	}
 	else
 	{
-		UE_LOG(LogZeroes, Error, TEXT("Unable to find Aura enemy. Won't be able to win the game!"));
+		UE_LOG(LogZeroes, Error, TEXT("Unable to find Leader enemy. Won't be able to win the game!"));
 	}
 }
 
@@ -77,9 +77,9 @@ void AZeroesGameMode::OnPlayerDeath()
 	}
 }
 
-void AZeroesGameMode::OnBossDeath()
+void AZeroesGameMode::OnLeaderDeath()
 {
-	UE_LOG(LogZeroes, Log, TEXT("Aura has been killed! Player has won."));
+	UE_LOG(LogZeroes, Log, TEXT("Leader has been killed! Player has won."));
 
 	if (WinWidgetClass)
 	{
@@ -88,11 +88,10 @@ void AZeroesGameMode::OnBossDeath()
 	}
 }
 
-AAura* AZeroesGameMode::FindAura()
+ALeaderBase* AZeroesGameMode::FindLeader()
 {
 	for (TActorIterator<ALeaderBase> TargetIter(GetWorld()); TargetIter; ++TargetIter) 
 	{ 
-		//TargetArray.Add(*TargetIter);
 		ALeaderBase* leader = *TargetIter;
 		if (leader && leader->IsA(AAura::StaticClass()))
 		{

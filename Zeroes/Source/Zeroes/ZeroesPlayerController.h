@@ -52,7 +52,7 @@ protected:
 	void MoveToMouseCursor();
 
 	/** Navigate player to the given world location. */
-	void SetNewMoveDestination(const FVector DestLocation, float rangeTolerance = 70.0f);
+	void SetNewMoveDestination(const FVector DestLocation, float rangeTolerance = 100.0f);
 
 	/** Navigate to enemy for combat */
 	void SetNewEnemyDestination(AActor* actor);

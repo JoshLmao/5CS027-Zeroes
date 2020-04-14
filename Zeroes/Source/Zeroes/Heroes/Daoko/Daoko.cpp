@@ -9,11 +9,41 @@
 #include "ZeroesMathHelper.h"
 #include "Engine/World.h"
 #include "Heroes/Daoko/Spike.h"
+#include "ConstructorHelpers.h"
+#include "Kismet/GameplayStatics.h"
 
 ADaoko::ADaoko()
 {
 	BlinkDistance = 500.0f;
 	m_spikeCount = 0;
+
+	// Load sounds ready to be played
+	// Walking Sound
+	static ConstructorHelpers::FObjectFinder<USoundBase> WalkSound(TEXT("/Game/Audio/Footstep02"));
+	if (WalkSound.Succeeded())
+		WalkingSound = WalkSound.Object;
+	// Attack sound
+	static ConstructorHelpers::FObjectFinder<USoundBase> attackSound(TEXT("/Game/ParagonShinbi/Characters/Heroes/Shinbi/Sounds/SoundWaves/Shinbi_Effort_Attack_01"));
+	if (attackSound.Succeeded())
+		AttackSound = attackSound.Object;
+	// Death Sound
+	static ConstructorHelpers::FObjectFinder<USoundBase> deathSound(TEXT("/Game/ParagonShinbi/Characters/Heroes/Shinbi/Sounds/SoundWaves/Shinbi_Effort_Death_01"));
+	if (deathSound.Succeeded())
+		DeathSound = deathSound.Object;
+
+	/// Load all ability sounds
+	static ConstructorHelpers::FObjectFinder<USoundBase> abilOneSound(TEXT("/Game/ParagonShinbi/Characters/Heroes/Shinbi/Sounds/SoundWaves/Shinbi_Effort_Ability_E_01"));
+	if (abilOneSound.Succeeded())
+		AbilityOneSound = abilOneSound.Object;
+	static ConstructorHelpers::FObjectFinder<USoundBase> abilTwoSound(TEXT("/Game/ParagonShinbi/Characters/Heroes/Shinbi/Sounds/SoundWaves/Shinbi_Effort_Block_02"));
+	if (abilTwoSound.Succeeded())
+		AbilityTwoSound = abilTwoSound.Object;
+	static ConstructorHelpers::FObjectFinder<USoundBase> abilThreeSound(TEXT("/Game/ParagonShinbi/Characters/Heroes/Shinbi/Sounds/SoundWaves/Shinbi_Effort_Jump_01"));
+	if (abilThreeSound.Succeeded())
+		AbilityThreeSound = abilThreeSound.Object;
+	static ConstructorHelpers::FObjectFinder<USoundBase> abilUltiSound(TEXT("/Game/ParagonShinbi/Characters/Heroes/Shinbi/Sounds/SoundWaves/Shinbi_Effort_Ability_Ultimate_01"));
+	if (abilUltiSound.Succeeded())
+		AbilityUltimateSound = abilUltiSound.Object;
 }
 
 void ADaoko::UseAbilityOne()

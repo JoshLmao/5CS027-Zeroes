@@ -31,10 +31,10 @@ private:
 	void OnPlayerDeath();
 
 	UFUNCTION()
-	void OnBossDeath();
+	void OnLeaderDeath();
 
 	/// Finds main leader/boss Aura pawn in level
-	class AAura* FindAura();
+	class ALeaderBase* FindLeader();
 };
 
 
