@@ -30,9 +30,10 @@ public:
 
 	/// Time in seconds inbetween each attack
 	float AttackCooldown;
-
 	/// Amount of damage to inflict per attack
 	double AttackDamage;
+	/// Amount of units inbetween hero and enemy to be able to attack
+	float AttackRange;
 
 	/// Normal camera zoom value
 	float DefaultCameraZoom;
@@ -66,7 +67,12 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FHeroDeathSignature OnHeroDeath;
 
+	/// Deals damage to the current target, if there is one
 	void DealDamageToTarget();
+	/// Check if the player/hero has died
+	bool IsDead();
+
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 protected:
 	class USoundBase* AttackSound;
@@ -83,8 +89,6 @@ protected:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
-
 	virtual void UseAbilityOne();
 	virtual void UseAbilityTwo();
 	virtual void UseAbilityThree();
@@ -94,6 +98,10 @@ protected:
 
 	virtual void OnDeath();
 
+	/// Handles when controller begins travelling to it's target actor
+	UFUNCTION()
+	void HandleTravelToActor();
+	/// Handles when controller has reached it's target actor
 	UFUNCTION()
 	void HandleReachedActor();
 
@@ -139,12 +147,15 @@ private:
 
 	void OnAttackCooldownFinished();
 
+	/// Handles controller resets engagement between itself and an enemy
 	UFUNCTION()
 	void HandleResetEngagement();
 
+	/// Handles controller beginning movement target
 	UFUNCTION()
 	void HandleStartMovement();
 
+	/// Handles controller ended or reached it's movement target
 	UFUNCTION()
 	void HandleEndedMovement();
 

@@ -23,7 +23,7 @@ ADaoko::ADaoko()
 	if (WalkSound.Succeeded())
 		WalkingSound = WalkSound.Object;
 	// Attack sound
-	static ConstructorHelpers::FObjectFinder<USoundBase> attackSound(TEXT("/Game/ParagonShinbi/Characters/Heroes/Shinbi/Sounds/SoundWaves/Shinbi_Effort_Attack_01"));
+	static ConstructorHelpers::FObjectFinder<USoundBase> attackSound(TEXT("/Game/Audio/riki_attack"));
 	if (attackSound.Succeeded())
 		AttackSound = attackSound.Object;
 	// Death Sound

@@ -6,6 +6,8 @@
 #include "TimerManager.h"
 #include "AIController.h"
 #include "ZeroesHelper.h"
+#include "ConstructorHelpers.h"
+#include "Kismet/GameplayStatics.h"
 
 ALeaderBase::ALeaderBase()
 {
@@ -18,6 +20,10 @@ ALeaderBase::ALeaderBase()
 	m_strafeRadiusUnits = 350.0f;
 	m_abilityCount = 0;
 	m_bHasStrafed = false;
+
+	static ConstructorHelpers::FObjectFinder<USoundBase> abilitySound(TEXT("/Game/Audio/Frost_Blast"));
+	if (abilitySound.Succeeded())
+		AbilitySound = abilitySound.Object;
 }
 
 float ALeaderBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -99,6 +105,8 @@ void ALeaderBase::AbilityUpdate()
 
 void ALeaderBase::PerformAbility()
 {
+	if (AbilitySound)
+		UGameplayStatics::PlaySoundAtLocation(this, AbilitySound, GetActorLocation(), 1.0f, FMath::RandRange(0.8f, 1.2f));
 }
 
 void ALeaderBase::StrafeStart()

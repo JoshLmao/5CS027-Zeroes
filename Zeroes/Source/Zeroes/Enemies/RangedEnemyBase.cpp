@@ -5,6 +5,7 @@
 #include "Zeroes.h"
 #include "Engine/World.h"
 #include "Enemies/Projectile/RangedProjectile.h"
+#include "Kismet/GameplayStatics.h"
 
 ARangedEnemyBase::ARangedEnemyBase()
 {
@@ -28,4 +29,7 @@ void ARangedEnemyBase::OnAttack(AActor* attackEnemy)
 
 		//UE_LOG(LogZeroes, Log, TEXT("Spawned projectile at %s"), *spawnLocation.ToString());
 	}
+
+	if (AttackSound)
+		UGameplayStatics::PlaySoundAtLocation(this, AttackSound, GetActorLocation(), 1.0f, FMath::RandRange(0.75f, 1.25f));
 }

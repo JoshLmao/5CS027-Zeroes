@@ -88,6 +88,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category  = "Enemy Properties")
 	TSubclassOf<class USActorWidget> HealthbarWidget;
 
+	/// Sound to use when enemy uses it's attack
+	UPROPERTY(EditAnywhere, Category = "Enemy Properties")
+	class USoundBase* AttackSound;
+
+	UPROPERTY(EditAnywhere, Category = "Enemy Properties")
+	class USoundBase* DeathSound;
+
 	EBehaviourStates State = EBehaviourStates::IDLE;
 
 	enum GameEvents { ON_START, ON_UPDATE };
@@ -126,6 +133,8 @@ protected:
 	class AAIController* AIController;
 	/// Reference to animation instance
 	class UEnemyAnimInstance* AnimInstance;
+
+	virtual void OnDeath();
 
 private:
 	/// Start spawn location of the enemy

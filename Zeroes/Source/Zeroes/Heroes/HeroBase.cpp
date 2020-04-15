@@ -29,6 +29,7 @@ AHeroBase::AHeroBase()
 	UltimateCooldown = 15.0f;
 	AttackDamage = 75.0;
 	AttackCooldown = 1.0f;
+	AttackRange = 175.0f;
 	DefaultCameraZoom = 800.0f;
 	MinCameraZoom = 800.0f;
 	MaxCameraZoom = 1400.0f;
@@ -44,6 +45,7 @@ void AHeroBase::BeginPlay()
 	m_playerController = Cast<AZeroesPlayerController>(GetController());
 	if (m_playerController)
 	{
+		m_playerController->OnTravelDestActor.AddDynamic(this, &AHeroBase::HandleTravelToActor);
 		m_playerController->OnReachedDestActor.AddDynamic(this, &AHeroBase::HandleReachedActor);
 		m_playerController->OnResetEngagement.AddDynamic(this, &AHeroBase::HandleResetEngagement);
 		m_playerController->OnStartMovement.AddDynamic(this, &AHeroBase::HandleStartMovement);
@@ -70,7 +72,7 @@ void AHeroBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	// Regenerate Health every frame
-	if (m_heroState->GetHealth() > 0)
+	if (!IsDead())
 		RegenerateHealth(DeltaTime);
 
 	SM_Update();
@@ -110,25 +112,25 @@ float AHeroBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent,
 void AHeroBase::UseAbilityOne()
 {
 	if (AbilityOneSound)
-		UGameplayStatics::PlaySoundAtLocation(this, AbilityOneSound, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, AbilityOneSound, GetActorLocation(), 1.0f, FMath::RandRange(0.8f, 1.2f));
 }
 
 void AHeroBase::UseAbilityTwo()
 {
 	if (AbilityTwoSound)
-		UGameplayStatics::PlaySoundAtLocation(this, AbilityTwoSound, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, AbilityTwoSound, GetActorLocation(), 1.0f, FMath::RandRange(0.8f, 1.2f));
 }
 
 void AHeroBase::UseAbilityThree()
 {
 	if (AbilityThreeSound)
-		UGameplayStatics::PlaySoundAtLocation(this, AbilityThreeSound, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, AbilityThreeSound, GetActorLocation(), 1.0f, FMath::RandRange(0.8f, 1.2f));
 }
 
 void AHeroBase::UseUltimate()
 {
 	if (AbilityUltimateSound)
-		UGameplayStatics::PlaySoundAtLocation(this, AbilityUltimateSound, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, AbilityUltimateSound, GetActorLocation(), 1.0f, FMath::RandRange(0.8f, 1.2f));
 }
 
 void AHeroBase::CancelAttack()
@@ -158,7 +160,7 @@ void AHeroBase::OnDeath()
 	SetState(PlayerStates::IDLE);
 
 	if (DeathSound)
-		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), 1.0f, FMath::RandRange(0.8f, 1.2f));
 
 	if (OnHeroDeath.IsBound())
 		OnHeroDeath.Broadcast();
@@ -173,6 +175,20 @@ void AHeroBase::DealDamageToTarget()
 	TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
 	FDamageEvent DamageEvent(ValidDamageTypeClass);
 	enemy->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
+}
+
+bool AHeroBase::IsDead()
+{
+	return m_heroState->GetHealth() <= 0;
+}
+
+void AHeroBase::HandleTravelToActor()
+{
+	// Start walking sound loop
+	if (!GetWorldTimerManager().IsTimerActive(TimerHandle_WalkSoundLoop))
+	{
+		GetWorldTimerManager().SetTimer(TimerHandle_WalkSoundLoop, this, &AHeroBase::PlayWalkSound, WalkLoopDelay, true);
+	}
 }
 
 void AHeroBase::HandleReachedActor()
@@ -216,9 +232,11 @@ void AHeroBase::AttackStart()
 
 void AHeroBase::AttackUpdate()
 {
-	if (m_heroState->GetCanAttack())
+	AEnemyBase* enemy = Cast<AEnemyBase>(DestinationActor);
+	float dist = FVector::Distance(this->GetActorLocation(), enemy->GetActorLocation());
+	if (m_heroState->GetCanAttack() && dist < AttackRange)
 	{
-		AEnemyBase* enemy = Cast<AEnemyBase>(DestinationActor);
+		
 		// Look at attacking target
 		FRotator rotation = UZeroesHelper::LookAtTarget(this->GetActorLocation(), enemy->GetActorLocation(), this->GetActorRotation());
 		this->SetActorRotation(rotation);
@@ -231,7 +249,7 @@ void AHeroBase::AttackUpdate()
 			UE_LOG(LogZeroes, Log, TEXT("Attacked '%s'. Cooling down for '%f' seconds"), *enemy->GetName(), AttackCooldown);
 			
 			if (AttackSound) 
-				UGameplayStatics::PlaySoundAtLocation(this, AttackSound, GetActorLocation());
+				UGameplayStatics::PlaySoundAtLocation(this, AttackSound, GetActorLocation(), 1.0f, FMath::RandRange(0.8f, 1.2f));
 
 			if (enemy->GetHealth() <= 0)
 			{

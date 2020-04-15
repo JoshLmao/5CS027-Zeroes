@@ -6,10 +6,12 @@
 #include "GameFramework/PlayerController.h"
 #include "ZeroesPlayerController.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerTravelToDestinationActorSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerReachedDestinationActorSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerResetEngagement);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerStartMovement);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerEndedMovement);
+
 
 UCLASS()
 class AZeroesPlayerController : public APlayerController
@@ -19,6 +21,9 @@ class AZeroesPlayerController : public APlayerController
 public:
 	AZeroesPlayerController();
 
+	UPROPERTY(BlueprintAssignable)
+	FControllerTravelToDestinationActorSignature OnTravelDestActor;
+	
 	UPROPERTY(BlueprintAssignable)
 	FControllerReachedDestinationActorSignature OnReachedDestActor;
 

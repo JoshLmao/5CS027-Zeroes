@@ -42,6 +42,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Leader Properties")
 	int AttacksBetweenAbility;
 
+	/// Sound to play when leader casts their ability
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Leader Properties")
+	class USoundBase* AbilitySound;
+
 	/* Events */
 	/// Triggered when enemy starts their attack
 	UPROPERTY(BlueprintAssignable)

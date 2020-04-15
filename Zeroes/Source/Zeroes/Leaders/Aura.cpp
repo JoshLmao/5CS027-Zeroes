@@ -5,13 +5,12 @@
 #include "DrawDebugHelpers.h"
 #include "TimerManager.h"
 #include "Zeroes.h"
+#include "ConstructorHelpers.h"
 
 AAura::AAura()
 {
 	AbilityDamage = 100.0f;
 }
-
-
 
 void AAura::AbilityStart()
 {
@@ -27,6 +26,8 @@ void AAura::AbilityUpdate()
 
 void AAura::PerformAbility()
 {
+	Super::PerformAbility();
+
 	// Draw AoE circle and delay for animation
 	float radius = 200.0f;
 	float duration = 2.0f;

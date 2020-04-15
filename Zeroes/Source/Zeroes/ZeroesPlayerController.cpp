@@ -11,6 +11,7 @@
 #include "GameFramework/Pawn.h"
 #include "Heroes\HeroAnimInstance.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Heroes\HeroBase.h"
 
 AZeroesPlayerController::AZeroesPlayerController()
 {
@@ -52,7 +53,6 @@ void AZeroesPlayerController::PlayerTick(float DeltaTime)
 	if (m_currentTargetVector != FVector::ZeroVector)
 	{
 		float dist = FVector::Dist(GetPawn()->GetActorLocation(), m_currentTargetVector);
-		UE_LOG(LogZeroes, Log, TEXT("Dist to Target: %f %s"), dist, *m_currentTargetVector.ToString());
 		if (dist < 110.0f)
 		{
 			if (OnEndedMovement.IsBound()) {
@@ -150,9 +150,9 @@ void AZeroesPlayerController::SetNewMoveDestination(const FVector DestLocation, 
 void AZeroesPlayerController::SetNewEnemyDestination(AActor* enemyActor)
 {
 	AEnemyBase* enemy = Cast<AEnemyBase>(enemyActor);
-	float attackRange = 175.0f;
-	
 	APawn* const MyPawn = GetPawn();
+	float attackRange = Cast<AHeroBase>(MyPawn)->AttackRange;
+
 	if (MyPawn)
 	{
 		float const Distance = FVector::Dist(enemy->GetActorLocation(), MyPawn->GetActorLocation());
@@ -161,6 +161,9 @@ void AZeroesPlayerController::SetNewEnemyDestination(AActor* enemyActor)
 		{
 			UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, enemy->GetActorLocation());
 			m_reachedEnemy = false;
+
+			if (OnTravelDestActor.IsBound())
+				OnTravelDestActor.Broadcast();
 		}
 		else
 		{
@@ -171,7 +174,6 @@ void AZeroesPlayerController::SetNewEnemyDestination(AActor* enemyActor)
 					OnReachedDestActor.Broadcast();
 				m_reachedEnemy = true;
 			}
-			
 		}
 	}
 }

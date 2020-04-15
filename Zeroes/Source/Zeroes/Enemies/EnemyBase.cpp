@@ -59,6 +59,14 @@ AEnemyBase::AEnemyBase()
 	WidgetComponent->SetTickWhenOffscreen(true);
 
 	HealthbarWidget = UEnemyHealthbar::StaticClass();
+
+	static ConstructorHelpers::FObjectFinder<USoundBase> attackSound(TEXT("/Game/Audio/dk_sword_impact"));
+	if (attackSound.Succeeded())
+		AttackSound = attackSound.Object;
+
+	static ConstructorHelpers::FObjectFinder<USoundBase> deathSound(TEXT("/Game/Audio/Robot_1"));
+	if (deathSound.Succeeded())
+		DeathSound = deathSound.Object;
 }
 
 // Called when the game starts or when spawned
@@ -68,7 +76,7 @@ void AEnemyBase::BeginPlay()
 	
 	m_spawnLocation = this->GetActorLocation();
 
-	PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	PlayerPawn = Cast<AHeroBase>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	if (!PlayerPawn)
 		UE_LOG(LogZeroes, Error, TEXT("Minion has no reference to player!"));
 
@@ -91,6 +99,9 @@ void AEnemyBase::OnAttack(AActor* attackEnemy)
 	TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
 	FDamageEvent DamageEvent(ValidDamageTypeClass);
 	PlayerPawn->TakeDamage(AttackDamage, DamageEvent, nullptr, this);
+
+	if (AttackSound)
+		UGameplayStatics::PlaySoundAtLocation(this, AttackSound, GetActorLocation(), 1.0f, FMath::RandRange(0.75f, 1.25f));
 }
 
 // Called every frame
@@ -115,11 +126,7 @@ float AEnemyBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent
 	
 	if (Health <= 0)
 	{
-		UE_LOG(LogZeroes, Log, TEXT("No health remaining on enemy. Dying"));
-		if (OnEnemyDeath.IsBound())
-			OnEnemyDeath.Broadcast();
-
-		SetState(EBehaviourStates::DEAD);
+		OnDeath();
 	}
 	else
 	{
@@ -199,6 +206,18 @@ void AEnemyBase::SetState(EBehaviourStates newState)
 	Event = GameEvents::ON_START;
 }
 
+void AEnemyBase::OnDeath()
+{
+	UE_LOG(LogZeroes, Log, TEXT("No health remaining on enemy '%s'. Dying"), *this->GetName());
+	SetState(EBehaviourStates::DEAD);
+
+	if (DeathSound)
+		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), 1.0f, FMath::RandRange(0.8f, 1.2f));
+
+	if (OnEnemyDeath.IsBound())
+		OnEnemyDeath.Broadcast();
+}
+
 void AEnemyBase::IdleStart()
 {
 	Event = GameEvents::ON_UPDATE;
@@ -209,7 +228,6 @@ void AEnemyBase::IdleUpdate()
 	if (PlayerPawn && !Cast<AHeroBase>(PlayerPawn)->bIsDead)
 	{
 		float distance = FVector::Distance(this->GetActorLocation(), PlayerPawn->GetActorLocation());
-		//UE_LOG(LogZeroes, Log, TEXT("Dist: %f - Range: %f"), distance, IdleRange);
 
 		if (distance <= IdleRange)
 		{
@@ -231,16 +249,10 @@ void AEnemyBase::ChaseUpdate(float DeltaTime)
 		AIController->MoveToLocation(PlayerPawn->GetActorLocation(), 25.0f, true);
 	}
 
-	float distance = FVector::Distance(this->GetActorLocation(), PlayerPawn->GetActorLocation());
-	if (distance <= AttackMinDistance)
-	{
-		// Stop movement to attack
-		AIController->StopMovement();
+	AHeroBase* hero = Cast<AHeroBase>(PlayerPawn);
 
-		SetState(EBehaviourStates::ATTACK);
-		UE_LOG(LogZeroes, Log, TEXT("In range of player, attacking them"));
-	}
-	else if (distance >= ChaseRange)
+	float distance = FVector::Distance(this->GetActorLocation(), PlayerPawn->GetActorLocation());
+	if (distance >= ChaseRange || (hero && hero->IsDead()))
 	{
 		// Return to spawn if lost player
 		AIController->MoveToLocation(m_spawnLocation);
@@ -249,7 +261,16 @@ void AEnemyBase::ChaseUpdate(float DeltaTime)
 		{
 			// Returned home
 			SetState(EBehaviourStates::IDLE);
+			UE_LOG(LogZeroes, Log, TEXT("Player either out of range or dead."));
 		}
+	}
+	else if (distance <= AttackMinDistance)
+	{
+		// Stop movement to attack
+		AIController->StopMovement();
+
+		SetState(EBehaviourStates::ATTACK);
+		UE_LOG(LogZeroes, Log, TEXT("In range of player, attacking them"));
 	}
 }
 
@@ -263,13 +284,13 @@ void AEnemyBase::AttackUpdate()
 {
 	if (bCanPerformAttack)
 	{		
-		AHeroState* state = Cast<AHeroState>(PlayerPawn->GetPlayerState());
-		if (state->GetHealth() <= 0)
-		{
-			UE_LOG(LogZeroes, Log, TEXT("Player died while attacking. Idling..."));
-			SetState(EBehaviourStates::IDLE);
-			return;
-		}
+		//AHeroState* state = Cast<AHeroState>(PlayerPawn->GetPlayerState());
+		//if (state->GetHealth() <= 0)
+		//{
+		//	UE_LOG(LogZeroes, Log, TEXT("Player died while attacking. Idling..."));
+		//	SetState(EBehaviourStates::IDLE);
+		//	return;
+		//}
 
 		bCanPerformAttack = false;
 
@@ -294,6 +315,13 @@ void AEnemyBase::AttackUpdate()
 	{
 		SetState(EBehaviourStates::CHASE);
 		UE_LOG(LogZeroes, Log, TEXT("Player went out of range. Go bk to them"));
+	}
+
+	AHeroBase* hero = Cast<AHeroBase>(PlayerPawn);
+	if (hero && hero->IsDead())
+	{
+		SetState(EBehaviourStates::CHASE);
+		UE_LOG(LogZeroes, Log, TEXT("Player died while being attacked. Moving to original location"));
 	}
 }
 
