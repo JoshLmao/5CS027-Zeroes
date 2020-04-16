@@ -159,10 +159,14 @@ private:
 	UFUNCTION()
 	void HandleEndedMovement();
 
+	/// Resets the current camera to it's default zoom
 	void ResetCameraZoom();
+	/// Updates the camera zoom position depending on it's desired direction (+1 to zoom in, -1 to zoom out)
 	void CameraZoomChanged(float Value);
 
+	/// Renegerates player health using the current delta time
 	void RegenerateHealth(float DeltaTime);
 
+	/// Plays the current set walking sound
 	void PlayWalkSound();
 };

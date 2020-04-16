@@ -33,7 +33,7 @@ AHeroBase::AHeroBase()
 	DefaultCameraZoom = 800.0f;
 	MinCameraZoom = 800.0f;
 	MaxCameraZoom = 1400.0f;
-	WalkLoopDelay = 0.30f;
+	WalkLoopDelay = 0.275f;
 }
 
 void AHeroBase::BeginPlay()
@@ -291,10 +291,12 @@ void AHeroBase::UseUltimatePressed()
 void AHeroBase::UseCancelCommandPressed()
 {
 	UE_LOG(LogZeroes, Log, TEXT("Cancel pressed!"));
-	if (State == PlayerStates::ATTACKING) {
+	if (State == PlayerStates::ATTACKING) 
+	{
 		CancelAttack();
 	}
-	else if (true) {
+	else
+	{
 		m_playerController->CancelMovement();
 	}
 }
@@ -402,7 +404,7 @@ void AHeroBase::HandleEndedMovement()
 	SetState(PlayerStates::IDLE);
 
 	// End walking sound loop
-	if (GetWorldTimerManager().IsTimerActive(TimerHandle_WalkSoundLoop))
+	/*if (GetWorldTimerManager().IsTimerActive(TimerHandle_WalkSoundLoop))*/
 	{
 		GetWorldTimerManager().ClearTimer(TimerHandle_WalkSoundLoop);
 	}

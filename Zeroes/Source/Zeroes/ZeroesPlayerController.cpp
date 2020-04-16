@@ -12,6 +12,7 @@
 #include "Heroes\HeroAnimInstance.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Heroes\HeroBase.h"
+#include "DrawDebugHelpers.h"
 
 AZeroesPlayerController::AZeroesPlayerController()
 {
@@ -22,6 +23,7 @@ AZeroesPlayerController::AZeroesPlayerController()
 
 	m_reachedEnemy = false;
 	m_targetEnemy = nullptr;
+	m_destinationTolerance = 100.0f;
 }
 
 void AZeroesPlayerController::ResetTargetEnemy()
@@ -29,6 +31,17 @@ void AZeroesPlayerController::ResetTargetEnemy()
 	m_targetEnemy = nullptr;
 	m_reachedEnemy = false;
 	UE_LOG(LogZeroes, Log, TEXT("ZeroesPlayerController: Reset Target Enemy"));
+}
+
+void AZeroesPlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+
+	AHeroBase* hero = Cast<AHeroBase>(GetPawn());
+	if (hero)
+	{
+		hero->OnCancelAttacking.AddDynamic(this, &AZeroesPlayerController::OnCancelAttacking);
+	}
 }
 
 void AZeroesPlayerController::PlayerTick(float DeltaTime)
@@ -53,13 +66,22 @@ void AZeroesPlayerController::PlayerTick(float DeltaTime)
 	if (m_currentTargetVector != FVector::ZeroVector)
 	{
 		float dist = FVector::Dist(GetPawn()->GetActorLocation(), m_currentTargetVector);
-		if (dist < 110.0f)
+		//UE_LOG(LogZeroes, Log, TEXT("Distance: %f - Tolerance: %f Position: %s"), dist, m_destinationTolerance + 15.0f, *m_currentTargetVector.ToString());
+		
+		// Add a little extra for breathing room and error
+		if (dist <= m_destinationTolerance + 15.0f)
 		{
 			if (OnEndedMovement.IsBound()) {
 				OnEndedMovement.Broadcast();
 			}
 			m_currentTargetVector = FVector::ZeroVector;
 		}
+	}
+
+	// Debug: Draw destination point
+	if (m_currentTargetVector != FVector::ZeroVector)
+	{
+		DrawDebugSphere(GetWorld(), m_currentTargetVector, 25.0f, 10, FColor::Red);
 	}
 }
 
@@ -99,7 +121,7 @@ void AZeroesPlayerController::MoveToMouseCursor()
 			if (animInstance && !animInstance->bIsAttacking)
 			{
 				// Move to floor location
-				SetNewMoveDestination(Hit.ImpactPoint);
+				SetNewMoveDestination(Hit.ImpactPoint, m_destinationTolerance);
 
 				if (m_targetEnemy != nullptr)
 				{
@@ -124,7 +146,7 @@ void AZeroesPlayerController::SetNewMoveDestination(const FVector DestLocation, 
 	{
 		float const Distance = FVector::Dist(DestLocation, MyPawn->GetActorLocation());
 		// We need to issue move command only if far enough in order for walk animation to play correctly
-		if ((Distance > rangeTolerance))
+		if (Distance >= rangeTolerance)
 		{
 			if (m_currentTargetVector == FVector::ZeroVector) {
 				if (OnStartMovement.IsBound()) {
@@ -156,7 +178,6 @@ void AZeroesPlayerController::SetNewEnemyDestination(AActor* enemyActor)
 	if (MyPawn)
 	{
 		float const Distance = FVector::Dist(enemy->GetActorLocation(), MyPawn->GetActorLocation());
-		
 		if (Distance > attackRange)
 		{
 			UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, enemy->GetActorLocation());
@@ -190,10 +211,20 @@ void AZeroesPlayerController::OnSetDestinationReleased()
 	bMoveToMouseCursor = false;
 }
 
+void AZeroesPlayerController::OnCancelAttacking()
+{
+	ResetTargetEnemy();
+}
+
 void AZeroesPlayerController::CancelMovement()
 {
-	if (!GetPawn()->GetVelocity().IsZero()) {
+	if (!GetPawn()->GetVelocity().IsZero()) 
+	{
 		StopMovement();
+		if (OnEndedMovement.IsBound())
+			OnEndedMovement.Broadcast();
+
+		m_currentTargetVector = FVector::ZeroVector;
 	}
 }
 

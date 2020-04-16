@@ -119,12 +119,10 @@ void ALeaderBase::StrafeStart()
 	
 	if ((this->GetActorLocation().X - PlayerPawn->GetActorLocation().X) < 0 && (this->GetActorLocation().Y - PlayerPawn->GetActorLocation().Y) < 0)
 	{
-		// Adjust theta.
 		m_strafeTheta = -m_strafeTheta;
 	}
 	if ((this->GetActorLocation().X - PlayerPawn->GetActorLocation().X) > 0 && (this->GetActorLocation().Y - PlayerPawn->GetActorLocation().Y) < 0)
 	{
-		// Adjust theta.
 		m_strafeTheta = -m_strafeTheta;
 	}
 
@@ -138,11 +136,10 @@ void ALeaderBase::StrafeUpdate(float DeltaTime)
 	m_strafePosition.Y = PlayerPawn->GetActorLocation().Y + m_strafeRadiusUnits * FMath::Sin(m_strafeTheta);
 	m_strafePosition.Z = this->GetActorLocation().Z;
 	
-	// Update t.
+	// Update theta and set location
 	float strafeMoveRate = 0.5f;
 	m_strafeTheta += strafeMoveRate * DeltaTime;
-
-	// Set new move location for controller
+	
 	AIController->MoveToLocation(m_strafePosition);
 
 	/// Look at player if setting is enabled

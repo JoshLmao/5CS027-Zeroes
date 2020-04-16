@@ -36,9 +36,12 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FControllerEndedMovement OnEndedMovement;
 
+	/// Resets the current controller's target enemy
 	void ResetTargetEnemy();
 
+	/// Sets if to disable movement on the current controller
 	void SetDisableMovement(bool disable);
+	/// Gets the current state of if the controller should block movement
 	bool GetDisableMovement();
 
 	/// Cancels the current movement command
@@ -49,6 +52,7 @@ protected:
 	uint32 bMoveToMouseCursor : 1;
 
 	// Begin PlayerController interface
+	virtual void BeginPlay() override;
 	virtual void PlayerTick(float DeltaTime) override;
 	virtual void SetupInputComponent() override;
 	// End PlayerController interface
@@ -66,13 +70,20 @@ protected:
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
 
-
 private:
+	/// Current target enemy the controller is targeting
 	AActor* m_targetEnemy;
-
+	/// Has the controller reached it's current target enemy
 	bool m_reachedEnemy;
+	/// Is movement currently disabled for the controller
 	bool m_disableMovement;
 	// Current vector the player is wanting to move to
 	FVector m_currentTargetVector;
+	/// Amount of units of tolerance to use for the controller to 'arrive' at it's destination
+	float m_destinationTolerance;
+
+	/// Handles when attacking is cancelled by the player
+	UFUNCTION()
+	void OnCancelAttacking();
 };
 
