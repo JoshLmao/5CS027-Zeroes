@@ -30,12 +30,19 @@ protected:
 	FTimerHandle TimerHandle_BlinkDelay;
 	FTimerHandle TimerHandle_SpawnSpikes;
 	FTimerHandle TimerHandle_PreventMovement;
+	FTimerHandle TimerHandle_SpawnMissiles;
 
 	int m_spikeCount;
 	FVector m_spikeStartVector;
 	FVector m_spikeEndVector;
 
+	/// Current amount of spawned missiles from Daoko's ultimate
+	int m_missileCount;
+	/// Max amount of missiles to spawn when using Daoko's ultimate
+	const int MAX_MISSILE_COUNT = 1;
+
 	void OnBlinkDelayComplete();
 	void SpawnSpike();
 	void OnPreventMovementFinished();
+	void OnSpawnMissiles();
 };

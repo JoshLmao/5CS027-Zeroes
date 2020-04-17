@@ -79,10 +79,8 @@ void AZeroesPlayerController::PlayerTick(float DeltaTime)
 	}
 
 	// Debug: Draw destination point
-	if (m_currentTargetVector != FVector::ZeroVector)
-	{
-		DrawDebugSphere(GetWorld(), m_currentTargetVector, 25.0f, 10, FColor::Red);
-	}
+	//if (m_currentTargetVector != FVector::ZeroVector)
+	//	DrawDebugSphere(GetWorld(), m_currentTargetVector, 25.0f, 10, FColor::Red);
 }
 
 void AZeroesPlayerController::SetupInputComponent()

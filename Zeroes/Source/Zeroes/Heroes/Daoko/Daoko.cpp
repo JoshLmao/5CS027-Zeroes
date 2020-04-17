@@ -11,11 +11,13 @@
 #include "Heroes/Daoko/Spike.h"
 #include "ConstructorHelpers.h"
 #include "Kismet/GameplayStatics.h"
+#include "Heroes\Daoko\HomingMissile.h"
 
 ADaoko::ADaoko()
 {
 	BlinkDistance = 500.0f;
 	m_spikeCount = 0;
+	m_missileCount = 0;
 
 	// Load sounds ready to be played
 	// Walking Sound
@@ -87,12 +89,15 @@ void ADaoko::UseUltimate()
 	Super::UseUltimate();
 
 	/* Kiss Love Heart Ability
-	* Any enemies in a circle around the player get dealth damage
+	* Spawns X homing missiles to seek and fly toward enemy
 	*/
 
 	SetPreventMovement(true);
 	float duration = 2.8f;
 	GetWorldTimerManager().SetTimer(TimerHandle_PreventMovement, this, &ADaoko::OnPreventMovementFinished, duration, false);
+
+	float spawnInteval = 0.5f;
+	GetWorldTimerManager().SetTimer(TimerHandle_SpawnMissiles, this, &ADaoko::OnSpawnMissiles, spawnInteval, true);
 }
 
 void ADaoko::OnBlinkDelayComplete()
@@ -128,4 +133,21 @@ void ADaoko::SpawnSpike()
 void ADaoko::OnPreventMovementFinished()
 {
 	SetPreventMovement(false);
+}
+
+void ADaoko::OnSpawnMissiles()
+{
+	AHomingMissile* missile = GetWorld()->SpawnActor<AHomingMissile>(AHomingMissile::StaticClass(), GetActorLocation(), FRotator::ZeroRotator);
+	missile->SetDamage(FMath::RandRange(80.0f, 150.0f));
+
+	UE_LOG(LogZeroes, Log, TEXT("Spawned Ulti missile, deals '%f' damage"), missile->GetDamage());
+
+	m_missileCount++;
+
+	if (m_missileCount >= MAX_MISSILE_COUNT)
+	{
+		GetWorldTimerManager().ClearTimer(TimerHandle_SpawnMissiles);
+		UE_LOG(LogZeroes, Log, TEXT("Finished spawning '%d' Ulti missiles"), m_missileCount);
+		m_missileCount = 0;
+	}
 }
