@@ -140,7 +140,7 @@ void ADaoko::OnSpawnMissiles()
 	AHomingMissile* missile = GetWorld()->SpawnActor<AHomingMissile>(AHomingMissile::StaticClass(), GetActorLocation(), FRotator::ZeroRotator);
 	missile->SetDamage(FMath::RandRange(80.0f, 150.0f));
 
-	UE_LOG(LogZeroes, Log, TEXT("Spawned Ulti missile, deals '%f' damage"), missile->GetDamage());
+	//UE_LOG(LogZeroes, Log, TEXT("Spawned Daoko missile, deals '%f' damage"), missile->GetDamage());
 
 	m_missileCount++;
 

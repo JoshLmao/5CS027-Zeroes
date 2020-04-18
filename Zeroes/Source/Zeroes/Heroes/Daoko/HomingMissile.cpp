@@ -12,11 +12,12 @@
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles\ParticleSystem.h"
+#include "Kismet\KismetMathLibrary.h"
 
 // Sets default values
 AHomingMissile::AHomingMissile()
 {
-	m_missileMoveSpeed = 5.0f;
+	m_missileMoveSpeed = 2.5f;
 	m_riseTarget = FVector::ZeroVector;
 	m_targetEnemy = nullptr;
 	m_damage = 50.0f;
@@ -189,6 +190,10 @@ void AHomingMissile::SeekUpdate(float DeltaTime)
 
 		FVector position = FMath::Lerp(m_seekStart, m_targetEnemy->GetActorLocation(), m_seekAlpha);
 		SetActorLocation(position);
+
+		FRotator lookAtRotator = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), m_targetEnemy->GetActorLocation());
+		lookAtRotator.Pitch -= 90.0f;
+		SetActorRotation(lookAtRotator);
 	}
 }
 
@@ -214,20 +219,20 @@ void AHomingMissile::OnSeekDelayComplete()
 	UKismetSystemLibrary::SphereOverlapActors(GetWorld(), sphereSpawnLocation, radius, traceObjectTypes, seekClass, ignoreActors, outActors);
 
 	// Optional: Use to have a visual representation of the SphereOverlapActors
-	//DrawDebugSphere(GetWorld(), GetActorLocation(), radius, 12, FColor::Red, true, 10.0f);
+	//DrawDebugSphere(GetWorld(), GetActorLocation(), radius, 12, FColor::Red, false, 5.0f);
 	
 	// Determine what actor/pawn to seek
 	float distance = 0.0f;
 	for (AActor* overlappedActor : outActors)
 	{
-		//UE_LOG(LogZeroes, Log, TEXT("Missile OverlappedActor: %s"), *overlappedActor->GetName());
+		UE_LOG(LogZeroes, Log, TEXT("Missile OverlappedActor: %s"), *overlappedActor->GetName());
 
 		// Target any actor that isn't a missile
 		if (!overlappedActor->IsA(AHomingMissile::StaticClass()))
 		{
 			// Determine the target by the closest actor
 			float currentDist = FVector::Dist(GetActorLocation(), overlappedActor->GetActorLocation());
-			if (currentDist < distance)
+			if (distance == 0.0f || currentDist < distance)
 				m_targetEnemy = overlappedActor;
 		}
 	}

@@ -39,7 +39,7 @@ protected:
 	/// Current amount of spawned missiles from Daoko's ultimate
 	int m_missileCount;
 	/// Max amount of missiles to spawn when using Daoko's ultimate
-	const int MAX_MISSILE_COUNT = 1;
+	const int MAX_MISSILE_COUNT = 3;
 
 	void OnBlinkDelayComplete();
 	void SpawnSpike();
