@@ -160,7 +160,7 @@ void AHeroBase::OnDeath()
 	SetState(PlayerStates::IDLE);
 
 	if (DeathSound)
-		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), 1.0f, FMath::RandRange(0.8f, 1.2f));
+		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), 1.0f, 1.0f);
 
 	if (OnHeroDeath.IsBound())
 		OnHeroDeath.Broadcast();
