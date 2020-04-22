@@ -116,7 +116,6 @@ private:
 	FTimerHandle TimerHandle_AbilityThreeCooldown;
 	FTimerHandle TimerHandle_UltimateCooldown;
 	FTimerHandle TimerHandle_AttackCooldown;
-	FTimerHandle TimerHandle_WalkSoundLoop;
 
 	enum PlayerStates { IDLE, ATTACKING, WALKING };
 	PlayerStates State = PlayerStates::IDLE;
@@ -166,7 +165,4 @@ private:
 
 	/// Renegerates player health using the current delta time
 	void RegenerateHealth(float DeltaTime);
-
-	/// Plays the current set walking sound
-	void PlayWalkSound();
 };

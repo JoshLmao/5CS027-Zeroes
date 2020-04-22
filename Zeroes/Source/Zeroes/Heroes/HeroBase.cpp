@@ -17,6 +17,7 @@
 #include "ZeroesPlayerController.h"
 #include "ConstructorHelpers.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 AHeroBase::AHeroBase()
@@ -164,6 +165,20 @@ void AHeroBase::OnDeath()
 
 	if (OnHeroDeath.IsBound())
 		OnHeroDeath.Broadcast();
+
+	/* Enable ragdoll */
+
+	// Configure cpasule component for physics
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
+
+	SetActorEnableCollision(true);
+	GetMesh()->SetCollisionProfileName(TEXT("Ragdoll"));
+
+	GetMesh()->SetAllBodiesSimulatePhysics(true);
+	GetMesh()->SetSimulatePhysics(true);
+	GetMesh()->WakeAllRigidBodies();
+	GetMesh()->bBlendPhysics = true;
 }
 
 void AHeroBase::DealDamageToTarget()
@@ -184,23 +199,12 @@ bool AHeroBase::IsDead()
 
 void AHeroBase::HandleTravelToActor()
 {
-	// Start walking sound loop
-	if (!GetWorldTimerManager().IsTimerActive(TimerHandle_WalkSoundLoop))
-	{
-		GetWorldTimerManager().SetTimer(TimerHandle_WalkSoundLoop, this, &AHeroBase::PlayWalkSound, WalkLoopDelay, true);
-	}
 }
 
 void AHeroBase::HandleReachedActor()
 {
 	UE_LOG(LogZeroes, Log, TEXT("Hero reached actor. Entering Attacking state"));
 	SetState(PlayerStates::ATTACKING);
-
-	// End walking sound loop
-	if (GetWorldTimerManager().IsTimerActive(TimerHandle_WalkSoundLoop))
-	{
-		GetWorldTimerManager().ClearTimer(TimerHandle_WalkSoundLoop);
-	}
 }
 
 AZeroesPlayerController* AHeroBase::GetZeroesPlayerController()
@@ -391,23 +395,11 @@ void AHeroBase::HandleResetEngagement()
 void AHeroBase::HandleStartMovement()
 {
 	SetState(PlayerStates::WALKING);
-
-	// Start walking sound loop
-	if (!GetWorldTimerManager().IsTimerActive(TimerHandle_WalkSoundLoop))
-	{
-		GetWorldTimerManager().SetTimer(TimerHandle_WalkSoundLoop, this, &AHeroBase::PlayWalkSound, WalkLoopDelay, true);
-	}
 }
 
 void AHeroBase::HandleEndedMovement()
 {
 	SetState(PlayerStates::IDLE);
-
-	// End walking sound loop
-	/*if (GetWorldTimerManager().IsTimerActive(TimerHandle_WalkSoundLoop))*/
-	{
-		GetWorldTimerManager().ClearTimer(TimerHandle_WalkSoundLoop);
-	}
 }
 
 void AHeroBase::ResetCameraZoom()
@@ -445,10 +437,4 @@ void AHeroBase::CameraZoomChanged(float Value)
 void AHeroBase::RegenerateHealth(float DeltaTime)
 {
 	m_heroState->AddHealth(m_heroState->GetHealthRegenRate() * DeltaTime);
-}
-
-void AHeroBase::PlayWalkSound()
-{
-	if (WalkingSound)
-		UGameplayStatics::PlaySoundAtLocation(this, WalkingSound, GetActorLocation(), 1.0f, FMath::RandRange(0.65f, 1.35f));
 }
