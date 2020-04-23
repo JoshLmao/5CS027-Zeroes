@@ -12,6 +12,7 @@
 #include "Heroes\HeroAnimInstance.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Heroes\HeroBase.h"
+#include "Heroes/HeroState.h"
 #include "DrawDebugHelpers.h"
 
 AZeroesPlayerController::AZeroesPlayerController()
@@ -48,7 +49,8 @@ void AZeroesPlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
 
-	if (m_disableMovement)
+	AHeroBase* hero = Cast<AHeroBase>(GetPawn());
+	if (m_disableMovement || (hero && hero->IsDead()))
 		return;
 
 	// keep updating the destination every tick while desired

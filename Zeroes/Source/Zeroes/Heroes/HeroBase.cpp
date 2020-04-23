@@ -35,6 +35,8 @@ AHeroBase::AHeroBase()
 	MinCameraZoom = 800.0f;
 	MaxCameraZoom = 1400.0f;
 	WalkLoopDelay = 0.275f;
+
+	GetCameraBoom()->bEnableCameraLag = true;
 }
 
 void AHeroBase::BeginPlay()
@@ -110,6 +112,17 @@ float AHeroBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent,
 	return value;
 }
 
+void AHeroBase::FellOutOfWorld(const UDamageType& dmgType)
+{
+	// Don't call super to destroy actor
+
+	UE_LOG(LogZeroes, Log, TEXT("Player fell out of world! Killing player"));
+
+	TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>();
+	FDamageEvent DamageEvent(ValidDamageTypeClass);
+	this->TakeDamage(9999.0f, DamageEvent, NULL, nullptr);
+}
+
 void AHeroBase::UseAbilityOne()
 {
 	if (AbilityOneSound)
@@ -166,12 +179,7 @@ void AHeroBase::OnDeath()
 	if (OnHeroDeath.IsBound())
 		OnHeroDeath.Broadcast();
 
-	/* Enable ragdoll */
-
-	// Configure cpasule component for physics
-	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
-
+	/// Enable ragdoll for mesh
 	SetActorEnableCollision(true);
 	GetMesh()->SetCollisionProfileName(TEXT("Ragdoll"));
 

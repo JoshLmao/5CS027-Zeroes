@@ -14,7 +14,7 @@ class ZEROES_API UAnimNotify_AbilityFinished : public UAnimNotify
 {
 	GENERATED_BODY()
 
-	/// Set the index of the ability that has just finished to notify the AnimInstance
+	/// Set the index of the ability that has just finished to notify the AnimInstance. 0 equals ability 1
 	UPROPERTY(EditAnywhere)
 	int AbilityIndex;
 

@@ -74,6 +74,8 @@ public:
 
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
+	virtual void FellOutOfWorld(const class UDamageType& dmgType) override;
+
 protected:
 	class USoundBase* AttackSound;
 	class USoundBase* WalkingSound;
