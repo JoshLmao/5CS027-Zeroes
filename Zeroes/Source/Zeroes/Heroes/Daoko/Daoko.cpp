@@ -12,6 +12,7 @@
 #include "ConstructorHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "Heroes\Daoko\HomingMissile.h"
+#include "Heroes/Daoko/ArcDagger.h"
 
 ADaoko::ADaoko()
 {
@@ -74,6 +75,10 @@ void ADaoko::UseAbilityTwo()
 {
 	Super::UseAbilityTwo();
 
+	/* Blink
+	* Moves Daoko forward a distance
+	*/
+
 	float duration = 0.25f;
 	GetWorldTimerManager().SetTimer(TimerHandle_BlinkDelay, this, &ADaoko::OnBlinkDelayComplete, duration, false);
 }
@@ -82,6 +87,19 @@ void ADaoko::UseAbilityThree()
 {
 	Super::UseAbilityThree();
 
+	/* Arc Dagger
+	* Shoots toward nearest enemy in an arc
+	*/
+
+	SetPreventMovement(true);
+	float duration = 2.1f;
+	GetWorldTimerManager().SetTimer(TimerHandle_PreventMovement, this, &ADaoko::OnPreventMovementFinished, duration, false);
+
+	AArcDagger* arcDagger = GetWorld()->SpawnActor<AArcDagger>(AArcDagger::StaticClass(), GetActorLocation(), FRotator::ZeroRotator);
+	if (arcDagger)
+	{
+		arcDagger->SetDamage(FMath::RandRange(150.0f, 250.0f));
+	}
 }
 
 void ADaoko::UseUltimate()
