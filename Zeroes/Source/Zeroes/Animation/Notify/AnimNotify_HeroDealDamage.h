@@ -7,7 +7,7 @@
 #include "AnimNotify_HeroDealDamage.generated.h"
 
 /**
- * 
+ * Animation Notify of when to deal damage to a Hero's target enemy
  */
 UCLASS()
 class ZEROES_API UAnimNotify_HeroDealDamage : public UAnimNotify

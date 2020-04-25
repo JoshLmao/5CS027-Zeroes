@@ -1,0 +1,615 @@
+\hypertarget{class_a_enemy_base}{}\doxysection{A\+Enemy\+Base Class Reference}
+\label{class_a_enemy_base}\index{AEnemyBase@{AEnemyBase}}
+
+
+{\ttfamily \#include $<$Enemy\+Base.\+h$>$}
+
+Inheritance diagram for A\+Enemy\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_a_enemy_base}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6}{Game\+Events}} \{ \mbox{\hyperlink{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6a16476dc13a6727ee3d317cfe93705f9d}{O\+N\+\_\+\+S\+T\+A\+RT}}, 
+\mbox{\hyperlink{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6afbc2372e4884dff62fd1c489fa922676}{O\+N\+\_\+\+U\+P\+D\+A\+TE}}
+ \}
+\begin{DoxyCompactList}\small\item\em events of the enemy\textquotesingle{}s state machine \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_enemy_base_a2c7c7d92f57fa30f86caf727cfe32cde}{A\+Enemy\+Base}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_enemy_base_ab608352ab9eb8dd9087a69c13fe0d90a}{Tick}} (float Delta\+Time) override
+\item 
+virtual void \mbox{\hyperlink{class_a_enemy_base_a6647ac25dd05dee8f123418944ea46a8}{Setup\+Player\+Input\+Component}} (class U\+Input\+Component $\ast$Player\+Input\+Component) override
+\item 
+virtual float \mbox{\hyperlink{class_a_enemy_base_aa84c2238ed0ed933c5b89a0bded7a520}{Take\+Damage}} (float Damage\+Amount, struct F\+Damage\+Event const \&Damage\+Event, class A\+Controller $\ast$Event\+Instigator, A\+Actor $\ast$Damage\+Causer) override
+\item 
+float \mbox{\hyperlink{class_a_enemy_base_a646e5cf1902d76b2b5343fab1a20e50c}{Get\+Health}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current health of the enemy. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_enemy_base_af88f609dbc8b142d6f2ad63a6ede2d15}{Get\+Max\+Health}} ()
+\begin{DoxyCompactList}\small\item\em Gets the max health of the enemy. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_a_enemy_base_a08593136ffedf9c96958553cf89c60c2}{Get\+Attack\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Get the current attack count of the enemy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_enemy_base_a696f708c09d5b1069a50c97ed376d7b4}{Deal\+Damage\+To\+Target}} ()
+\begin{DoxyCompactList}\small\item\em Called by Anim\+Notify to deal damage to the current taregt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_enemy_base_a0a9b6067f6e53aa43ed80b7415c455a3}{Notify\+\_\+\+Finished\+Attack\+Anim}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_enemy_base_a7f7f6670d8048a9bf47ef41106018afb}{F\+S\+M\+Update}} (float Delta\+Time)
+\begin{DoxyCompactList}\small\item\em Update\textquotesingle{}s the finite state machine of the enemy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_enemy_base_a160b2f7861d48b831b4e23deae70ff61}{Set\+State}} (\mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8}{E\+Behaviour\+States}} new\+State)
+\begin{DoxyCompactList}\small\item\em Set the state of the F\+SM to a new state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_a_enemy_base_a4f5a7803866a06f739e0fd85a2e65acd}{Health}}
+\begin{DoxyCompactList}\small\item\em Current health of the enemy. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_enemy_base_a9b1768447ae5a69225d0bafa0afa3762}{Max\+Health}}
+\begin{DoxyCompactList}\small\item\em Maximum health of the enemy. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_enemy_base_a0f4743bd64af63bed03fe26e9e5699db}{Idle\+Range}}
+\begin{DoxyCompactList}\small\item\em Visibility range when Idle. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_enemy_base_a4ea35d7f0c39636b1a8512e79539aa6d}{Chase\+Speed}}
+\begin{DoxyCompactList}\small\item\em Speed to chase to the player. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_enemy_base_adc09a3d265e97dbe325a9b37f7065f0f}{Chase\+Range}}
+\begin{DoxyCompactList}\small\item\em Maximum range before the enemy stops chasing. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_enemy_base_adc9054cd8fa0f3613b57caa81ed6589b}{Atk\+Cooldown\+Duration}}
+\begin{DoxyCompactList}\small\item\em Duration in seconds to cooldown between attacks. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_enemy_base_a7ac54d0c76351091629f8accbc23b977}{Attack\+Damage}}
+\begin{DoxyCompactList}\small\item\em Amount of damage the enemy deals. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_enemy_base_a301f91525e96ade71e99846e3c24bcbd}{Attack\+Min\+Distance}}
+\begin{DoxyCompactList}\small\item\em Minimum distance from target to attack. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_a_enemy_base_a559c70ad0b34af37829103c81da14b6a}{Attack\+Count}}
+\begin{DoxyCompactList}\small\item\em Amount of attack the enemy has performed. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_u_s_actor_widget_component}{U\+S\+Actor\+Widget\+Component}} $\ast$ \mbox{\hyperlink{class_a_enemy_base_a5d959cc2adf5365c6c03b9b30e71d467}{Widget\+Component}}
+\begin{DoxyCompactList}\small\item\em Current widget component that represents the enemy\textquotesingle{}s healthbar. \end{DoxyCompactList}\item 
+T\+Subclass\+Of$<$ class \mbox{\hyperlink{class_u_s_actor_widget}{U\+S\+Actor\+Widget}} $>$ \mbox{\hyperlink{class_a_enemy_base_aba2f6431f38586d7e5187e881bbc69f6}{Healthbar\+Widget}}
+\begin{DoxyCompactList}\small\item\em Class to use to display above the enemy as their healthbar. \end{DoxyCompactList}\item 
+class U\+Sound\+Base $\ast$ \mbox{\hyperlink{class_a_enemy_base_a36e814f3d94d243444dea27fe15949cb}{Attack\+Sound}}
+\begin{DoxyCompactList}\small\item\em Sound to use when enemy uses it\textquotesingle{}s attack. \end{DoxyCompactList}\item 
+class U\+Sound\+Base $\ast$ \mbox{\hyperlink{class_a_enemy_base_ae49bbcebe3b15fe87d50704dc8d7c932}{Death\+Sound}}
+\begin{DoxyCompactList}\small\item\em Sound to use when the enemy dies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8}{E\+Behaviour\+States}} \mbox{\hyperlink{class_a_enemy_base_a6a6033e1f8b4e09adc042da25f3a447e}{State}} = \mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8aa5daf7f2ebbba4975d61dab1c40188c7}{E\+Behaviour\+States\+::\+I\+D\+LE}}
+\begin{DoxyCompactList}\small\item\em Current state of the enemy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6}{Game\+Events}} \mbox{\hyperlink{class_a_enemy_base_a13810d8e8bf51b4886b511b173234b1d}{Event}} = Game\+Events\+::\+O\+N\+\_\+\+S\+T\+A\+RT
+\begin{DoxyCompactList}\small\item\em Current event of the enemy\textquotesingle{}s state machine. \end{DoxyCompactList}\item 
+F\+Enemy\+Attack\+Signature \mbox{\hyperlink{class_a_enemy_base_a504a53e2014b412be29c9f907e718fd5}{On\+Enemy\+Begin\+Attack}}
+\begin{DoxyCompactList}\small\item\em Triggered when enemy starts their attack. \end{DoxyCompactList}\item 
+F\+Enemy\+Death\+Signature \mbox{\hyperlink{class_a_enemy_base_a2fd85e5ccfb497c5b3835e34f44adc71}{On\+Enemy\+Death}}
+\begin{DoxyCompactList}\small\item\em Triggered when enemy has lost all health and is dead. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_a_enemy_base_a12781c07731168056a3cf3c3d37926f4}{b\+Can\+Perform\+Attack}}
+\begin{DoxyCompactList}\small\item\em Can the enemy attack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_enemy_base_aed0f1de2c86b3fd037596edbbad8c04e}{Begin\+Play}} () override
+\item 
+virtual void \mbox{\hyperlink{class_a_enemy_base_a07463a2622e52bb4ab9e187a9b6c8d25}{On\+Attack}} (A\+Actor $\ast$attack\+Enemy)
+\item 
+virtual void \mbox{\hyperlink{class_a_enemy_base_a55ea538b17c551808835e2a48c5db6de}{On\+Death}} ()
+\begin{DoxyCompactList}\small\item\em Once the enemy dies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class A\+Pawn $\ast$ \mbox{\hyperlink{class_a_enemy_base_a11a85425ea4dda1267e65bf6095560fe}{Player\+Pawn}}
+\begin{DoxyCompactList}\small\item\em Reference to the current player pawn. \end{DoxyCompactList}\item 
+class A\+A\+I\+Controller $\ast$ \mbox{\hyperlink{class_a_enemy_base_a129941304e7d48f4e8ed3e88f16b5721}{A\+I\+Controller}}
+\begin{DoxyCompactList}\small\item\em Reference to the AI Controller to control path finding. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_u_enemy_anim_instance}{U\+Enemy\+Anim\+Instance}} $\ast$ \mbox{\hyperlink{class_a_enemy_base_a60baad64eab5d204c543fef3977f02dc}{Anim\+Instance}}
+\begin{DoxyCompactList}\small\item\em Reference to animation instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_enemy_base_a14862ab84ddabd1763f3f22383076823}{Idle\+Start}} ()
+\item 
+void \mbox{\hyperlink{class_a_enemy_base_a74a1453537a5d30034f4e25946ba81b6}{Idle\+Update}} ()
+\item 
+void \mbox{\hyperlink{class_a_enemy_base_af4948853d0163f9a35f680293b4596dc}{Chase\+Start}} ()
+\item 
+void \mbox{\hyperlink{class_a_enemy_base_a1a964a5c65c0c7ae9ecd490f8064334c}{Chase\+Update}} (float Delta\+Time)
+\item 
+void \mbox{\hyperlink{class_a_enemy_base_a1b58e04afda88c98e7ada63e74f238d5}{Attack\+Start}} ()
+\item 
+void \mbox{\hyperlink{class_a_enemy_base_ad0a8972d5a4abc9ac92956be8d53624a}{Attack\+Update}} ()
+\item 
+void \mbox{\hyperlink{class_a_enemy_base_ae66eb9231c220adb4c0516f00cd9fa6e}{Dead\+Start}} ()
+\item 
+void \mbox{\hyperlink{class_a_enemy_base_a1fced19aa988bd54b852f5635b54ac00}{Dead\+Update}} ()
+\item 
+void \mbox{\hyperlink{class_a_enemy_base_a9417992f93c31b9b092decb1cb78020f}{On\+Atk\+Cooldown\+Finished}} ()
+\begin{DoxyCompactList}\small\item\em Timer reciever to allow the enemy to attack once cooldown is complete. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+F\+Vector \mbox{\hyperlink{class_a_enemy_base_aa6a81dc1fd08175512bdc722047425cf}{m\+\_\+spawn\+Location}}
+\begin{DoxyCompactList}\small\item\em Start spawn location of the enemy. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_a_enemy_base_af4de729a57477dd5d67f97c5414d54d4}{m\+\_\+b\+Death\+Timed\+Out}}
+\begin{DoxyCompactList}\small\item\em Has the actor been dead for too long and needs to be destroyed. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_enemy_base_a58ffeef6d5b42135177f080187dbb9a9}{m\+\_\+death\+Sink\+Rate}}
+\begin{DoxyCompactList}\small\item\em Rate at which to sink the actor into the floor. \end{DoxyCompactList}\item 
+F\+Timer\+Handle \mbox{\hyperlink{class_a_enemy_base_ab68b8e7213728c5a1db600d82a375da8}{Timer\+Handle\+\_\+\+Attack\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Timer\+Handle to control the enemy\textquotesingle{}s current attack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6}\label{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6}} 
+\index{AEnemyBase@{AEnemyBase}!GameEvents@{GameEvents}}
+\index{GameEvents@{GameEvents}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{GameEvents}{GameEvents}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6}{A\+Enemy\+Base\+::\+Game\+Events}}}
+
+
+
+events of the enemy\textquotesingle{}s state machine 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_START@{ON\_START}!AEnemyBase@{AEnemyBase}}\index{AEnemyBase@{AEnemyBase}!ON\_START@{ON\_START}}}\mbox{\Hypertarget{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6a16476dc13a6727ee3d317cfe93705f9d}\label{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6a16476dc13a6727ee3d317cfe93705f9d}} 
+O\+N\+\_\+\+S\+T\+A\+RT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_UPDATE@{ON\_UPDATE}!AEnemyBase@{AEnemyBase}}\index{AEnemyBase@{AEnemyBase}!ON\_UPDATE@{ON\_UPDATE}}}\mbox{\Hypertarget{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6afbc2372e4884dff62fd1c489fa922676}\label{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6afbc2372e4884dff62fd1c489fa922676}} 
+O\+N\+\_\+\+U\+P\+D\+A\+TE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_a_enemy_base_a2c7c7d92f57fa30f86caf727cfe32cde}\label{class_a_enemy_base_a2c7c7d92f57fa30f86caf727cfe32cde}} 
+\index{AEnemyBase@{AEnemyBase}!AEnemyBase@{AEnemyBase}}
+\index{AEnemyBase@{AEnemyBase}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{AEnemyBase()}{AEnemyBase()}}
+{\footnotesize\ttfamily A\+Enemy\+Base\+::\+A\+Enemy\+Base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_enemy_base_a1b58e04afda88c98e7ada63e74f238d5}\label{class_a_enemy_base_a1b58e04afda88c98e7ada63e74f238d5}} 
+\index{AEnemyBase@{AEnemyBase}!AttackStart@{AttackStart}}
+\index{AttackStart@{AttackStart}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{AttackStart()}{AttackStart()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Attack\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_enemy_base_ad0a8972d5a4abc9ac92956be8d53624a}\label{class_a_enemy_base_ad0a8972d5a4abc9ac92956be8d53624a}} 
+\index{AEnemyBase@{AEnemyBase}!AttackUpdate@{AttackUpdate}}
+\index{AttackUpdate@{AttackUpdate}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{AttackUpdate()}{AttackUpdate()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Attack\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_enemy_base_aed0f1de2c86b3fd037596edbbad8c04e}\label{class_a_enemy_base_aed0f1de2c86b3fd037596edbbad8c04e}} 
+\index{AEnemyBase@{AEnemyBase}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_minion_a011de48631c24bfe4fda6750cdfabd62}{A\+Minion}}.
+
+\mbox{\Hypertarget{class_a_enemy_base_af4948853d0163f9a35f680293b4596dc}\label{class_a_enemy_base_af4948853d0163f9a35f680293b4596dc}} 
+\index{AEnemyBase@{AEnemyBase}!ChaseStart@{ChaseStart}}
+\index{ChaseStart@{ChaseStart}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{ChaseStart()}{ChaseStart()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Chase\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_enemy_base_a1a964a5c65c0c7ae9ecd490f8064334c}\label{class_a_enemy_base_a1a964a5c65c0c7ae9ecd490f8064334c}} 
+\index{AEnemyBase@{AEnemyBase}!ChaseUpdate@{ChaseUpdate}}
+\index{ChaseUpdate@{ChaseUpdate}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{ChaseUpdate()}{ChaseUpdate()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Chase\+Update (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_enemy_base_ae66eb9231c220adb4c0516f00cd9fa6e}\label{class_a_enemy_base_ae66eb9231c220adb4c0516f00cd9fa6e}} 
+\index{AEnemyBase@{AEnemyBase}!DeadStart@{DeadStart}}
+\index{DeadStart@{DeadStart}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{DeadStart()}{DeadStart()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Dead\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_enemy_base_a1fced19aa988bd54b852f5635b54ac00}\label{class_a_enemy_base_a1fced19aa988bd54b852f5635b54ac00}} 
+\index{AEnemyBase@{AEnemyBase}!DeadUpdate@{DeadUpdate}}
+\index{DeadUpdate@{DeadUpdate}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{DeadUpdate()}{DeadUpdate()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Dead\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_enemy_base_a696f708c09d5b1069a50c97ed376d7b4}\label{class_a_enemy_base_a696f708c09d5b1069a50c97ed376d7b4}} 
+\index{AEnemyBase@{AEnemyBase}!DealDamageToTarget@{DealDamageToTarget}}
+\index{DealDamageToTarget@{DealDamageToTarget}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{DealDamageToTarget()}{DealDamageToTarget()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Deal\+Damage\+To\+Target (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Called by Anim\+Notify to deal damage to the current taregt. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a7f7f6670d8048a9bf47ef41106018afb}\label{class_a_enemy_base_a7f7f6670d8048a9bf47ef41106018afb}} 
+\index{AEnemyBase@{AEnemyBase}!FSMUpdate@{FSMUpdate}}
+\index{FSMUpdate@{FSMUpdate}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{FSMUpdate()}{FSMUpdate()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+F\+S\+M\+Update (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update\textquotesingle{}s the finite state machine of the enemy. 
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_leader_base_a86d9862782a3094cc1033d1209f395ae}{A\+Leader\+Base}}.
+
+\mbox{\Hypertarget{class_a_enemy_base_a08593136ffedf9c96958553cf89c60c2}\label{class_a_enemy_base_a08593136ffedf9c96958553cf89c60c2}} 
+\index{AEnemyBase@{AEnemyBase}!GetAttackCount@{GetAttackCount}}
+\index{GetAttackCount@{GetAttackCount}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{GetAttackCount()}{GetAttackCount()}}
+{\footnotesize\ttfamily int A\+Enemy\+Base\+::\+Get\+Attack\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the current attack count of the enemy. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a646e5cf1902d76b2b5343fab1a20e50c}\label{class_a_enemy_base_a646e5cf1902d76b2b5343fab1a20e50c}} 
+\index{AEnemyBase@{AEnemyBase}!GetHealth@{GetHealth}}
+\index{GetHealth@{GetHealth}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{GetHealth()}{GetHealth()}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current health of the enemy. 
+
+\mbox{\Hypertarget{class_a_enemy_base_af88f609dbc8b142d6f2ad63a6ede2d15}\label{class_a_enemy_base_af88f609dbc8b142d6f2ad63a6ede2d15}} 
+\index{AEnemyBase@{AEnemyBase}!GetMaxHealth@{GetMaxHealth}}
+\index{GetMaxHealth@{GetMaxHealth}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{GetMaxHealth()}{GetMaxHealth()}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Get\+Max\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the max health of the enemy. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a14862ab84ddabd1763f3f22383076823}\label{class_a_enemy_base_a14862ab84ddabd1763f3f22383076823}} 
+\index{AEnemyBase@{AEnemyBase}!IdleStart@{IdleStart}}
+\index{IdleStart@{IdleStart}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{IdleStart()}{IdleStart()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Idle\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_enemy_base_a74a1453537a5d30034f4e25946ba81b6}\label{class_a_enemy_base_a74a1453537a5d30034f4e25946ba81b6}} 
+\index{AEnemyBase@{AEnemyBase}!IdleUpdate@{IdleUpdate}}
+\index{IdleUpdate@{IdleUpdate}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{IdleUpdate()}{IdleUpdate()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Idle\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_enemy_base_a0a9b6067f6e53aa43ed80b7415c455a3}\label{class_a_enemy_base_a0a9b6067f6e53aa43ed80b7415c455a3}} 
+\index{AEnemyBase@{AEnemyBase}!Notify\_FinishedAttackAnim@{Notify\_FinishedAttackAnim}}
+\index{Notify\_FinishedAttackAnim@{Notify\_FinishedAttackAnim}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{Notify\_FinishedAttackAnim()}{Notify\_FinishedAttackAnim()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Notify\+\_\+\+Finished\+Attack\+Anim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_a_enemy_base_a9417992f93c31b9b092decb1cb78020f}\label{class_a_enemy_base_a9417992f93c31b9b092decb1cb78020f}} 
+\index{AEnemyBase@{AEnemyBase}!OnAtkCooldownFinished@{OnAtkCooldownFinished}}
+\index{OnAtkCooldownFinished@{OnAtkCooldownFinished}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{OnAtkCooldownFinished()}{OnAtkCooldownFinished()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+On\+Atk\+Cooldown\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Timer reciever to allow the enemy to attack once cooldown is complete. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a07463a2622e52bb4ab9e187a9b6c8d25}\label{class_a_enemy_base_a07463a2622e52bb4ab9e187a9b6c8d25}} 
+\index{AEnemyBase@{AEnemyBase}!OnAttack@{OnAttack}}
+\index{OnAttack@{OnAttack}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{OnAttack()}{OnAttack()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+On\+Attack (\begin{DoxyParamCaption}\item[{A\+Actor $\ast$}]{attack\+Enemy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_leader_base_a991b3f1a7ee8304561a76a4643637a52}{A\+Leader\+Base}}, and \mbox{\hyperlink{class_a_ranged_enemy_base_a6085a32954dca7cb8b42bc98c3b9615d}{A\+Ranged\+Enemy\+Base}}.
+
+\mbox{\Hypertarget{class_a_enemy_base_a55ea538b17c551808835e2a48c5db6de}\label{class_a_enemy_base_a55ea538b17c551808835e2a48c5db6de}} 
+\index{AEnemyBase@{AEnemyBase}!OnDeath@{OnDeath}}
+\index{OnDeath@{OnDeath}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{OnDeath()}{OnDeath()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+On\+Death (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Once the enemy dies. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a160b2f7861d48b831b4e23deae70ff61}\label{class_a_enemy_base_a160b2f7861d48b831b4e23deae70ff61}} 
+\index{AEnemyBase@{AEnemyBase}!SetState@{SetState}}
+\index{SetState@{SetState}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{SetState()}{SetState()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Set\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8}{E\+Behaviour\+States}}}]{new\+State }\end{DoxyParamCaption})}
+
+
+
+Set the state of the F\+SM to a new state. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a6647ac25dd05dee8f123418944ea46a8}\label{class_a_enemy_base_a6647ac25dd05dee8f123418944ea46a8}} 
+\index{AEnemyBase@{AEnemyBase}!SetupPlayerInputComponent@{SetupPlayerInputComponent}}
+\index{SetupPlayerInputComponent@{SetupPlayerInputComponent}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{SetupPlayerInputComponent()}{SetupPlayerInputComponent()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Setup\+Player\+Input\+Component (\begin{DoxyParamCaption}\item[{class U\+Input\+Component $\ast$}]{Player\+Input\+Component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_minion_a82a6ca9004e0bff026f508cc7781fded}{A\+Minion}}.
+
+\mbox{\Hypertarget{class_a_enemy_base_aa84c2238ed0ed933c5b89a0bded7a520}\label{class_a_enemy_base_aa84c2238ed0ed933c5b89a0bded7a520}} 
+\index{AEnemyBase@{AEnemyBase}!TakeDamage@{TakeDamage}}
+\index{TakeDamage@{TakeDamage}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{TakeDamage()}{TakeDamage()}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Take\+Damage (\begin{DoxyParamCaption}\item[{float}]{Damage\+Amount,  }\item[{struct F\+Damage\+Event const \&}]{Damage\+Event,  }\item[{class A\+Controller $\ast$}]{Event\+Instigator,  }\item[{A\+Actor $\ast$}]{Damage\+Causer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_leader_base_a667b1e907e34834c45cb79708a9a7eb1}{A\+Leader\+Base}}.
+
+\mbox{\Hypertarget{class_a_enemy_base_ab608352ab9eb8dd9087a69c13fe0d90a}\label{class_a_enemy_base_ab608352ab9eb8dd9087a69c13fe0d90a}} 
+\index{AEnemyBase@{AEnemyBase}!Tick@{Tick}}
+\index{Tick@{Tick}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily void A\+Enemy\+Base\+::\+Tick (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_minion_a291914de1d4834be96bd1e5271b4eada}{A\+Minion}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_enemy_base_a129941304e7d48f4e8ed3e88f16b5721}\label{class_a_enemy_base_a129941304e7d48f4e8ed3e88f16b5721}} 
+\index{AEnemyBase@{AEnemyBase}!AIController@{AIController}}
+\index{AIController@{AIController}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{AIController}{AIController}}
+{\footnotesize\ttfamily class A\+A\+I\+Controller$\ast$ A\+Enemy\+Base\+::\+A\+I\+Controller\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reference to the AI Controller to control path finding. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a60baad64eab5d204c543fef3977f02dc}\label{class_a_enemy_base_a60baad64eab5d204c543fef3977f02dc}} 
+\index{AEnemyBase@{AEnemyBase}!AnimInstance@{AnimInstance}}
+\index{AnimInstance@{AnimInstance}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{AnimInstance}{AnimInstance}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_u_enemy_anim_instance}{U\+Enemy\+Anim\+Instance}}$\ast$ A\+Enemy\+Base\+::\+Anim\+Instance\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reference to animation instance. 
+
+\mbox{\Hypertarget{class_a_enemy_base_adc9054cd8fa0f3613b57caa81ed6589b}\label{class_a_enemy_base_adc9054cd8fa0f3613b57caa81ed6589b}} 
+\index{AEnemyBase@{AEnemyBase}!AtkCooldownDuration@{AtkCooldownDuration}}
+\index{AtkCooldownDuration@{AtkCooldownDuration}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{AtkCooldownDuration}{AtkCooldownDuration}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Atk\+Cooldown\+Duration}
+
+
+
+Duration in seconds to cooldown between attacks. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a559c70ad0b34af37829103c81da14b6a}\label{class_a_enemy_base_a559c70ad0b34af37829103c81da14b6a}} 
+\index{AEnemyBase@{AEnemyBase}!AttackCount@{AttackCount}}
+\index{AttackCount@{AttackCount}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{AttackCount}{AttackCount}}
+{\footnotesize\ttfamily int A\+Enemy\+Base\+::\+Attack\+Count}
+
+
+
+Amount of attack the enemy has performed. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a7ac54d0c76351091629f8accbc23b977}\label{class_a_enemy_base_a7ac54d0c76351091629f8accbc23b977}} 
+\index{AEnemyBase@{AEnemyBase}!AttackDamage@{AttackDamage}}
+\index{AttackDamage@{AttackDamage}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{AttackDamage}{AttackDamage}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Attack\+Damage}
+
+
+
+Amount of damage the enemy deals. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a301f91525e96ade71e99846e3c24bcbd}\label{class_a_enemy_base_a301f91525e96ade71e99846e3c24bcbd}} 
+\index{AEnemyBase@{AEnemyBase}!AttackMinDistance@{AttackMinDistance}}
+\index{AttackMinDistance@{AttackMinDistance}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{AttackMinDistance}{AttackMinDistance}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Attack\+Min\+Distance}
+
+
+
+Minimum distance from target to attack. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a36e814f3d94d243444dea27fe15949cb}\label{class_a_enemy_base_a36e814f3d94d243444dea27fe15949cb}} 
+\index{AEnemyBase@{AEnemyBase}!AttackSound@{AttackSound}}
+\index{AttackSound@{AttackSound}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{AttackSound}{AttackSound}}
+{\footnotesize\ttfamily class U\+Sound\+Base$\ast$ A\+Enemy\+Base\+::\+Attack\+Sound}
+
+
+
+Sound to use when enemy uses it\textquotesingle{}s attack. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a12781c07731168056a3cf3c3d37926f4}\label{class_a_enemy_base_a12781c07731168056a3cf3c3d37926f4}} 
+\index{AEnemyBase@{AEnemyBase}!bCanPerformAttack@{bCanPerformAttack}}
+\index{bCanPerformAttack@{bCanPerformAttack}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{bCanPerformAttack}{bCanPerformAttack}}
+{\footnotesize\ttfamily bool A\+Enemy\+Base\+::b\+Can\+Perform\+Attack}
+
+
+
+Can the enemy attack. 
+
+\mbox{\Hypertarget{class_a_enemy_base_adc09a3d265e97dbe325a9b37f7065f0f}\label{class_a_enemy_base_adc09a3d265e97dbe325a9b37f7065f0f}} 
+\index{AEnemyBase@{AEnemyBase}!ChaseRange@{ChaseRange}}
+\index{ChaseRange@{ChaseRange}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{ChaseRange}{ChaseRange}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Chase\+Range}
+
+
+
+Maximum range before the enemy stops chasing. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a4ea35d7f0c39636b1a8512e79539aa6d}\label{class_a_enemy_base_a4ea35d7f0c39636b1a8512e79539aa6d}} 
+\index{AEnemyBase@{AEnemyBase}!ChaseSpeed@{ChaseSpeed}}
+\index{ChaseSpeed@{ChaseSpeed}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{ChaseSpeed}{ChaseSpeed}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Chase\+Speed}
+
+
+
+Speed to chase to the player. 
+
+\mbox{\Hypertarget{class_a_enemy_base_ae49bbcebe3b15fe87d50704dc8d7c932}\label{class_a_enemy_base_ae49bbcebe3b15fe87d50704dc8d7c932}} 
+\index{AEnemyBase@{AEnemyBase}!DeathSound@{DeathSound}}
+\index{DeathSound@{DeathSound}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{DeathSound}{DeathSound}}
+{\footnotesize\ttfamily class U\+Sound\+Base$\ast$ A\+Enemy\+Base\+::\+Death\+Sound}
+
+
+
+Sound to use when the enemy dies. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a13810d8e8bf51b4886b511b173234b1d}\label{class_a_enemy_base_a13810d8e8bf51b4886b511b173234b1d}} 
+\index{AEnemyBase@{AEnemyBase}!Event@{Event}}
+\index{Event@{Event}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{Event}{Event}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_enemy_base_a4fabc815e793dec5ec3b2cba7f1e36f6}{Game\+Events}} A\+Enemy\+Base\+::\+Event = Game\+Events\+::\+O\+N\+\_\+\+S\+T\+A\+RT}
+
+
+
+Current event of the enemy\textquotesingle{}s state machine. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a4f5a7803866a06f739e0fd85a2e65acd}\label{class_a_enemy_base_a4f5a7803866a06f739e0fd85a2e65acd}} 
+\index{AEnemyBase@{AEnemyBase}!Health@{Health}}
+\index{Health@{Health}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{Health}{Health}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Health}
+
+
+
+Current health of the enemy. 
+
+\mbox{\Hypertarget{class_a_enemy_base_aba2f6431f38586d7e5187e881bbc69f6}\label{class_a_enemy_base_aba2f6431f38586d7e5187e881bbc69f6}} 
+\index{AEnemyBase@{AEnemyBase}!HealthbarWidget@{HealthbarWidget}}
+\index{HealthbarWidget@{HealthbarWidget}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{HealthbarWidget}{HealthbarWidget}}
+{\footnotesize\ttfamily T\+Subclass\+Of$<$class \mbox{\hyperlink{class_u_s_actor_widget}{U\+S\+Actor\+Widget}}$>$ A\+Enemy\+Base\+::\+Healthbar\+Widget}
+
+
+
+Class to use to display above the enemy as their healthbar. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a0f4743bd64af63bed03fe26e9e5699db}\label{class_a_enemy_base_a0f4743bd64af63bed03fe26e9e5699db}} 
+\index{AEnemyBase@{AEnemyBase}!IdleRange@{IdleRange}}
+\index{IdleRange@{IdleRange}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{IdleRange}{IdleRange}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Idle\+Range}
+
+
+
+Visibility range when Idle. 
+
+\mbox{\Hypertarget{class_a_enemy_base_af4de729a57477dd5d67f97c5414d54d4}\label{class_a_enemy_base_af4de729a57477dd5d67f97c5414d54d4}} 
+\index{AEnemyBase@{AEnemyBase}!m\_bDeathTimedOut@{m\_bDeathTimedOut}}
+\index{m\_bDeathTimedOut@{m\_bDeathTimedOut}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{m\_bDeathTimedOut}{m\_bDeathTimedOut}}
+{\footnotesize\ttfamily bool A\+Enemy\+Base\+::m\+\_\+b\+Death\+Timed\+Out\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Has the actor been dead for too long and needs to be destroyed. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a58ffeef6d5b42135177f080187dbb9a9}\label{class_a_enemy_base_a58ffeef6d5b42135177f080187dbb9a9}} 
+\index{AEnemyBase@{AEnemyBase}!m\_deathSinkRate@{m\_deathSinkRate}}
+\index{m\_deathSinkRate@{m\_deathSinkRate}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{m\_deathSinkRate}{m\_deathSinkRate}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::m\+\_\+death\+Sink\+Rate\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rate at which to sink the actor into the floor. 
+
+\mbox{\Hypertarget{class_a_enemy_base_aa6a81dc1fd08175512bdc722047425cf}\label{class_a_enemy_base_aa6a81dc1fd08175512bdc722047425cf}} 
+\index{AEnemyBase@{AEnemyBase}!m\_spawnLocation@{m\_spawnLocation}}
+\index{m\_spawnLocation@{m\_spawnLocation}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{m\_spawnLocation}{m\_spawnLocation}}
+{\footnotesize\ttfamily F\+Vector A\+Enemy\+Base\+::m\+\_\+spawn\+Location\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Start spawn location of the enemy. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a9b1768447ae5a69225d0bafa0afa3762}\label{class_a_enemy_base_a9b1768447ae5a69225d0bafa0afa3762}} 
+\index{AEnemyBase@{AEnemyBase}!MaxHealth@{MaxHealth}}
+\index{MaxHealth@{MaxHealth}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{MaxHealth}{MaxHealth}}
+{\footnotesize\ttfamily float A\+Enemy\+Base\+::\+Max\+Health}
+
+
+
+Maximum health of the enemy. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a504a53e2014b412be29c9f907e718fd5}\label{class_a_enemy_base_a504a53e2014b412be29c9f907e718fd5}} 
+\index{AEnemyBase@{AEnemyBase}!OnEnemyBeginAttack@{OnEnemyBeginAttack}}
+\index{OnEnemyBeginAttack@{OnEnemyBeginAttack}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{OnEnemyBeginAttack}{OnEnemyBeginAttack}}
+{\footnotesize\ttfamily F\+Enemy\+Attack\+Signature A\+Enemy\+Base\+::\+On\+Enemy\+Begin\+Attack}
+
+
+
+Triggered when enemy starts their attack. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a2fd85e5ccfb497c5b3835e34f44adc71}\label{class_a_enemy_base_a2fd85e5ccfb497c5b3835e34f44adc71}} 
+\index{AEnemyBase@{AEnemyBase}!OnEnemyDeath@{OnEnemyDeath}}
+\index{OnEnemyDeath@{OnEnemyDeath}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{OnEnemyDeath}{OnEnemyDeath}}
+{\footnotesize\ttfamily F\+Enemy\+Death\+Signature A\+Enemy\+Base\+::\+On\+Enemy\+Death}
+
+
+
+Triggered when enemy has lost all health and is dead. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a11a85425ea4dda1267e65bf6095560fe}\label{class_a_enemy_base_a11a85425ea4dda1267e65bf6095560fe}} 
+\index{AEnemyBase@{AEnemyBase}!PlayerPawn@{PlayerPawn}}
+\index{PlayerPawn@{PlayerPawn}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{PlayerPawn}{PlayerPawn}}
+{\footnotesize\ttfamily class A\+Pawn$\ast$ A\+Enemy\+Base\+::\+Player\+Pawn\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reference to the current player pawn. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a6a6033e1f8b4e09adc042da25f3a447e}\label{class_a_enemy_base_a6a6033e1f8b4e09adc042da25f3a447e}} 
+\index{AEnemyBase@{AEnemyBase}!State@{State}}
+\index{State@{State}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8}{E\+Behaviour\+States}} A\+Enemy\+Base\+::\+State = \mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8aa5daf7f2ebbba4975d61dab1c40188c7}{E\+Behaviour\+States\+::\+I\+D\+LE}}}
+
+
+
+Current state of the enemy. 
+
+\mbox{\Hypertarget{class_a_enemy_base_ab68b8e7213728c5a1db600d82a375da8}\label{class_a_enemy_base_ab68b8e7213728c5a1db600d82a375da8}} 
+\index{AEnemyBase@{AEnemyBase}!TimerHandle\_AttackCooldown@{TimerHandle\_AttackCooldown}}
+\index{TimerHandle\_AttackCooldown@{TimerHandle\_AttackCooldown}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{TimerHandle\_AttackCooldown}{TimerHandle\_AttackCooldown}}
+{\footnotesize\ttfamily F\+Timer\+Handle A\+Enemy\+Base\+::\+Timer\+Handle\+\_\+\+Attack\+Cooldown\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Timer\+Handle to control the enemy\textquotesingle{}s current attack. 
+
+\mbox{\Hypertarget{class_a_enemy_base_a5d959cc2adf5365c6c03b9b30e71d467}\label{class_a_enemy_base_a5d959cc2adf5365c6c03b9b30e71d467}} 
+\index{AEnemyBase@{AEnemyBase}!WidgetComponent@{WidgetComponent}}
+\index{WidgetComponent@{WidgetComponent}!AEnemyBase@{AEnemyBase}}
+\doxysubsubsection{\texorpdfstring{WidgetComponent}{WidgetComponent}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_u_s_actor_widget_component}{U\+S\+Actor\+Widget\+Component}}$\ast$ A\+Enemy\+Base\+::\+Widget\+Component}
+
+
+
+Current widget component that represents the enemy\textquotesingle{}s healthbar. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Zeroes/\+Enemies/\mbox{\hyperlink{_enemy_base_8h}{Enemy\+Base.\+h}}\item 
+Source/\+Zeroes/\+Enemies/\mbox{\hyperlink{_enemy_base_8cpp}{Enemy\+Base.\+cpp}}\end{DoxyCompactItemize}

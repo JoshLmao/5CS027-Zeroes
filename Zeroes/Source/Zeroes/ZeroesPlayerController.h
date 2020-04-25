@@ -12,7 +12,9 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerResetEngagement);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerStartMovement);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FControllerEndedMovement);
 
-
+/*
+* Main player controller of the player
+*/
 UCLASS()
 class AZeroesPlayerController : public APlayerController
 {
@@ -21,18 +23,23 @@ class AZeroesPlayerController : public APlayerController
 public:
 	AZeroesPlayerController();
 
+	/// Travel to a destination event
 	UPROPERTY(BlueprintAssignable)
 	FControllerTravelToDestinationActorSignature OnTravelDestActor;
 	
+	/// Controller has reached it's destination
 	UPROPERTY(BlueprintAssignable)
 	FControllerReachedDestinationActorSignature OnReachedDestActor;
 
+	/// Controller's combat engagement has been reset
 	UPROPERTY(BlueprintAssignable)
 	FControllerResetEngagement OnResetEngagement;
 
+	/// Controller begins it's movement
 	UPROPERTY(BlueprintAssignable)
 	FControllerStartMovement OnStartMovement;
 
+	/// Controller has ended it's movement
 	UPROPERTY(BlueprintAssignable)
 	FControllerEndedMovement OnEndedMovement;
 

@@ -6,6 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "RangedProjectile.generated.h"
 
+/**
+*	Projectile of a ranged enemy to be fired
+*/
 UCLASS()
 class ZEROES_API ARangedProjectile : public AActor
 {
@@ -26,17 +29,21 @@ public:
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
+	/// Gets the amount of damage the projectile will deal
 	float GetDamage();
+	/// Sets the amount of damage the projectile
 	void SetDamage(float dmgAmount);
 
+	/// Set the current fire direction of the projectile
 	void FireInDirection(FVector direction);
 
+	/// Sphere component collider to handle collision
 	UPROPERTY(VisibleAnywhere, Category = Projectile)
 	class USphereComponent* m_sphere;
 
 private:
-
+	/// Current projectile movement component on the projectile
 	class UProjectileMovementComponent* m_projectileMovement;
-
+	/// Amount of damage to deal to the player
 	float m_damageAmount;
 };

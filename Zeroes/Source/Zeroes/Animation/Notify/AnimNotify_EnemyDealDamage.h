@@ -7,7 +7,7 @@
 #include "AnimNotify_EnemyDealDamage.generated.h"
 
 /**
- * 
+ * Animation Notify of when to deal damage to the target enemy
  */
 UCLASS()
 class ZEROES_API UAnimNotify_EnemyDealDamage : public UAnimNotify

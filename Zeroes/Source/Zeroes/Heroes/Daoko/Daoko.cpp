@@ -127,8 +127,7 @@ void ADaoko::OnBlinkDelayComplete()
 
 void ADaoko::SpawnSpike()
 {
-	int maxSpikes = 4;
-	if (m_spikeCount >= maxSpikes)
+	if (m_spikeCount >= MAX_SPIKE_COUNT)
 	{
 		GetWorldTimerManager().ClearTimer(TimerHandle_SpawnSpikes);
 		m_spikeCount = 0;
@@ -136,12 +135,13 @@ void ADaoko::SpawnSpike()
 		return;
 	}
 
-	FVector spikePoint = UZeroesMathHelper::GetAnyPointAlongLine(m_spikeStartVector, m_spikeEndVector, m_spikeCount + 1 / maxSpikes);
+	FVector spikePoint = UZeroesMathHelper::GetAnyPointAlongLine(m_spikeStartVector, m_spikeEndVector, m_spikeCount + 1 / MAX_SPIKE_COUNT);
 	// Sink into floor for rise animation
-	spikePoint.Z -= 100.0f;
+	//spikePoint.Z -= 100.0f;
 
+	// Spawn spike and set damage
 	ASpike* spike = GetWorld()->SpawnActor<ASpike>(ASpike::StaticClass(), spikePoint, FRotator::ZeroRotator);
-	//spike->SetDamage(100.0f);
+	spike->SetDamage(FMath::RandRange(90.0f, 125.0f));
 
 	m_spikeCount++;
 

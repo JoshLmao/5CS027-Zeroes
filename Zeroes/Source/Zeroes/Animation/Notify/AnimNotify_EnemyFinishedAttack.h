@@ -7,7 +7,7 @@
 #include "AnimNotify_EnemyFinishedAttack.generated.h"
 
 /**
- * 
+ * Animation Notify of when an enemy's attack has completed
  */
 UCLASS()
 class ZEROES_API UAnimNotify_EnemyFinishedAttack : public UAnimNotify

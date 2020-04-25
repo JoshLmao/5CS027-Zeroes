@@ -1,0 +1,248 @@
+\hypertarget{class_a_hero_state}{}\doxysection{A\+Hero\+State Class Reference}
+\label{class_a_hero_state}\index{AHeroState@{AHeroState}}
+
+
+{\ttfamily \#include $<$Hero\+State.\+h$>$}
+
+Inheritance diagram for A\+Hero\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_hero_state}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_a_hero_state_a238e2171f7b69abe15e64c49bf91bc2a}{Get\+Health}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current health of the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_state_abf17856bc1b97f9e8ae4c6161701721b}{Set\+Health}} (float health)
+\begin{DoxyCompactList}\small\item\em Sets the current health of the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_state_aff8ff16750c3a8348187aaa2cafaf055}{Remove\+Health}} (float amount)
+\begin{DoxyCompactList}\small\item\em Removes an amount of health from the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_state_a1e88203987e0405e14163c57e978a549}{Add\+Health}} (float amount)
+\begin{DoxyCompactList}\small\item\em Adds an amount of health to the player. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_state_a9f124af3204113020c5d8d00f2092be7}{Get\+Max\+Health}} ()
+\begin{DoxyCompactList}\small\item\em Gets the max health of the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_state_acff51a1ee5cab71f69b2fbb619cf7e8d}{Set\+Max\+Health}} (float max\+Health)
+\begin{DoxyCompactList}\small\item\em Sets a new maximum health of the player. (Doesn\textquotesingle{}t set the player\textquotesingle{}s health to the new max health) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_a_hero_state_a24def02832ed76ccad9e775cd6be8548}{Get\+Can\+Attack}} ()
+\begin{DoxyCompactList}\small\item\em Gets if the player can attack an enemy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_state_a89b6f8588a4dc27ef1f5068cbb52fa7e}{Set\+Can\+Attack}} (bool can\+Attack)
+\begin{DoxyCompactList}\small\item\em Sets if the player can attack an enemy. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_state_a0df006d75ccbb39bf21ca256c4befbba}{Get\+Health\+Regen\+Rate}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current regenerate rate per second of health for the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_state_acf4efd882f4815caf8a886b6c10fceb1}{Set\+Health\+Regen\+Rate}} (float health\+Regen\+Rate)
+\begin{DoxyCompactList}\small\item\em Sets the current regenerate rate per second of health for the player. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_a_hero_state_ae0cfb7528be83d3b7c4d21bc989a2d25}{Get\+Ability\+Can\+Use}} (int index)
+\begin{DoxyCompactList}\small\item\em Gets if an ability can be used, by it\textquotesingle{}s ability index (starting from 0) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_state_ae0b469c5a03aedfb0a8faacee9dc33f5}{Set\+Ability\+Can\+Use}} (int index, bool is\+In\+Use)
+\begin{DoxyCompactList}\small\item\em Sets if an ability can be used by it\textquotesingle{}s ability index (starting from 0) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_hero_state_a97e984a90f2a281f5805bceb03e27750}{A\+Hero\+State}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_a_hero_state_a2a2fdc5d4d6a6aeb72ba52107b8bd95a}{Health}}
+\begin{DoxyCompactList}\small\item\em Current health of the player. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_state_af10f50159ae201af11df0db296e30ece}{Max\+Health}}
+\begin{DoxyCompactList}\small\item\em Maximum amount of health the player can have. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_state_ab07d1273b11acdc32b31b5418df7083f}{Health\+Regen\+Rate}}
+\begin{DoxyCompactList}\small\item\em Amount of health the player regenerates per second. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_a_hero_state_abe1e33b2ea71610e06afa3e7ac81fe63}{b\+Can\+Attack}}
+\begin{DoxyCompactList}\small\item\em Can the player attack an enemy. \end{DoxyCompactList}\item 
+class T\+Map$<$ int, bool $>$ \mbox{\hyperlink{class_a_hero_state_ab39947a74418a9467fa98ce2d722fc64}{Ability\+States}}
+\begin{DoxyCompactList}\small\item\em Map of all ability states (by index) and if they can be used/casted (true if can be cast) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_a_hero_state_a97e984a90f2a281f5805bceb03e27750}\label{class_a_hero_state_a97e984a90f2a281f5805bceb03e27750}} 
+\index{AHeroState@{AHeroState}!AHeroState@{AHeroState}}
+\index{AHeroState@{AHeroState}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{AHeroState()}{AHeroState()}}
+{\footnotesize\ttfamily A\+Hero\+State\+::\+A\+Hero\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_hero_state_a1e88203987e0405e14163c57e978a549}\label{class_a_hero_state_a1e88203987e0405e14163c57e978a549}} 
+\index{AHeroState@{AHeroState}!AddHealth@{AddHealth}}
+\index{AddHealth@{AddHealth}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{AddHealth()}{AddHealth()}}
+{\footnotesize\ttfamily void A\+Hero\+State\+::\+Add\+Health (\begin{DoxyParamCaption}\item[{float}]{amount }\end{DoxyParamCaption})}
+
+
+
+Adds an amount of health to the player. 
+
+\mbox{\Hypertarget{class_a_hero_state_ae0cfb7528be83d3b7c4d21bc989a2d25}\label{class_a_hero_state_ae0cfb7528be83d3b7c4d21bc989a2d25}} 
+\index{AHeroState@{AHeroState}!GetAbilityCanUse@{GetAbilityCanUse}}
+\index{GetAbilityCanUse@{GetAbilityCanUse}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{GetAbilityCanUse()}{GetAbilityCanUse()}}
+{\footnotesize\ttfamily bool A\+Hero\+State\+::\+Get\+Ability\+Can\+Use (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Gets if an ability can be used, by it\textquotesingle{}s ability index (starting from 0) 
+
+\mbox{\Hypertarget{class_a_hero_state_a24def02832ed76ccad9e775cd6be8548}\label{class_a_hero_state_a24def02832ed76ccad9e775cd6be8548}} 
+\index{AHeroState@{AHeroState}!GetCanAttack@{GetCanAttack}}
+\index{GetCanAttack@{GetCanAttack}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{GetCanAttack()}{GetCanAttack()}}
+{\footnotesize\ttfamily bool A\+Hero\+State\+::\+Get\+Can\+Attack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets if the player can attack an enemy. 
+
+\mbox{\Hypertarget{class_a_hero_state_a238e2171f7b69abe15e64c49bf91bc2a}\label{class_a_hero_state_a238e2171f7b69abe15e64c49bf91bc2a}} 
+\index{AHeroState@{AHeroState}!GetHealth@{GetHealth}}
+\index{GetHealth@{GetHealth}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{GetHealth()}{GetHealth()}}
+{\footnotesize\ttfamily float A\+Hero\+State\+::\+Get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current health of the player. 
+
+\mbox{\Hypertarget{class_a_hero_state_a0df006d75ccbb39bf21ca256c4befbba}\label{class_a_hero_state_a0df006d75ccbb39bf21ca256c4befbba}} 
+\index{AHeroState@{AHeroState}!GetHealthRegenRate@{GetHealthRegenRate}}
+\index{GetHealthRegenRate@{GetHealthRegenRate}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{GetHealthRegenRate()}{GetHealthRegenRate()}}
+{\footnotesize\ttfamily float A\+Hero\+State\+::\+Get\+Health\+Regen\+Rate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current regenerate rate per second of health for the player. 
+
+\mbox{\Hypertarget{class_a_hero_state_a9f124af3204113020c5d8d00f2092be7}\label{class_a_hero_state_a9f124af3204113020c5d8d00f2092be7}} 
+\index{AHeroState@{AHeroState}!GetMaxHealth@{GetMaxHealth}}
+\index{GetMaxHealth@{GetMaxHealth}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{GetMaxHealth()}{GetMaxHealth()}}
+{\footnotesize\ttfamily float A\+Hero\+State\+::\+Get\+Max\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the max health of the player. 
+
+\mbox{\Hypertarget{class_a_hero_state_aff8ff16750c3a8348187aaa2cafaf055}\label{class_a_hero_state_aff8ff16750c3a8348187aaa2cafaf055}} 
+\index{AHeroState@{AHeroState}!RemoveHealth@{RemoveHealth}}
+\index{RemoveHealth@{RemoveHealth}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{RemoveHealth()}{RemoveHealth()}}
+{\footnotesize\ttfamily void A\+Hero\+State\+::\+Remove\+Health (\begin{DoxyParamCaption}\item[{float}]{amount }\end{DoxyParamCaption})}
+
+
+
+Removes an amount of health from the player. 
+
+\mbox{\Hypertarget{class_a_hero_state_ae0b469c5a03aedfb0a8faacee9dc33f5}\label{class_a_hero_state_ae0b469c5a03aedfb0a8faacee9dc33f5}} 
+\index{AHeroState@{AHeroState}!SetAbilityCanUse@{SetAbilityCanUse}}
+\index{SetAbilityCanUse@{SetAbilityCanUse}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{SetAbilityCanUse()}{SetAbilityCanUse()}}
+{\footnotesize\ttfamily void A\+Hero\+State\+::\+Set\+Ability\+Can\+Use (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{bool}]{is\+In\+Use }\end{DoxyParamCaption})}
+
+
+
+Sets if an ability can be used by it\textquotesingle{}s ability index (starting from 0) 
+
+\mbox{\Hypertarget{class_a_hero_state_a89b6f8588a4dc27ef1f5068cbb52fa7e}\label{class_a_hero_state_a89b6f8588a4dc27ef1f5068cbb52fa7e}} 
+\index{AHeroState@{AHeroState}!SetCanAttack@{SetCanAttack}}
+\index{SetCanAttack@{SetCanAttack}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{SetCanAttack()}{SetCanAttack()}}
+{\footnotesize\ttfamily void A\+Hero\+State\+::\+Set\+Can\+Attack (\begin{DoxyParamCaption}\item[{bool}]{can\+Attack }\end{DoxyParamCaption})}
+
+
+
+Sets if the player can attack an enemy. 
+
+\mbox{\Hypertarget{class_a_hero_state_abf17856bc1b97f9e8ae4c6161701721b}\label{class_a_hero_state_abf17856bc1b97f9e8ae4c6161701721b}} 
+\index{AHeroState@{AHeroState}!SetHealth@{SetHealth}}
+\index{SetHealth@{SetHealth}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{SetHealth()}{SetHealth()}}
+{\footnotesize\ttfamily void A\+Hero\+State\+::\+Set\+Health (\begin{DoxyParamCaption}\item[{float}]{health }\end{DoxyParamCaption})}
+
+
+
+Sets the current health of the player. 
+
+\mbox{\Hypertarget{class_a_hero_state_acf4efd882f4815caf8a886b6c10fceb1}\label{class_a_hero_state_acf4efd882f4815caf8a886b6c10fceb1}} 
+\index{AHeroState@{AHeroState}!SetHealthRegenRate@{SetHealthRegenRate}}
+\index{SetHealthRegenRate@{SetHealthRegenRate}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{SetHealthRegenRate()}{SetHealthRegenRate()}}
+{\footnotesize\ttfamily void A\+Hero\+State\+::\+Set\+Health\+Regen\+Rate (\begin{DoxyParamCaption}\item[{float}]{health\+Regen\+Rate }\end{DoxyParamCaption})}
+
+
+
+Sets the current regenerate rate per second of health for the player. 
+
+\mbox{\Hypertarget{class_a_hero_state_acff51a1ee5cab71f69b2fbb619cf7e8d}\label{class_a_hero_state_acff51a1ee5cab71f69b2fbb619cf7e8d}} 
+\index{AHeroState@{AHeroState}!SetMaxHealth@{SetMaxHealth}}
+\index{SetMaxHealth@{SetMaxHealth}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{SetMaxHealth()}{SetMaxHealth()}}
+{\footnotesize\ttfamily void A\+Hero\+State\+::\+Set\+Max\+Health (\begin{DoxyParamCaption}\item[{float}]{max\+Health }\end{DoxyParamCaption})}
+
+
+
+Sets a new maximum health of the player. (Doesn\textquotesingle{}t set the player\textquotesingle{}s health to the new max health) 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_hero_state_ab39947a74418a9467fa98ce2d722fc64}\label{class_a_hero_state_ab39947a74418a9467fa98ce2d722fc64}} 
+\index{AHeroState@{AHeroState}!AbilityStates@{AbilityStates}}
+\index{AbilityStates@{AbilityStates}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{AbilityStates}{AbilityStates}}
+{\footnotesize\ttfamily class T\+Map$<$ int, bool $>$ A\+Hero\+State\+::\+Ability\+States\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Map of all ability states (by index) and if they can be used/casted (true if can be cast) 
+
+\mbox{\Hypertarget{class_a_hero_state_abe1e33b2ea71610e06afa3e7ac81fe63}\label{class_a_hero_state_abe1e33b2ea71610e06afa3e7ac81fe63}} 
+\index{AHeroState@{AHeroState}!bCanAttack@{bCanAttack}}
+\index{bCanAttack@{bCanAttack}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{bCanAttack}{bCanAttack}}
+{\footnotesize\ttfamily bool A\+Hero\+State\+::b\+Can\+Attack\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Can the player attack an enemy. 
+
+\mbox{\Hypertarget{class_a_hero_state_a2a2fdc5d4d6a6aeb72ba52107b8bd95a}\label{class_a_hero_state_a2a2fdc5d4d6a6aeb72ba52107b8bd95a}} 
+\index{AHeroState@{AHeroState}!Health@{Health}}
+\index{Health@{Health}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{Health}{Health}}
+{\footnotesize\ttfamily float A\+Hero\+State\+::\+Health\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current health of the player. 
+
+\mbox{\Hypertarget{class_a_hero_state_ab07d1273b11acdc32b31b5418df7083f}\label{class_a_hero_state_ab07d1273b11acdc32b31b5418df7083f}} 
+\index{AHeroState@{AHeroState}!HealthRegenRate@{HealthRegenRate}}
+\index{HealthRegenRate@{HealthRegenRate}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{HealthRegenRate}{HealthRegenRate}}
+{\footnotesize\ttfamily float A\+Hero\+State\+::\+Health\+Regen\+Rate\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Amount of health the player regenerates per second. 
+
+\mbox{\Hypertarget{class_a_hero_state_af10f50159ae201af11df0db296e30ece}\label{class_a_hero_state_af10f50159ae201af11df0db296e30ece}} 
+\index{AHeroState@{AHeroState}!MaxHealth@{MaxHealth}}
+\index{MaxHealth@{MaxHealth}!AHeroState@{AHeroState}}
+\doxysubsubsection{\texorpdfstring{MaxHealth}{MaxHealth}}
+{\footnotesize\ttfamily float A\+Hero\+State\+::\+Max\+Health\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Maximum amount of health the player can have. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Zeroes/\+Heroes/\mbox{\hyperlink{_hero_state_8h}{Hero\+State.\+h}}\item 
+Source/\+Zeroes/\+Heroes/\mbox{\hyperlink{_hero_state_8cpp}{Hero\+State.\+cpp}}\end{DoxyCompactItemize}

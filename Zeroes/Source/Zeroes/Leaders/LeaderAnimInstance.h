@@ -7,7 +7,7 @@
 #include "LeaderAnimInstance.generated.h"
 
 /**
- * 
+ * Animation instance of a Leader
  */
 UCLASS()
 class ZEROES_API ULeaderAnimInstance : public UEnemyAnimInstance
@@ -27,8 +27,10 @@ public:
 	void OnAbilityComplete();
 
 private:
+	/// Owning leader of the animation instance
 	class ALeaderBase* OwningLeader;
 
+	/// Event listener function of the ALeaderBase's OnLeaderBeginAbility event
 	UFUNCTION()
 	void OnBeginAbility();
 };

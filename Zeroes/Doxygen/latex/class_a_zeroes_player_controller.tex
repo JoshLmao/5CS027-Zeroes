@@ -1,0 +1,301 @@
+\hypertarget{class_a_zeroes_player_controller}{}\doxysection{A\+Zeroes\+Player\+Controller Class Reference}
+\label{class_a_zeroes_player_controller}\index{AZeroesPlayerController@{AZeroesPlayerController}}
+
+
+{\ttfamily \#include $<$Zeroes\+Player\+Controller.\+h$>$}
+
+Inheritance diagram for A\+Zeroes\+Player\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_zeroes_player_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_zeroes_player_controller_a391cfb13971c33a0984e416b23c1c761}{A\+Zeroes\+Player\+Controller}} ()
+\item 
+void \mbox{\hyperlink{class_a_zeroes_player_controller_afa0ae08e402eaa09f69ca840b0af63e7}{Reset\+Target\+Enemy}} ()
+\begin{DoxyCompactList}\small\item\em Resets the current controller\textquotesingle{}s target enemy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_zeroes_player_controller_aedfb4a2675777a4dc059e2134126f6f7}{Set\+Disable\+Movement}} (bool disable)
+\begin{DoxyCompactList}\small\item\em Sets if to disable movement on the current controller. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_a_zeroes_player_controller_a4c9b9a84045b963f501b850362c8761b}{Get\+Disable\+Movement}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current state of if the controller should block movement. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_zeroes_player_controller_a4dfb30b91f01930e523f296b68e34791}{Cancel\+Movement}} ()
+\begin{DoxyCompactList}\small\item\em Cancels the current movement command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+F\+Controller\+Travel\+To\+Destination\+Actor\+Signature \mbox{\hyperlink{class_a_zeroes_player_controller_a290af9f032cd2f14fcdfd03fa8cb6874}{On\+Travel\+Dest\+Actor}}
+\begin{DoxyCompactList}\small\item\em Travel to a destination event. \end{DoxyCompactList}\item 
+F\+Controller\+Reached\+Destination\+Actor\+Signature \mbox{\hyperlink{class_a_zeroes_player_controller_ac945fdf9b19fb704f20122e60ceb7f60}{On\+Reached\+Dest\+Actor}}
+\begin{DoxyCompactList}\small\item\em Controller has reached it\textquotesingle{}s destination. \end{DoxyCompactList}\item 
+F\+Controller\+Reset\+Engagement \mbox{\hyperlink{class_a_zeroes_player_controller_abbe00082fcabbf557b06d8ec93edaa5b}{On\+Reset\+Engagement}}
+\begin{DoxyCompactList}\small\item\em Controller\textquotesingle{}s combat engagement has been reset. \end{DoxyCompactList}\item 
+F\+Controller\+Start\+Movement \mbox{\hyperlink{class_a_zeroes_player_controller_ae873988d48610786a5e77bb3c885be59}{On\+Start\+Movement}}
+\begin{DoxyCompactList}\small\item\em Controller begins it\textquotesingle{}s movement. \end{DoxyCompactList}\item 
+F\+Controller\+Ended\+Movement \mbox{\hyperlink{class_a_zeroes_player_controller_a2b42450ddc16e5ea950d969f3957c399}{On\+Ended\+Movement}}
+\begin{DoxyCompactList}\small\item\em Controller has ended it\textquotesingle{}s movement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_zeroes_player_controller_a5da4c6795d88f0d063b12c655f925d7b}{Begin\+Play}} () override
+\item 
+virtual void \mbox{\hyperlink{class_a_zeroes_player_controller_a0a0d7b204d0b6c3256b71cba15361232}{Player\+Tick}} (float Delta\+Time) override
+\item 
+virtual void \mbox{\hyperlink{class_a_zeroes_player_controller_af7b8c5c77c38c78a25b16b1dd23176e4}{Setup\+Input\+Component}} () override
+\item 
+void \mbox{\hyperlink{class_a_zeroes_player_controller_ab9ffadd2a12c7b2bc4696271a9f1e889}{Move\+To\+Mouse\+Cursor}} ()
+\item 
+void \mbox{\hyperlink{class_a_zeroes_player_controller_a81dc69fcf76d5c552cccd520cb5890e3}{Set\+New\+Move\+Destination}} (const F\+Vector Dest\+Location, float range\+Tolerance=100.\+0f)
+\item 
+void \mbox{\hyperlink{class_a_zeroes_player_controller_a01870a85ed938fc1131fd4b2135a3f6f}{Set\+New\+Enemy\+Destination}} (A\+Actor $\ast$actor)
+\item 
+void \mbox{\hyperlink{class_a_zeroes_player_controller_a9e640e312d1e9c76e7c3aa9ad99923c1}{On\+Set\+Destination\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_a_zeroes_player_controller_a0d5b1aa66bdcb1bdc86c5eb676656d82}{On\+Set\+Destination\+Released}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32 \mbox{\hyperlink{class_a_zeroes_player_controller_a9272eeb4e1e8b976ad06889a31262805}{b\+Move\+To\+Mouse\+Cursor}}\+: 1
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_zeroes_player_controller_a2fbb33fdf00b90e1d52e433cbc232d31}{On\+Cancel\+Attacking}} ()
+\begin{DoxyCompactList}\small\item\em Handles when attacking is cancelled by the player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+A\+Actor $\ast$ \mbox{\hyperlink{class_a_zeroes_player_controller_a379b0356c75854f93b8e5124f0edb14c}{m\+\_\+target\+Enemy}}
+\begin{DoxyCompactList}\small\item\em Current target enemy the controller is targeting. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_a_zeroes_player_controller_aeffba32a3ce8303b4f7e944403f087b0}{m\+\_\+reached\+Enemy}}
+\begin{DoxyCompactList}\small\item\em Has the controller reached it\textquotesingle{}s current target enemy. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_a_zeroes_player_controller_a7419add729bbf6562f1cb0bfa81c10c6}{m\+\_\+disable\+Movement}}
+\begin{DoxyCompactList}\small\item\em Is movement currently disabled for the controller. \end{DoxyCompactList}\item 
+F\+Vector \mbox{\hyperlink{class_a_zeroes_player_controller_aed8fd1ee47a7b8b9da93117de7651fe9}{m\+\_\+current\+Target\+Vector}}
+\item 
+float \mbox{\hyperlink{class_a_zeroes_player_controller_aa113ca3f4a22d1a7529f0b7dcf28f180}{m\+\_\+destination\+Tolerance}}
+\begin{DoxyCompactList}\small\item\em Amount of units of tolerance to use for the controller to \textquotesingle{}arrive\textquotesingle{} at it\textquotesingle{}s destination. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a391cfb13971c33a0984e416b23c1c761}\label{class_a_zeroes_player_controller_a391cfb13971c33a0984e416b23c1c761}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!AZeroesPlayerController@{AZeroesPlayerController}}
+\index{AZeroesPlayerController@{AZeroesPlayerController}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{AZeroesPlayerController()}{AZeroesPlayerController()}}
+{\footnotesize\ttfamily A\+Zeroes\+Player\+Controller\+::\+A\+Zeroes\+Player\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a5da4c6795d88f0d063b12c655f925d7b}\label{class_a_zeroes_player_controller_a5da4c6795d88f0d063b12c655f925d7b}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a4dfb30b91f01930e523f296b68e34791}\label{class_a_zeroes_player_controller_a4dfb30b91f01930e523f296b68e34791}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!CancelMovement@{CancelMovement}}
+\index{CancelMovement@{CancelMovement}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{CancelMovement()}{CancelMovement()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+Cancel\+Movement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cancels the current movement command. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a4c9b9a84045b963f501b850362c8761b}\label{class_a_zeroes_player_controller_a4c9b9a84045b963f501b850362c8761b}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!GetDisableMovement@{GetDisableMovement}}
+\index{GetDisableMovement@{GetDisableMovement}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{GetDisableMovement()}{GetDisableMovement()}}
+{\footnotesize\ttfamily bool A\+Zeroes\+Player\+Controller\+::\+Get\+Disable\+Movement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current state of if the controller should block movement. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_ab9ffadd2a12c7b2bc4696271a9f1e889}\label{class_a_zeroes_player_controller_ab9ffadd2a12c7b2bc4696271a9f1e889}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!MoveToMouseCursor@{MoveToMouseCursor}}
+\index{MoveToMouseCursor@{MoveToMouseCursor}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{MoveToMouseCursor()}{MoveToMouseCursor()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+Move\+To\+Mouse\+Cursor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Navigate player to the current mouse cursor location. \mbox{\Hypertarget{class_a_zeroes_player_controller_a2fbb33fdf00b90e1d52e433cbc232d31}\label{class_a_zeroes_player_controller_a2fbb33fdf00b90e1d52e433cbc232d31}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!OnCancelAttacking@{OnCancelAttacking}}
+\index{OnCancelAttacking@{OnCancelAttacking}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnCancelAttacking()}{OnCancelAttacking()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+On\+Cancel\+Attacking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles when attacking is cancelled by the player. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a9e640e312d1e9c76e7c3aa9ad99923c1}\label{class_a_zeroes_player_controller_a9e640e312d1e9c76e7c3aa9ad99923c1}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!OnSetDestinationPressed@{OnSetDestinationPressed}}
+\index{OnSetDestinationPressed@{OnSetDestinationPressed}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnSetDestinationPressed()}{OnSetDestinationPressed()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+On\+Set\+Destination\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Input handlers for Set\+Destination action. \mbox{\Hypertarget{class_a_zeroes_player_controller_a0d5b1aa66bdcb1bdc86c5eb676656d82}\label{class_a_zeroes_player_controller_a0d5b1aa66bdcb1bdc86c5eb676656d82}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!OnSetDestinationReleased@{OnSetDestinationReleased}}
+\index{OnSetDestinationReleased@{OnSetDestinationReleased}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnSetDestinationReleased()}{OnSetDestinationReleased()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+On\+Set\+Destination\+Released (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a0a0d7b204d0b6c3256b71cba15361232}\label{class_a_zeroes_player_controller_a0a0d7b204d0b6c3256b71cba15361232}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!PlayerTick@{PlayerTick}}
+\index{PlayerTick@{PlayerTick}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{PlayerTick()}{PlayerTick()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+Player\+Tick (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Check for when Simple\+Move\+To\+Location() has reached its destination\mbox{\Hypertarget{class_a_zeroes_player_controller_afa0ae08e402eaa09f69ca840b0af63e7}\label{class_a_zeroes_player_controller_afa0ae08e402eaa09f69ca840b0af63e7}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!ResetTargetEnemy@{ResetTargetEnemy}}
+\index{ResetTargetEnemy@{ResetTargetEnemy}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{ResetTargetEnemy()}{ResetTargetEnemy()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+Reset\+Target\+Enemy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resets the current controller\textquotesingle{}s target enemy. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_aedfb4a2675777a4dc059e2134126f6f7}\label{class_a_zeroes_player_controller_aedfb4a2675777a4dc059e2134126f6f7}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!SetDisableMovement@{SetDisableMovement}}
+\index{SetDisableMovement@{SetDisableMovement}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{SetDisableMovement()}{SetDisableMovement()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+Set\+Disable\+Movement (\begin{DoxyParamCaption}\item[{bool}]{disable }\end{DoxyParamCaption})}
+
+
+
+Sets if to disable movement on the current controller. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a01870a85ed938fc1131fd4b2135a3f6f}\label{class_a_zeroes_player_controller_a01870a85ed938fc1131fd4b2135a3f6f}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!SetNewEnemyDestination@{SetNewEnemyDestination}}
+\index{SetNewEnemyDestination@{SetNewEnemyDestination}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{SetNewEnemyDestination()}{SetNewEnemyDestination()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+Set\+New\+Enemy\+Destination (\begin{DoxyParamCaption}\item[{A\+Actor $\ast$}]{actor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Navigate to enemy for combat \mbox{\Hypertarget{class_a_zeroes_player_controller_a81dc69fcf76d5c552cccd520cb5890e3}\label{class_a_zeroes_player_controller_a81dc69fcf76d5c552cccd520cb5890e3}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!SetNewMoveDestination@{SetNewMoveDestination}}
+\index{SetNewMoveDestination@{SetNewMoveDestination}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{SetNewMoveDestination()}{SetNewMoveDestination()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+Set\+New\+Move\+Destination (\begin{DoxyParamCaption}\item[{const F\+Vector}]{Dest\+Location,  }\item[{float}]{range\+Tolerance = {\ttfamily 100.0f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Navigate player to the given world location. \mbox{\Hypertarget{class_a_zeroes_player_controller_af7b8c5c77c38c78a25b16b1dd23176e4}\label{class_a_zeroes_player_controller_af7b8c5c77c38c78a25b16b1dd23176e4}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!SetupInputComponent@{SetupInputComponent}}
+\index{SetupInputComponent@{SetupInputComponent}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{SetupInputComponent()}{SetupInputComponent()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Player\+Controller\+::\+Setup\+Input\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a9272eeb4e1e8b976ad06889a31262805}\label{class_a_zeroes_player_controller_a9272eeb4e1e8b976ad06889a31262805}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!bMoveToMouseCursor@{bMoveToMouseCursor}}
+\index{bMoveToMouseCursor@{bMoveToMouseCursor}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{bMoveToMouseCursor}{bMoveToMouseCursor}}
+{\footnotesize\ttfamily uint32 A\+Zeroes\+Player\+Controller\+::b\+Move\+To\+Mouse\+Cursor\hspace{0.3cm}{\ttfamily [protected]}}
+
+True if the controlled character should navigate to the mouse cursor. \mbox{\Hypertarget{class_a_zeroes_player_controller_aed8fd1ee47a7b8b9da93117de7651fe9}\label{class_a_zeroes_player_controller_aed8fd1ee47a7b8b9da93117de7651fe9}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!m\_currentTargetVector@{m\_currentTargetVector}}
+\index{m\_currentTargetVector@{m\_currentTargetVector}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{m\_currentTargetVector}{m\_currentTargetVector}}
+{\footnotesize\ttfamily F\+Vector A\+Zeroes\+Player\+Controller\+::m\+\_\+current\+Target\+Vector\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_aa113ca3f4a22d1a7529f0b7dcf28f180}\label{class_a_zeroes_player_controller_aa113ca3f4a22d1a7529f0b7dcf28f180}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!m\_destinationTolerance@{m\_destinationTolerance}}
+\index{m\_destinationTolerance@{m\_destinationTolerance}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{m\_destinationTolerance}{m\_destinationTolerance}}
+{\footnotesize\ttfamily float A\+Zeroes\+Player\+Controller\+::m\+\_\+destination\+Tolerance\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Amount of units of tolerance to use for the controller to \textquotesingle{}arrive\textquotesingle{} at it\textquotesingle{}s destination. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a7419add729bbf6562f1cb0bfa81c10c6}\label{class_a_zeroes_player_controller_a7419add729bbf6562f1cb0bfa81c10c6}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!m\_disableMovement@{m\_disableMovement}}
+\index{m\_disableMovement@{m\_disableMovement}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{m\_disableMovement}{m\_disableMovement}}
+{\footnotesize\ttfamily bool A\+Zeroes\+Player\+Controller\+::m\+\_\+disable\+Movement\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Is movement currently disabled for the controller. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_aeffba32a3ce8303b4f7e944403f087b0}\label{class_a_zeroes_player_controller_aeffba32a3ce8303b4f7e944403f087b0}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!m\_reachedEnemy@{m\_reachedEnemy}}
+\index{m\_reachedEnemy@{m\_reachedEnemy}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{m\_reachedEnemy}{m\_reachedEnemy}}
+{\footnotesize\ttfamily bool A\+Zeroes\+Player\+Controller\+::m\+\_\+reached\+Enemy\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Has the controller reached it\textquotesingle{}s current target enemy. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a379b0356c75854f93b8e5124f0edb14c}\label{class_a_zeroes_player_controller_a379b0356c75854f93b8e5124f0edb14c}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!m\_targetEnemy@{m\_targetEnemy}}
+\index{m\_targetEnemy@{m\_targetEnemy}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{m\_targetEnemy}{m\_targetEnemy}}
+{\footnotesize\ttfamily A\+Actor$\ast$ A\+Zeroes\+Player\+Controller\+::m\+\_\+target\+Enemy\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current target enemy the controller is targeting. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a2b42450ddc16e5ea950d969f3957c399}\label{class_a_zeroes_player_controller_a2b42450ddc16e5ea950d969f3957c399}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!OnEndedMovement@{OnEndedMovement}}
+\index{OnEndedMovement@{OnEndedMovement}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnEndedMovement}{OnEndedMovement}}
+{\footnotesize\ttfamily F\+Controller\+Ended\+Movement A\+Zeroes\+Player\+Controller\+::\+On\+Ended\+Movement}
+
+
+
+Controller has ended it\textquotesingle{}s movement. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_ac945fdf9b19fb704f20122e60ceb7f60}\label{class_a_zeroes_player_controller_ac945fdf9b19fb704f20122e60ceb7f60}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!OnReachedDestActor@{OnReachedDestActor}}
+\index{OnReachedDestActor@{OnReachedDestActor}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnReachedDestActor}{OnReachedDestActor}}
+{\footnotesize\ttfamily F\+Controller\+Reached\+Destination\+Actor\+Signature A\+Zeroes\+Player\+Controller\+::\+On\+Reached\+Dest\+Actor}
+
+
+
+Controller has reached it\textquotesingle{}s destination. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_abbe00082fcabbf557b06d8ec93edaa5b}\label{class_a_zeroes_player_controller_abbe00082fcabbf557b06d8ec93edaa5b}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!OnResetEngagement@{OnResetEngagement}}
+\index{OnResetEngagement@{OnResetEngagement}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnResetEngagement}{OnResetEngagement}}
+{\footnotesize\ttfamily F\+Controller\+Reset\+Engagement A\+Zeroes\+Player\+Controller\+::\+On\+Reset\+Engagement}
+
+
+
+Controller\textquotesingle{}s combat engagement has been reset. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_ae873988d48610786a5e77bb3c885be59}\label{class_a_zeroes_player_controller_ae873988d48610786a5e77bb3c885be59}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!OnStartMovement@{OnStartMovement}}
+\index{OnStartMovement@{OnStartMovement}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnStartMovement}{OnStartMovement}}
+{\footnotesize\ttfamily F\+Controller\+Start\+Movement A\+Zeroes\+Player\+Controller\+::\+On\+Start\+Movement}
+
+
+
+Controller begins it\textquotesingle{}s movement. 
+
+\mbox{\Hypertarget{class_a_zeroes_player_controller_a290af9f032cd2f14fcdfd03fa8cb6874}\label{class_a_zeroes_player_controller_a290af9f032cd2f14fcdfd03fa8cb6874}} 
+\index{AZeroesPlayerController@{AZeroesPlayerController}!OnTravelDestActor@{OnTravelDestActor}}
+\index{OnTravelDestActor@{OnTravelDestActor}!AZeroesPlayerController@{AZeroesPlayerController}}
+\doxysubsubsection{\texorpdfstring{OnTravelDestActor}{OnTravelDestActor}}
+{\footnotesize\ttfamily F\+Controller\+Travel\+To\+Destination\+Actor\+Signature A\+Zeroes\+Player\+Controller\+::\+On\+Travel\+Dest\+Actor}
+
+
+
+Travel to a destination event. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Zeroes/\mbox{\hyperlink{_zeroes_player_controller_8h}{Zeroes\+Player\+Controller.\+h}}\item 
+Source/\+Zeroes/\mbox{\hyperlink{_zeroes_player_controller_8cpp}{Zeroes\+Player\+Controller.\+cpp}}\end{DoxyCompactItemize}

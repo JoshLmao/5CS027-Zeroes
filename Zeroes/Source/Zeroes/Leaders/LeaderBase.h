@@ -10,7 +10,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FLeaderBeginAbilitySignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FLeaderDeathSignature);
 
 /**
- * 
+ * Base leader class for creating a new boss-like enemy (a leader)
  */
 UCLASS()
 class ZEROES_API ALeaderBase : public AEnemyBase
@@ -51,6 +51,7 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FLeaderBeginAbilitySignature OnLeaderBeginAbility;
 
+	/// Triggered once the leader dies
 	UPROPERTY(BlueprintAssignable)
 	FLeaderDeathSignature OnDeath;
 
@@ -82,5 +83,7 @@ private:
 
 	void StrafeStart();
 	void StrafeUpdate(float DeltaTime);
+
+	/// Callback once strafe state is completed
 	void OnStrafeFinish();
 };

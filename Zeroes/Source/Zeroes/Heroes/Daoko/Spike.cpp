@@ -59,13 +59,19 @@ void ASpike::BeginPlay()
 	Super::BeginPlay();
 	
 	SetLifeSpan(m_lifeTime);
+	
+	// sink spike into ground for animation
+	FVector sinkVector = this->GetActorLocation();
+	sinkVector.Z -= RISE_AMOUNT / 2;
+	SetActorLocation(sinkVector);
 
-	// Get start and riseFrom values
+	// Get start vector 
 	m_originalVector = this->GetActorLocation();
+
 	// Variate the Z position of a spike
 	float variance = 45.0f;
 	m_originalVector.Z = FMath::RandRange(m_originalVector.Z - variance, m_originalVector.Z + variance);
-	m_riseFromVector = m_originalVector + FVector(0.0f, 0.0f, -200.0f);
+	m_riseFromVector = m_originalVector + FVector(0.0f, 0.0f, -RISE_AMOUNT);
 	this->SetActorLocation(m_riseFromVector);
 
 	// Set random yaw rotation

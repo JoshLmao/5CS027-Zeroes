@@ -7,7 +7,7 @@
 #include "ZeroesMathHelper.generated.h"
 
 /**
- * 
+ * Maths helper file with static math functions
  */
 UCLASS()
 class ZEROES_API UZeroesMathHelper : public UObject

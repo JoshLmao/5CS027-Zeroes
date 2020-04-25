@@ -7,7 +7,7 @@
 #include "RangedEnemyBase.generated.h"
 
 /**
- * 
+ * A ranged enemy that can fire a projectile at the player
  */
 UCLASS()
 class ZEROES_API ARangedEnemyBase : public AEnemyBase
@@ -19,6 +19,7 @@ class ZEROES_API ARangedEnemyBase : public AEnemyBase
 public:
 	virtual void OnAttack(AActor* attackEnemy) override;
 
+	/// Projectile class to use to fire at the enemy
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class ARangedProjectile> Projectile;
 };

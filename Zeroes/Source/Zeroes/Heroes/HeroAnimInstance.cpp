@@ -12,15 +12,6 @@ UHeroAnimInstance::UHeroAnimInstance()
 {
 }
 
-void UHeroAnimInstance::NativeBeginPlay()
-{
-	struct FAnimNode_StateMachine* stateMachine = GetStateMachineInstanceFromName(TEXT("Ground Locomotion"));
-	if (stateMachine)
-	{
-		m_animStateMachine = stateMachine;
-	}
-}
-
 void UHeroAnimInstance::NativeInitializeAnimation()
 {
 	Super::NativeInitializeAnimation();

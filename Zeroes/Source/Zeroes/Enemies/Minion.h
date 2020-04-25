@@ -6,6 +6,9 @@
 #include "Enemies/EnemyBase.h"
 #include "Minion.generated.h"
 
+/*
+*
+*/
 UCLASS()
 class ZEROES_API AMinion : public AEnemyBase
 {

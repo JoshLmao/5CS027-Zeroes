@@ -1,0 +1,899 @@
+\hypertarget{class_a_hero_base}{}\doxysection{A\+Hero\+Base Class Reference}
+\label{class_a_hero_base}\index{AHeroBase@{AHeroBase}}
+
+
+{\ttfamily \#include $<$Hero\+Base.\+h$>$}
+
+Inheritance diagram for A\+Hero\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_a_hero_base}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_hero_base_aaae44a3e58b03aa6184f6db6621be8f3}{A\+Hero\+Base}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_a927f1a67ec590e2dbcf06e9ca17b25d7}{Deal\+Damage\+To\+Target}} ()
+\begin{DoxyCompactList}\small\item\em Deals damage to the current target, if there is one. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_a_hero_base_a76c8eb72d3469fe1a58caf71e7521a40}{Is\+Dead}} ()
+\begin{DoxyCompactList}\small\item\em Check if the player/hero has died. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{class_a_hero_base_a0cf2427883ba1ebaed5b7d8cf507858a}{Take\+Damage}} (float Damage\+Amount, struct F\+Damage\+Event const \&Damage\+Event, class A\+Controller $\ast$Event\+Instigator, A\+Actor $\ast$Damage\+Causer) override
+\item 
+virtual void \mbox{\hyperlink{class_a_hero_base_ad0c8948d47ec91f238cd48aac0ac9c96}{Fell\+Out\+Of\+World}} (const class U\+Damage\+Type \&dmg\+Type) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_a_hero_base_a16a458634b1b0ef2a353257a7c47c00d}{Ability\+One\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Total cooldown time in seconds of ability one. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_base_a4b9196e720953b429532e59d52aed8de}{Ability\+Two\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Total cooldown time in seconds of ability two. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_base_a9320af77e6589272c0e3123e14072ab0}{Ability\+Three\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Total cooldown time in seconds of ability three. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_base_aaf1cf46f30a2cc160003db4dd84f6bf5}{Ultimate\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Total cooldown time in seconds of ulitmate. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_base_a3e8d44f4d8d9e1688c8fa2189ef5d07e}{Attack\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Time in seconds inbetween each attack. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_a_hero_base_a55dd01ff7077665f648874ae6f5ddcaf}{Attack\+Damage}}
+\begin{DoxyCompactList}\small\item\em Amount of damage to inflict per attack. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_base_a6e5a43b68fed2d8b51dd29afaa7db2f0}{Attack\+Range}}
+\begin{DoxyCompactList}\small\item\em Amount of units inbetween hero and enemy to be able to attack. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_base_a7fe1bc00ad34ec8e9250e8539ada0994}{Default\+Camera\+Zoom}}
+\begin{DoxyCompactList}\small\item\em Normal camera zoom value. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_base_a89a6e56edf7bf2dd5e728218d7ca8967}{Max\+Camera\+Zoom}}
+\begin{DoxyCompactList}\small\item\em Maximum amount for camera zoom. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_base_a21d9b361c81f8ee66c6407a38afb1c4e}{Min\+Camera\+Zoom}}
+\begin{DoxyCompactList}\small\item\em Minimum amount for camera zoom. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_a_hero_base_ac9864ba01470e281d32ed38044c5d7bf}{b\+Is\+Dead}}
+\begin{DoxyCompactList}\small\item\em Is the hero dead. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_hero_base_a3b6e421e22aa4c7c36f768b815fb1b31}{Walk\+Loop\+Delay}}
+\begin{DoxyCompactList}\small\item\em Amount of time in seconds to play foot steps. \end{DoxyCompactList}\item 
+F\+Hero\+Begin\+Attack\+Signature \mbox{\hyperlink{class_a_hero_base_a9d69a624a29224381de7d59705a88867}{On\+Begin\+Attacking}}
+\begin{DoxyCompactList}\small\item\em Event for when the hero begins attacking an enemy. \end{DoxyCompactList}\item 
+F\+Hero\+Complete\+Attack\+Signature \mbox{\hyperlink{class_a_hero_base_a0c8aea849a3ed187d4c1e3e2b8a616d8}{On\+Completed\+Attacking}}
+\begin{DoxyCompactList}\small\item\em Event for when the hero completes. \end{DoxyCompactList}\item 
+F\+Hero\+Cancel\+Attacking\+Signature \mbox{\hyperlink{class_a_hero_base_acce7e855797b3e59e20054542b8b5677}{On\+Cancel\+Attacking}}
+\begin{DoxyCompactList}\small\item\em Event for when the hero cancels it\textquotesingle{}s current attack. \end{DoxyCompactList}\item 
+F\+Hero\+Begin\+Ability\+Signature \mbox{\hyperlink{class_a_hero_base_a186e524868b861f548f1574c87765f0a}{On\+Begin\+Ability}}
+\begin{DoxyCompactList}\small\item\em Event for when the hero begins an ability, contains the ability index starting from 0. \end{DoxyCompactList}\item 
+F\+Hero\+Complete\+Ability\+Signature \mbox{\hyperlink{class_a_hero_base_ac9cb3cf315db01e2fad99cea09f442e8}{On\+Complete\+Ability}}
+\begin{DoxyCompactList}\small\item\em Event for when the hero finishes an ability, contains the ability index starting from 0. \end{DoxyCompactList}\item 
+F\+Hero\+Death\+Signature \mbox{\hyperlink{class_a_hero_base_a10038098ea528609759acc765e25d549}{On\+Hero\+Death}}
+\begin{DoxyCompactList}\small\item\em Event for when the hero dies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_hero_base_aa0d00b8bf46244c4b221fa6df940d839}{Begin\+Play}} () override
+\item 
+virtual void \mbox{\hyperlink{class_a_hero_base_ab6357446865009f98dc4016787a8518d}{Tick}} (float Delta\+Time) override
+\item 
+virtual void \mbox{\hyperlink{class_a_hero_base_ae69427c4d45febc1d334551ec63ae670}{Setup\+Player\+Input\+Component}} (class U\+Input\+Component $\ast$Input\+Component) override
+\item 
+virtual void \mbox{\hyperlink{class_a_hero_base_a1ba2b0eb454df1d688cfb7dc3f5d1479}{Use\+Ability\+One}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_hero_base_ababac113ebb8fcf20f0c86e38d8ac526}{Use\+Ability\+Two}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_hero_base_a17d1d693c2f6d62b3647c3e5ced7384b}{Use\+Ability\+Three}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_hero_base_a539f96bcecc0b432328da16504414e00}{Use\+Ultimate}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_hero_base_ac45acc8586e48c1002526de66625e8cc}{Cancel\+Attack}} ()
+\begin{DoxyCompactList}\small\item\em Cancel attack callback function which can be overidden. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_a_hero_base_a7bcb47811f14261565ba295ab5b7f085}{On\+Death}} ()
+\begin{DoxyCompactList}\small\item\em Death callback function which can be overidden. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_af4e7d30e37bce5e37e66e492e880663c}{Handle\+Travel\+To\+Actor}} ()
+\begin{DoxyCompactList}\small\item\em Handles when controller begins travelling to it\textquotesingle{}s target actor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_ac7af036f00b40445cfdc42ee8ffbf73c}{Handle\+Reached\+Actor}} ()
+\begin{DoxyCompactList}\small\item\em Handles when controller has reached it\textquotesingle{}s target actor. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_a_zeroes_player_controller}{A\+Zeroes\+Player\+Controller}} $\ast$ \mbox{\hyperlink{class_a_hero_base_a8fef7a22f8cbed305180911c8568c2e0}{Get\+Zeroes\+Player\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current player controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class U\+Sound\+Base $\ast$ \mbox{\hyperlink{class_a_hero_base_a2da386cee9123de8a57cc0a427770521}{Attack\+Sound}}
+\begin{DoxyCompactList}\small\item\em Attack sound of the hero. \end{DoxyCompactList}\item 
+class U\+Sound\+Base $\ast$ \mbox{\hyperlink{class_a_hero_base_ac4752c14b0b6069bfce0d843bf2ee485}{Death\+Sound}}
+\begin{DoxyCompactList}\small\item\em Death sound of the hero. \end{DoxyCompactList}\item 
+class U\+Sound\+Base $\ast$ \mbox{\hyperlink{class_a_hero_base_a372c65f3852565d6ce13cc7fc4f87dfa}{Ability\+One\+Sound}}
+\begin{DoxyCompactList}\small\item\em Sound to play when the hero casts ability one. \end{DoxyCompactList}\item 
+class U\+Sound\+Base $\ast$ \mbox{\hyperlink{class_a_hero_base_a498b54c41b2c46ef6cbb2e5e7fdc97e9}{Ability\+Two\+Sound}}
+\begin{DoxyCompactList}\small\item\em Sound to play when the hero casts ability two. \end{DoxyCompactList}\item 
+class U\+Sound\+Base $\ast$ \mbox{\hyperlink{class_a_hero_base_a1808ae6e991188834f569382e01f23da}{Ability\+Three\+Sound}}
+\begin{DoxyCompactList}\small\item\em Sound to play when the hero casts ability three. \end{DoxyCompactList}\item 
+class U\+Sound\+Base $\ast$ \mbox{\hyperlink{class_a_hero_base_adf63d36ab70cb41597da1ea3db4e08f9}{Ability\+Ultimate\+Sound}}
+\begin{DoxyCompactList}\small\item\em Sound to play when the hero casts ulitmate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_a_hero_base_af84740ad486d7d25df90a858bafa978c}{Player\+States}} \{ \mbox{\hyperlink{class_a_hero_base_af84740ad486d7d25df90a858bafa978ca99677ca5910b6e4a9fa90c99d92f672d}{I\+D\+LE}}, 
+\mbox{\hyperlink{class_a_hero_base_af84740ad486d7d25df90a858bafa978ca7ab35a5752f49a3ccabb685e1679e03e}{A\+T\+T\+A\+C\+K\+I\+NG}}, 
+\mbox{\hyperlink{class_a_hero_base_af84740ad486d7d25df90a858bafa978caf81e591e4d8095c3eaaf50232bcab026}{W\+A\+L\+K\+I\+NG}}
+ \}
+\begin{DoxyCompactList}\small\item\em States the hero can be in. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{class_a_hero_base_a5fe93adfa73f0529276d189144266163}{State\+Events}} \{ \mbox{\hyperlink{class_a_hero_base_a5fe93adfa73f0529276d189144266163a42110712939b467b098deb2f1cc966f5}{O\+N\+\_\+\+S\+T\+A\+RT}}, 
+\mbox{\hyperlink{class_a_hero_base_a5fe93adfa73f0529276d189144266163a2fa03d56cac44a3999e97f06a2afc4b4}{O\+N\+\_\+\+U\+P\+D\+A\+TE}}
+ \}
+\begin{DoxyCompactList}\small\item\em All state events of the player states. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_hero_base_acd6ef3910183ea25d69fc8691f2179f6}{S\+M\+\_\+\+Update}} ()
+\begin{DoxyCompactList}\small\item\em State machine update. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_a2af15bdfcb2e253558f3d3ab648b9631}{Set\+State}} (\mbox{\hyperlink{class_a_hero_base_af84740ad486d7d25df90a858bafa978c}{Player\+States}} new\+State)
+\begin{DoxyCompactList}\small\item\em Sets the new state of the internal state machine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_a13635cfcd00ee1279e564c90887f5389}{Attack\+Start}} ()
+\begin{DoxyCompactList}\small\item\em Hero starts an attack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_a25d7d5b0cda5115ea81ff4be91069309}{Attack\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Hero tick function in an attack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_a9fa4923f04b296e8b13c6c9001cb40ec}{Use\+Ability\+One\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_ab72b72ea7f73527eb69a8bdf946d36dc}{Use\+Ability\+Two\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_ae000b609ab45224a70ca9f4c302c70ce}{Use\+Ability\+Three\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_ad3b0898d064df87b4da00f17453e5cdf}{Use\+Ultimate\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_af47143ce9bbe7e9f1223b402bba9f484}{Use\+Cancel\+Command\+Pressed}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_abe0a4eae56dfbe8b2bc2c6d71269f071}{Use\+Ability}} (int index)
+\begin{DoxyCompactList}\small\item\em Generic function to handle when any ability get\textquotesingle{}s used. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_a1b8bafc3d467405650beec22147f7fae}{On\+Abil\+One\+Cooldown\+Finished}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_ab01190f099d1f7617e7b58693c0c35d2}{On\+Abil\+Two\+Cooldown\+Finished}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_a035c6f233f37cb9875fb0c2bb35b8b84}{On\+Abil\+Three\+Cooldown\+Finished}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_a8bb549dd108c748a33e70b639a69a205}{On\+Ultimate\+Cooldown\+Finished}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_aee842cf95018357174231ee764cb49e2}{On\+Attack\+Cooldown\+Finished}} ()
+\item 
+void \mbox{\hyperlink{class_a_hero_base_ac8dcadda3d19de5f978af8143554947f}{Handle\+Reset\+Engagement}} ()
+\begin{DoxyCompactList}\small\item\em Handles controller resets engagement between itself and an enemy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_ab49a818bc255ace55f11bf944160457e}{Handle\+Start\+Movement}} ()
+\begin{DoxyCompactList}\small\item\em Handles controller beginning movement target. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_acf412dbf8807fda33ef481b74575a7a3}{Handle\+Ended\+Movement}} ()
+\begin{DoxyCompactList}\small\item\em Handles controller ended or reached it\textquotesingle{}s movement target. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_a5d81431d1e8ea2532c54526b23150751}{Reset\+Camera\+Zoom}} ()
+\begin{DoxyCompactList}\small\item\em Resets the current camera to it\textquotesingle{}s default zoom. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_a05e1c9292e252466b14f22fa31fbc215}{Camera\+Zoom\+Changed}} (float Value)
+\begin{DoxyCompactList}\small\item\em Updates the camera zoom position depending on it\textquotesingle{}s desired direction (+1 to zoom in, -\/1 to zoom out) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_hero_base_a9d250226717bf53ac53c741c400194d0}{Regenerate\+Health}} (float Delta\+Time)
+\begin{DoxyCompactList}\small\item\em Renegerates player health using the current delta time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_a_zeroes_player_controller}{A\+Zeroes\+Player\+Controller}} $\ast$ \mbox{\hyperlink{class_a_hero_base_a3457eb066196fcf8cd2a3b1efa8177f6}{m\+\_\+player\+Controller}}
+\begin{DoxyCompactList}\small\item\em Current player controller of the hero. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_a_hero_state}{A\+Hero\+State}} $\ast$ \mbox{\hyperlink{class_a_hero_base_a504d36ca962d92da88414e841fe19341}{m\+\_\+hero\+State}}
+\begin{DoxyCompactList}\small\item\em Current hero state of the hero. \end{DoxyCompactList}\item 
+F\+Timer\+Handle \mbox{\hyperlink{class_a_hero_base_abee004cc0b5510c9488607f913170151}{Timer\+Handle\+\_\+\+Ability\+One\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Timer\+Handle to control the current cooldown of ability one. \end{DoxyCompactList}\item 
+F\+Timer\+Handle \mbox{\hyperlink{class_a_hero_base_aedeab9e5e79e6453134cc25258499457}{Timer\+Handle\+\_\+\+Ability\+Two\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Timer\+Handle to control the current cooldown of ability two. \end{DoxyCompactList}\item 
+F\+Timer\+Handle \mbox{\hyperlink{class_a_hero_base_a5a566cec412787e4797a0e9dc9dc778e}{Timer\+Handle\+\_\+\+Ability\+Three\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Timer\+Handle to control the current cooldown of ability three. \end{DoxyCompactList}\item 
+F\+Timer\+Handle \mbox{\hyperlink{class_a_hero_base_ab084538e94ea9a600d97eac5754b8baa}{Timer\+Handle\+\_\+\+Ultimate\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Timer\+Handle to control the current cooldown of ulitmate. \end{DoxyCompactList}\item 
+F\+Timer\+Handle \mbox{\hyperlink{class_a_hero_base_ab48b89b992ce96c1bedb20106be8cac8}{Timer\+Handle\+\_\+\+Attack\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em /// Timer\+Handle to control the current cooldown of the current attack \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_a_hero_base_af84740ad486d7d25df90a858bafa978c}{Player\+States}} \mbox{\hyperlink{class_a_hero_base_ace54fa2aa987d2fb68eac4834e055b5b}{State}} = Player\+States\+::\+I\+D\+LE
+\begin{DoxyCompactList}\small\item\em Current state of the player. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_a_hero_base_a5fe93adfa73f0529276d189144266163}{State\+Events}} \mbox{\hyperlink{class_a_hero_base_a120f8a086d786bde25fa0eed0bdf003e}{State\+Event}} = State\+Events\+::\+O\+N\+\_\+\+S\+T\+A\+RT
+\begin{DoxyCompactList}\small\item\em Current state event of the player state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Hero base class for creating new heroes which can attack and have 4 abilities 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_a_hero_base_af84740ad486d7d25df90a858bafa978c}\label{class_a_hero_base_af84740ad486d7d25df90a858bafa978c}} 
+\index{AHeroBase@{AHeroBase}!PlayerStates@{PlayerStates}}
+\index{PlayerStates@{PlayerStates}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{PlayerStates}{PlayerStates}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_a_hero_base_af84740ad486d7d25df90a858bafa978c}{A\+Hero\+Base\+::\+Player\+States}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+States the hero can be in. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDLE@{IDLE}!AHeroBase@{AHeroBase}}\index{AHeroBase@{AHeroBase}!IDLE@{IDLE}}}\mbox{\Hypertarget{class_a_hero_base_af84740ad486d7d25df90a858bafa978ca99677ca5910b6e4a9fa90c99d92f672d}\label{class_a_hero_base_af84740ad486d7d25df90a858bafa978ca99677ca5910b6e4a9fa90c99d92f672d}} 
+I\+D\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ATTACKING@{ATTACKING}!AHeroBase@{AHeroBase}}\index{AHeroBase@{AHeroBase}!ATTACKING@{ATTACKING}}}\mbox{\Hypertarget{class_a_hero_base_af84740ad486d7d25df90a858bafa978ca7ab35a5752f49a3ccabb685e1679e03e}\label{class_a_hero_base_af84740ad486d7d25df90a858bafa978ca7ab35a5752f49a3ccabb685e1679e03e}} 
+A\+T\+T\+A\+C\+K\+I\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WALKING@{WALKING}!AHeroBase@{AHeroBase}}\index{AHeroBase@{AHeroBase}!WALKING@{WALKING}}}\mbox{\Hypertarget{class_a_hero_base_af84740ad486d7d25df90a858bafa978caf81e591e4d8095c3eaaf50232bcab026}\label{class_a_hero_base_af84740ad486d7d25df90a858bafa978caf81e591e4d8095c3eaaf50232bcab026}} 
+W\+A\+L\+K\+I\+NG&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_a_hero_base_a5fe93adfa73f0529276d189144266163}\label{class_a_hero_base_a5fe93adfa73f0529276d189144266163}} 
+\index{AHeroBase@{AHeroBase}!StateEvents@{StateEvents}}
+\index{StateEvents@{StateEvents}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{StateEvents}{StateEvents}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_a_hero_base_a5fe93adfa73f0529276d189144266163}{A\+Hero\+Base\+::\+State\+Events}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+All state events of the player states. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_START@{ON\_START}!AHeroBase@{AHeroBase}}\index{AHeroBase@{AHeroBase}!ON\_START@{ON\_START}}}\mbox{\Hypertarget{class_a_hero_base_a5fe93adfa73f0529276d189144266163a42110712939b467b098deb2f1cc966f5}\label{class_a_hero_base_a5fe93adfa73f0529276d189144266163a42110712939b467b098deb2f1cc966f5}} 
+O\+N\+\_\+\+S\+T\+A\+RT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_UPDATE@{ON\_UPDATE}!AHeroBase@{AHeroBase}}\index{AHeroBase@{AHeroBase}!ON\_UPDATE@{ON\_UPDATE}}}\mbox{\Hypertarget{class_a_hero_base_a5fe93adfa73f0529276d189144266163a2fa03d56cac44a3999e97f06a2afc4b4}\label{class_a_hero_base_a5fe93adfa73f0529276d189144266163a2fa03d56cac44a3999e97f06a2afc4b4}} 
+O\+N\+\_\+\+U\+P\+D\+A\+TE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_a_hero_base_aaae44a3e58b03aa6184f6db6621be8f3}\label{class_a_hero_base_aaae44a3e58b03aa6184f6db6621be8f3}} 
+\index{AHeroBase@{AHeroBase}!AHeroBase@{AHeroBase}}
+\index{AHeroBase@{AHeroBase}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AHeroBase()}{AHeroBase()}}
+{\footnotesize\ttfamily A\+Hero\+Base\+::\+A\+Hero\+Base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_hero_base_a13635cfcd00ee1279e564c90887f5389}\label{class_a_hero_base_a13635cfcd00ee1279e564c90887f5389}} 
+\index{AHeroBase@{AHeroBase}!AttackStart@{AttackStart}}
+\index{AttackStart@{AttackStart}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AttackStart()}{AttackStart()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Attack\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hero starts an attack. 
+
+\mbox{\Hypertarget{class_a_hero_base_a25d7d5b0cda5115ea81ff4be91069309}\label{class_a_hero_base_a25d7d5b0cda5115ea81ff4be91069309}} 
+\index{AHeroBase@{AHeroBase}!AttackUpdate@{AttackUpdate}}
+\index{AttackUpdate@{AttackUpdate}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AttackUpdate()}{AttackUpdate()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Attack\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hero tick function in an attack. 
+
+\mbox{\Hypertarget{class_a_hero_base_aa0d00b8bf46244c4b221fa6df940d839}\label{class_a_hero_base_aa0d00b8bf46244c4b221fa6df940d839}} 
+\index{AHeroBase@{AHeroBase}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_a_hero_base_a05e1c9292e252466b14f22fa31fbc215}\label{class_a_hero_base_a05e1c9292e252466b14f22fa31fbc215}} 
+\index{AHeroBase@{AHeroBase}!CameraZoomChanged@{CameraZoomChanged}}
+\index{CameraZoomChanged@{CameraZoomChanged}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{CameraZoomChanged()}{CameraZoomChanged()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Camera\+Zoom\+Changed (\begin{DoxyParamCaption}\item[{float}]{Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the camera zoom position depending on it\textquotesingle{}s desired direction (+1 to zoom in, -\/1 to zoom out) 
+
+\mbox{\Hypertarget{class_a_hero_base_ac45acc8586e48c1002526de66625e8cc}\label{class_a_hero_base_ac45acc8586e48c1002526de66625e8cc}} 
+\index{AHeroBase@{AHeroBase}!CancelAttack@{CancelAttack}}
+\index{CancelAttack@{CancelAttack}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{CancelAttack()}{CancelAttack()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Cancel\+Attack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Cancel attack callback function which can be overidden. 
+
+\mbox{\Hypertarget{class_a_hero_base_a927f1a67ec590e2dbcf06e9ca17b25d7}\label{class_a_hero_base_a927f1a67ec590e2dbcf06e9ca17b25d7}} 
+\index{AHeroBase@{AHeroBase}!DealDamageToTarget@{DealDamageToTarget}}
+\index{DealDamageToTarget@{DealDamageToTarget}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{DealDamageToTarget()}{DealDamageToTarget()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Deal\+Damage\+To\+Target (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Deals damage to the current target, if there is one. 
+
+\mbox{\Hypertarget{class_a_hero_base_ad0c8948d47ec91f238cd48aac0ac9c96}\label{class_a_hero_base_ad0c8948d47ec91f238cd48aac0ac9c96}} 
+\index{AHeroBase@{AHeroBase}!FellOutOfWorld@{FellOutOfWorld}}
+\index{FellOutOfWorld@{FellOutOfWorld}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{FellOutOfWorld()}{FellOutOfWorld()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Fell\+Out\+Of\+World (\begin{DoxyParamCaption}\item[{const class U\+Damage\+Type \&}]{dmg\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_a_hero_base_a8fef7a22f8cbed305180911c8568c2e0}\label{class_a_hero_base_a8fef7a22f8cbed305180911c8568c2e0}} 
+\index{AHeroBase@{AHeroBase}!GetZeroesPlayerController@{GetZeroesPlayerController}}
+\index{GetZeroesPlayerController@{GetZeroesPlayerController}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{GetZeroesPlayerController()}{GetZeroesPlayerController()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_zeroes_player_controller}{A\+Zeroes\+Player\+Controller}} $\ast$ A\+Hero\+Base\+::\+Get\+Zeroes\+Player\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Gets the current player controller. 
+
+\mbox{\Hypertarget{class_a_hero_base_acf412dbf8807fda33ef481b74575a7a3}\label{class_a_hero_base_acf412dbf8807fda33ef481b74575a7a3}} 
+\index{AHeroBase@{AHeroBase}!HandleEndedMovement@{HandleEndedMovement}}
+\index{HandleEndedMovement@{HandleEndedMovement}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{HandleEndedMovement()}{HandleEndedMovement()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Handle\+Ended\+Movement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles controller ended or reached it\textquotesingle{}s movement target. 
+
+\mbox{\Hypertarget{class_a_hero_base_ac7af036f00b40445cfdc42ee8ffbf73c}\label{class_a_hero_base_ac7af036f00b40445cfdc42ee8ffbf73c}} 
+\index{AHeroBase@{AHeroBase}!HandleReachedActor@{HandleReachedActor}}
+\index{HandleReachedActor@{HandleReachedActor}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{HandleReachedActor()}{HandleReachedActor()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Handle\+Reached\+Actor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Handles when controller has reached it\textquotesingle{}s target actor. 
+
+\mbox{\Hypertarget{class_a_hero_base_ac8dcadda3d19de5f978af8143554947f}\label{class_a_hero_base_ac8dcadda3d19de5f978af8143554947f}} 
+\index{AHeroBase@{AHeroBase}!HandleResetEngagement@{HandleResetEngagement}}
+\index{HandleResetEngagement@{HandleResetEngagement}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{HandleResetEngagement()}{HandleResetEngagement()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Handle\+Reset\+Engagement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles controller resets engagement between itself and an enemy. 
+
+\mbox{\Hypertarget{class_a_hero_base_ab49a818bc255ace55f11bf944160457e}\label{class_a_hero_base_ab49a818bc255ace55f11bf944160457e}} 
+\index{AHeroBase@{AHeroBase}!HandleStartMovement@{HandleStartMovement}}
+\index{HandleStartMovement@{HandleStartMovement}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{HandleStartMovement()}{HandleStartMovement()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Handle\+Start\+Movement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles controller beginning movement target. 
+
+\mbox{\Hypertarget{class_a_hero_base_af4e7d30e37bce5e37e66e492e880663c}\label{class_a_hero_base_af4e7d30e37bce5e37e66e492e880663c}} 
+\index{AHeroBase@{AHeroBase}!HandleTravelToActor@{HandleTravelToActor}}
+\index{HandleTravelToActor@{HandleTravelToActor}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{HandleTravelToActor()}{HandleTravelToActor()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Handle\+Travel\+To\+Actor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Handles when controller begins travelling to it\textquotesingle{}s target actor. 
+
+\mbox{\Hypertarget{class_a_hero_base_a76c8eb72d3469fe1a58caf71e7521a40}\label{class_a_hero_base_a76c8eb72d3469fe1a58caf71e7521a40}} 
+\index{AHeroBase@{AHeroBase}!IsDead@{IsDead}}
+\index{IsDead@{IsDead}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{IsDead()}{IsDead()}}
+{\footnotesize\ttfamily bool A\+Hero\+Base\+::\+Is\+Dead (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if the player/hero has died. 
+
+\mbox{\Hypertarget{class_a_hero_base_a1b8bafc3d467405650beec22147f7fae}\label{class_a_hero_base_a1b8bafc3d467405650beec22147f7fae}} 
+\index{AHeroBase@{AHeroBase}!OnAbilOneCooldownFinished@{OnAbilOneCooldownFinished}}
+\index{OnAbilOneCooldownFinished@{OnAbilOneCooldownFinished}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnAbilOneCooldownFinished()}{OnAbilOneCooldownFinished()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+On\+Abil\+One\+Cooldown\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_hero_base_a035c6f233f37cb9875fb0c2bb35b8b84}\label{class_a_hero_base_a035c6f233f37cb9875fb0c2bb35b8b84}} 
+\index{AHeroBase@{AHeroBase}!OnAbilThreeCooldownFinished@{OnAbilThreeCooldownFinished}}
+\index{OnAbilThreeCooldownFinished@{OnAbilThreeCooldownFinished}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnAbilThreeCooldownFinished()}{OnAbilThreeCooldownFinished()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+On\+Abil\+Three\+Cooldown\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_hero_base_ab01190f099d1f7617e7b58693c0c35d2}\label{class_a_hero_base_ab01190f099d1f7617e7b58693c0c35d2}} 
+\index{AHeroBase@{AHeroBase}!OnAbilTwoCooldownFinished@{OnAbilTwoCooldownFinished}}
+\index{OnAbilTwoCooldownFinished@{OnAbilTwoCooldownFinished}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnAbilTwoCooldownFinished()}{OnAbilTwoCooldownFinished()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+On\+Abil\+Two\+Cooldown\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_hero_base_aee842cf95018357174231ee764cb49e2}\label{class_a_hero_base_aee842cf95018357174231ee764cb49e2}} 
+\index{AHeroBase@{AHeroBase}!OnAttackCooldownFinished@{OnAttackCooldownFinished}}
+\index{OnAttackCooldownFinished@{OnAttackCooldownFinished}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnAttackCooldownFinished()}{OnAttackCooldownFinished()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+On\+Attack\+Cooldown\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_hero_base_a7bcb47811f14261565ba295ab5b7f085}\label{class_a_hero_base_a7bcb47811f14261565ba295ab5b7f085}} 
+\index{AHeroBase@{AHeroBase}!OnDeath@{OnDeath}}
+\index{OnDeath@{OnDeath}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnDeath()}{OnDeath()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+On\+Death (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Death callback function which can be overidden. 
+
+Enable ragdoll for mesh\mbox{\Hypertarget{class_a_hero_base_a8bb549dd108c748a33e70b639a69a205}\label{class_a_hero_base_a8bb549dd108c748a33e70b639a69a205}} 
+\index{AHeroBase@{AHeroBase}!OnUltimateCooldownFinished@{OnUltimateCooldownFinished}}
+\index{OnUltimateCooldownFinished@{OnUltimateCooldownFinished}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnUltimateCooldownFinished()}{OnUltimateCooldownFinished()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+On\+Ultimate\+Cooldown\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_hero_base_a9d250226717bf53ac53c741c400194d0}\label{class_a_hero_base_a9d250226717bf53ac53c741c400194d0}} 
+\index{AHeroBase@{AHeroBase}!RegenerateHealth@{RegenerateHealth}}
+\index{RegenerateHealth@{RegenerateHealth}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{RegenerateHealth()}{RegenerateHealth()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Regenerate\+Health (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Renegerates player health using the current delta time. 
+
+\mbox{\Hypertarget{class_a_hero_base_a5d81431d1e8ea2532c54526b23150751}\label{class_a_hero_base_a5d81431d1e8ea2532c54526b23150751}} 
+\index{AHeroBase@{AHeroBase}!ResetCameraZoom@{ResetCameraZoom}}
+\index{ResetCameraZoom@{ResetCameraZoom}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{ResetCameraZoom()}{ResetCameraZoom()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Reset\+Camera\+Zoom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Resets the current camera to it\textquotesingle{}s default zoom. 
+
+\mbox{\Hypertarget{class_a_hero_base_a2af15bdfcb2e253558f3d3ab648b9631}\label{class_a_hero_base_a2af15bdfcb2e253558f3d3ab648b9631}} 
+\index{AHeroBase@{AHeroBase}!SetState@{SetState}}
+\index{SetState@{SetState}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{SetState()}{SetState()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Set\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_hero_base_af84740ad486d7d25df90a858bafa978c}{Player\+States}}}]{new\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets the new state of the internal state machine. 
+
+\mbox{\Hypertarget{class_a_hero_base_ae69427c4d45febc1d334551ec63ae670}\label{class_a_hero_base_ae69427c4d45febc1d334551ec63ae670}} 
+\index{AHeroBase@{AHeroBase}!SetupPlayerInputComponent@{SetupPlayerInputComponent}}
+\index{SetupPlayerInputComponent@{SetupPlayerInputComponent}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{SetupPlayerInputComponent()}{SetupPlayerInputComponent()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Setup\+Player\+Input\+Component (\begin{DoxyParamCaption}\item[{class U\+Input\+Component $\ast$}]{Input\+Component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_a_hero_base_acd6ef3910183ea25d69fc8691f2179f6}\label{class_a_hero_base_acd6ef3910183ea25d69fc8691f2179f6}} 
+\index{AHeroBase@{AHeroBase}!SM\_Update@{SM\_Update}}
+\index{SM\_Update@{SM\_Update}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{SM\_Update()}{SM\_Update()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+S\+M\+\_\+\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+State machine update. 
+
+\mbox{\Hypertarget{class_a_hero_base_a0cf2427883ba1ebaed5b7d8cf507858a}\label{class_a_hero_base_a0cf2427883ba1ebaed5b7d8cf507858a}} 
+\index{AHeroBase@{AHeroBase}!TakeDamage@{TakeDamage}}
+\index{TakeDamage@{TakeDamage}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{TakeDamage()}{TakeDamage()}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Take\+Damage (\begin{DoxyParamCaption}\item[{float}]{Damage\+Amount,  }\item[{struct F\+Damage\+Event const \&}]{Damage\+Event,  }\item[{class A\+Controller $\ast$}]{Event\+Instigator,  }\item[{A\+Actor $\ast$}]{Damage\+Causer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_a_hero_base_ab6357446865009f98dc4016787a8518d}\label{class_a_hero_base_ab6357446865009f98dc4016787a8518d}} 
+\index{AHeroBase@{AHeroBase}!Tick@{Tick}}
+\index{Tick@{Tick}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Tick (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_a_zeroes_character_acec8cdf598773c338a568bfb33cc7898}{A\+Zeroes\+Character}}.
+
+\mbox{\Hypertarget{class_a_hero_base_abe0a4eae56dfbe8b2bc2c6d71269f071}\label{class_a_hero_base_abe0a4eae56dfbe8b2bc2c6d71269f071}} 
+\index{AHeroBase@{AHeroBase}!UseAbility@{UseAbility}}
+\index{UseAbility@{UseAbility}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UseAbility()}{UseAbility()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Use\+Ability (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Generic function to handle when any ability get\textquotesingle{}s used. 
+
+\mbox{\Hypertarget{class_a_hero_base_a1ba2b0eb454df1d688cfb7dc3f5d1479}\label{class_a_hero_base_a1ba2b0eb454df1d688cfb7dc3f5d1479}} 
+\index{AHeroBase@{AHeroBase}!UseAbilityOne@{UseAbilityOne}}
+\index{UseAbilityOne@{UseAbilityOne}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UseAbilityOne()}{UseAbilityOne()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Use\+Ability\+One (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_daoko_a68587515e9ab73d760917d72d88b6b4b}{A\+Daoko}}.
+
+\mbox{\Hypertarget{class_a_hero_base_a9fa4923f04b296e8b13c6c9001cb40ec}\label{class_a_hero_base_a9fa4923f04b296e8b13c6c9001cb40ec}} 
+\index{AHeroBase@{AHeroBase}!UseAbilityOnePressed@{UseAbilityOnePressed}}
+\index{UseAbilityOnePressed@{UseAbilityOnePressed}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UseAbilityOnePressed()}{UseAbilityOnePressed()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Use\+Ability\+One\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_hero_base_a17d1d693c2f6d62b3647c3e5ced7384b}\label{class_a_hero_base_a17d1d693c2f6d62b3647c3e5ced7384b}} 
+\index{AHeroBase@{AHeroBase}!UseAbilityThree@{UseAbilityThree}}
+\index{UseAbilityThree@{UseAbilityThree}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UseAbilityThree()}{UseAbilityThree()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Use\+Ability\+Three (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_daoko_a675b86af67f345aed89eb8ad55d18dcd}{A\+Daoko}}.
+
+\mbox{\Hypertarget{class_a_hero_base_ae000b609ab45224a70ca9f4c302c70ce}\label{class_a_hero_base_ae000b609ab45224a70ca9f4c302c70ce}} 
+\index{AHeroBase@{AHeroBase}!UseAbilityThreePressed@{UseAbilityThreePressed}}
+\index{UseAbilityThreePressed@{UseAbilityThreePressed}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UseAbilityThreePressed()}{UseAbilityThreePressed()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Use\+Ability\+Three\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_hero_base_ababac113ebb8fcf20f0c86e38d8ac526}\label{class_a_hero_base_ababac113ebb8fcf20f0c86e38d8ac526}} 
+\index{AHeroBase@{AHeroBase}!UseAbilityTwo@{UseAbilityTwo}}
+\index{UseAbilityTwo@{UseAbilityTwo}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UseAbilityTwo()}{UseAbilityTwo()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Use\+Ability\+Two (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_daoko_a9638bc7f56857f016cb000d0e1f13034}{A\+Daoko}}.
+
+\mbox{\Hypertarget{class_a_hero_base_ab72b72ea7f73527eb69a8bdf946d36dc}\label{class_a_hero_base_ab72b72ea7f73527eb69a8bdf946d36dc}} 
+\index{AHeroBase@{AHeroBase}!UseAbilityTwoPressed@{UseAbilityTwoPressed}}
+\index{UseAbilityTwoPressed@{UseAbilityTwoPressed}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UseAbilityTwoPressed()}{UseAbilityTwoPressed()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Use\+Ability\+Two\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_hero_base_af47143ce9bbe7e9f1223b402bba9f484}\label{class_a_hero_base_af47143ce9bbe7e9f1223b402bba9f484}} 
+\index{AHeroBase@{AHeroBase}!UseCancelCommandPressed@{UseCancelCommandPressed}}
+\index{UseCancelCommandPressed@{UseCancelCommandPressed}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UseCancelCommandPressed()}{UseCancelCommandPressed()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Use\+Cancel\+Command\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_hero_base_a539f96bcecc0b432328da16504414e00}\label{class_a_hero_base_a539f96bcecc0b432328da16504414e00}} 
+\index{AHeroBase@{AHeroBase}!UseUltimate@{UseUltimate}}
+\index{UseUltimate@{UseUltimate}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UseUltimate()}{UseUltimate()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Use\+Ultimate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_daoko_a57bc6b4b1b02e8201a7fa9f7349d12f8}{A\+Daoko}}.
+
+\mbox{\Hypertarget{class_a_hero_base_ad3b0898d064df87b4da00f17453e5cdf}\label{class_a_hero_base_ad3b0898d064df87b4da00f17453e5cdf}} 
+\index{AHeroBase@{AHeroBase}!UseUltimatePressed@{UseUltimatePressed}}
+\index{UseUltimatePressed@{UseUltimatePressed}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UseUltimatePressed()}{UseUltimatePressed()}}
+{\footnotesize\ttfamily void A\+Hero\+Base\+::\+Use\+Ultimate\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_hero_base_a16a458634b1b0ef2a353257a7c47c00d}\label{class_a_hero_base_a16a458634b1b0ef2a353257a7c47c00d}} 
+\index{AHeroBase@{AHeroBase}!AbilityOneCooldown@{AbilityOneCooldown}}
+\index{AbilityOneCooldown@{AbilityOneCooldown}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AbilityOneCooldown}{AbilityOneCooldown}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Ability\+One\+Cooldown}
+
+
+
+Total cooldown time in seconds of ability one. 
+
+\mbox{\Hypertarget{class_a_hero_base_a372c65f3852565d6ce13cc7fc4f87dfa}\label{class_a_hero_base_a372c65f3852565d6ce13cc7fc4f87dfa}} 
+\index{AHeroBase@{AHeroBase}!AbilityOneSound@{AbilityOneSound}}
+\index{AbilityOneSound@{AbilityOneSound}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AbilityOneSound}{AbilityOneSound}}
+{\footnotesize\ttfamily class U\+Sound\+Base$\ast$ A\+Hero\+Base\+::\+Ability\+One\+Sound\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Sound to play when the hero casts ability one. 
+
+\mbox{\Hypertarget{class_a_hero_base_a9320af77e6589272c0e3123e14072ab0}\label{class_a_hero_base_a9320af77e6589272c0e3123e14072ab0}} 
+\index{AHeroBase@{AHeroBase}!AbilityThreeCooldown@{AbilityThreeCooldown}}
+\index{AbilityThreeCooldown@{AbilityThreeCooldown}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AbilityThreeCooldown}{AbilityThreeCooldown}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Ability\+Three\+Cooldown}
+
+
+
+Total cooldown time in seconds of ability three. 
+
+\mbox{\Hypertarget{class_a_hero_base_a1808ae6e991188834f569382e01f23da}\label{class_a_hero_base_a1808ae6e991188834f569382e01f23da}} 
+\index{AHeroBase@{AHeroBase}!AbilityThreeSound@{AbilityThreeSound}}
+\index{AbilityThreeSound@{AbilityThreeSound}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AbilityThreeSound}{AbilityThreeSound}}
+{\footnotesize\ttfamily class U\+Sound\+Base$\ast$ A\+Hero\+Base\+::\+Ability\+Three\+Sound\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Sound to play when the hero casts ability three. 
+
+\mbox{\Hypertarget{class_a_hero_base_a4b9196e720953b429532e59d52aed8de}\label{class_a_hero_base_a4b9196e720953b429532e59d52aed8de}} 
+\index{AHeroBase@{AHeroBase}!AbilityTwoCooldown@{AbilityTwoCooldown}}
+\index{AbilityTwoCooldown@{AbilityTwoCooldown}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AbilityTwoCooldown}{AbilityTwoCooldown}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Ability\+Two\+Cooldown}
+
+
+
+Total cooldown time in seconds of ability two. 
+
+\mbox{\Hypertarget{class_a_hero_base_a498b54c41b2c46ef6cbb2e5e7fdc97e9}\label{class_a_hero_base_a498b54c41b2c46ef6cbb2e5e7fdc97e9}} 
+\index{AHeroBase@{AHeroBase}!AbilityTwoSound@{AbilityTwoSound}}
+\index{AbilityTwoSound@{AbilityTwoSound}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AbilityTwoSound}{AbilityTwoSound}}
+{\footnotesize\ttfamily class U\+Sound\+Base$\ast$ A\+Hero\+Base\+::\+Ability\+Two\+Sound\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Sound to play when the hero casts ability two. 
+
+\mbox{\Hypertarget{class_a_hero_base_adf63d36ab70cb41597da1ea3db4e08f9}\label{class_a_hero_base_adf63d36ab70cb41597da1ea3db4e08f9}} 
+\index{AHeroBase@{AHeroBase}!AbilityUltimateSound@{AbilityUltimateSound}}
+\index{AbilityUltimateSound@{AbilityUltimateSound}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AbilityUltimateSound}{AbilityUltimateSound}}
+{\footnotesize\ttfamily class U\+Sound\+Base$\ast$ A\+Hero\+Base\+::\+Ability\+Ultimate\+Sound\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Sound to play when the hero casts ulitmate. 
+
+\mbox{\Hypertarget{class_a_hero_base_a3e8d44f4d8d9e1688c8fa2189ef5d07e}\label{class_a_hero_base_a3e8d44f4d8d9e1688c8fa2189ef5d07e}} 
+\index{AHeroBase@{AHeroBase}!AttackCooldown@{AttackCooldown}}
+\index{AttackCooldown@{AttackCooldown}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AttackCooldown}{AttackCooldown}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Attack\+Cooldown}
+
+
+
+Time in seconds inbetween each attack. 
+
+\mbox{\Hypertarget{class_a_hero_base_a55dd01ff7077665f648874ae6f5ddcaf}\label{class_a_hero_base_a55dd01ff7077665f648874ae6f5ddcaf}} 
+\index{AHeroBase@{AHeroBase}!AttackDamage@{AttackDamage}}
+\index{AttackDamage@{AttackDamage}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AttackDamage}{AttackDamage}}
+{\footnotesize\ttfamily double A\+Hero\+Base\+::\+Attack\+Damage}
+
+
+
+Amount of damage to inflict per attack. 
+
+\mbox{\Hypertarget{class_a_hero_base_a6e5a43b68fed2d8b51dd29afaa7db2f0}\label{class_a_hero_base_a6e5a43b68fed2d8b51dd29afaa7db2f0}} 
+\index{AHeroBase@{AHeroBase}!AttackRange@{AttackRange}}
+\index{AttackRange@{AttackRange}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AttackRange}{AttackRange}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Attack\+Range}
+
+
+
+Amount of units inbetween hero and enemy to be able to attack. 
+
+\mbox{\Hypertarget{class_a_hero_base_a2da386cee9123de8a57cc0a427770521}\label{class_a_hero_base_a2da386cee9123de8a57cc0a427770521}} 
+\index{AHeroBase@{AHeroBase}!AttackSound@{AttackSound}}
+\index{AttackSound@{AttackSound}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{AttackSound}{AttackSound}}
+{\footnotesize\ttfamily class U\+Sound\+Base$\ast$ A\+Hero\+Base\+::\+Attack\+Sound\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Attack sound of the hero. 
+
+\mbox{\Hypertarget{class_a_hero_base_ac9864ba01470e281d32ed38044c5d7bf}\label{class_a_hero_base_ac9864ba01470e281d32ed38044c5d7bf}} 
+\index{AHeroBase@{AHeroBase}!bIsDead@{bIsDead}}
+\index{bIsDead@{bIsDead}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{bIsDead}{bIsDead}}
+{\footnotesize\ttfamily bool A\+Hero\+Base\+::b\+Is\+Dead}
+
+
+
+Is the hero dead. 
+
+\mbox{\Hypertarget{class_a_hero_base_ac4752c14b0b6069bfce0d843bf2ee485}\label{class_a_hero_base_ac4752c14b0b6069bfce0d843bf2ee485}} 
+\index{AHeroBase@{AHeroBase}!DeathSound@{DeathSound}}
+\index{DeathSound@{DeathSound}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{DeathSound}{DeathSound}}
+{\footnotesize\ttfamily class U\+Sound\+Base$\ast$ A\+Hero\+Base\+::\+Death\+Sound\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Death sound of the hero. 
+
+\mbox{\Hypertarget{class_a_hero_base_a7fe1bc00ad34ec8e9250e8539ada0994}\label{class_a_hero_base_a7fe1bc00ad34ec8e9250e8539ada0994}} 
+\index{AHeroBase@{AHeroBase}!DefaultCameraZoom@{DefaultCameraZoom}}
+\index{DefaultCameraZoom@{DefaultCameraZoom}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{DefaultCameraZoom}{DefaultCameraZoom}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Default\+Camera\+Zoom}
+
+
+
+Normal camera zoom value. 
+
+\mbox{\Hypertarget{class_a_hero_base_a504d36ca962d92da88414e841fe19341}\label{class_a_hero_base_a504d36ca962d92da88414e841fe19341}} 
+\index{AHeroBase@{AHeroBase}!m\_heroState@{m\_heroState}}
+\index{m\_heroState@{m\_heroState}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{m\_heroState}{m\_heroState}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_a_hero_state}{A\+Hero\+State}}$\ast$ A\+Hero\+Base\+::m\+\_\+hero\+State\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current hero state of the hero. 
+
+\mbox{\Hypertarget{class_a_hero_base_a3457eb066196fcf8cd2a3b1efa8177f6}\label{class_a_hero_base_a3457eb066196fcf8cd2a3b1efa8177f6}} 
+\index{AHeroBase@{AHeroBase}!m\_playerController@{m\_playerController}}
+\index{m\_playerController@{m\_playerController}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{m\_playerController}{m\_playerController}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_a_zeroes_player_controller}{A\+Zeroes\+Player\+Controller}}$\ast$ A\+Hero\+Base\+::m\+\_\+player\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current player controller of the hero. 
+
+\mbox{\Hypertarget{class_a_hero_base_a89a6e56edf7bf2dd5e728218d7ca8967}\label{class_a_hero_base_a89a6e56edf7bf2dd5e728218d7ca8967}} 
+\index{AHeroBase@{AHeroBase}!MaxCameraZoom@{MaxCameraZoom}}
+\index{MaxCameraZoom@{MaxCameraZoom}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{MaxCameraZoom}{MaxCameraZoom}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Max\+Camera\+Zoom}
+
+
+
+Maximum amount for camera zoom. 
+
+\mbox{\Hypertarget{class_a_hero_base_a21d9b361c81f8ee66c6407a38afb1c4e}\label{class_a_hero_base_a21d9b361c81f8ee66c6407a38afb1c4e}} 
+\index{AHeroBase@{AHeroBase}!MinCameraZoom@{MinCameraZoom}}
+\index{MinCameraZoom@{MinCameraZoom}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{MinCameraZoom}{MinCameraZoom}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Min\+Camera\+Zoom}
+
+
+
+Minimum amount for camera zoom. 
+
+\mbox{\Hypertarget{class_a_hero_base_a186e524868b861f548f1574c87765f0a}\label{class_a_hero_base_a186e524868b861f548f1574c87765f0a}} 
+\index{AHeroBase@{AHeroBase}!OnBeginAbility@{OnBeginAbility}}
+\index{OnBeginAbility@{OnBeginAbility}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnBeginAbility}{OnBeginAbility}}
+{\footnotesize\ttfamily F\+Hero\+Begin\+Ability\+Signature A\+Hero\+Base\+::\+On\+Begin\+Ability}
+
+
+
+Event for when the hero begins an ability, contains the ability index starting from 0. 
+
+\mbox{\Hypertarget{class_a_hero_base_a9d69a624a29224381de7d59705a88867}\label{class_a_hero_base_a9d69a624a29224381de7d59705a88867}} 
+\index{AHeroBase@{AHeroBase}!OnBeginAttacking@{OnBeginAttacking}}
+\index{OnBeginAttacking@{OnBeginAttacking}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnBeginAttacking}{OnBeginAttacking}}
+{\footnotesize\ttfamily F\+Hero\+Begin\+Attack\+Signature A\+Hero\+Base\+::\+On\+Begin\+Attacking}
+
+
+
+Event for when the hero begins attacking an enemy. 
+
+\mbox{\Hypertarget{class_a_hero_base_acce7e855797b3e59e20054542b8b5677}\label{class_a_hero_base_acce7e855797b3e59e20054542b8b5677}} 
+\index{AHeroBase@{AHeroBase}!OnCancelAttacking@{OnCancelAttacking}}
+\index{OnCancelAttacking@{OnCancelAttacking}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnCancelAttacking}{OnCancelAttacking}}
+{\footnotesize\ttfamily F\+Hero\+Cancel\+Attacking\+Signature A\+Hero\+Base\+::\+On\+Cancel\+Attacking}
+
+
+
+Event for when the hero cancels it\textquotesingle{}s current attack. 
+
+\mbox{\Hypertarget{class_a_hero_base_ac9cb3cf315db01e2fad99cea09f442e8}\label{class_a_hero_base_ac9cb3cf315db01e2fad99cea09f442e8}} 
+\index{AHeroBase@{AHeroBase}!OnCompleteAbility@{OnCompleteAbility}}
+\index{OnCompleteAbility@{OnCompleteAbility}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnCompleteAbility}{OnCompleteAbility}}
+{\footnotesize\ttfamily F\+Hero\+Complete\+Ability\+Signature A\+Hero\+Base\+::\+On\+Complete\+Ability}
+
+
+
+Event for when the hero finishes an ability, contains the ability index starting from 0. 
+
+\mbox{\Hypertarget{class_a_hero_base_a0c8aea849a3ed187d4c1e3e2b8a616d8}\label{class_a_hero_base_a0c8aea849a3ed187d4c1e3e2b8a616d8}} 
+\index{AHeroBase@{AHeroBase}!OnCompletedAttacking@{OnCompletedAttacking}}
+\index{OnCompletedAttacking@{OnCompletedAttacking}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnCompletedAttacking}{OnCompletedAttacking}}
+{\footnotesize\ttfamily F\+Hero\+Complete\+Attack\+Signature A\+Hero\+Base\+::\+On\+Completed\+Attacking}
+
+
+
+Event for when the hero completes. 
+
+\mbox{\Hypertarget{class_a_hero_base_a10038098ea528609759acc765e25d549}\label{class_a_hero_base_a10038098ea528609759acc765e25d549}} 
+\index{AHeroBase@{AHeroBase}!OnHeroDeath@{OnHeroDeath}}
+\index{OnHeroDeath@{OnHeroDeath}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{OnHeroDeath}{OnHeroDeath}}
+{\footnotesize\ttfamily F\+Hero\+Death\+Signature A\+Hero\+Base\+::\+On\+Hero\+Death}
+
+
+
+Event for when the hero dies. 
+
+\mbox{\Hypertarget{class_a_hero_base_ace54fa2aa987d2fb68eac4834e055b5b}\label{class_a_hero_base_ace54fa2aa987d2fb68eac4834e055b5b}} 
+\index{AHeroBase@{AHeroBase}!State@{State}}
+\index{State@{State}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_hero_base_af84740ad486d7d25df90a858bafa978c}{Player\+States}} A\+Hero\+Base\+::\+State = Player\+States\+::\+I\+D\+LE\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current state of the player. 
+
+\mbox{\Hypertarget{class_a_hero_base_a120f8a086d786bde25fa0eed0bdf003e}\label{class_a_hero_base_a120f8a086d786bde25fa0eed0bdf003e}} 
+\index{AHeroBase@{AHeroBase}!StateEvent@{StateEvent}}
+\index{StateEvent@{StateEvent}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{StateEvent}{StateEvent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_hero_base_a5fe93adfa73f0529276d189144266163}{State\+Events}} A\+Hero\+Base\+::\+State\+Event = State\+Events\+::\+O\+N\+\_\+\+S\+T\+A\+RT\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current state event of the player state. 
+
+\mbox{\Hypertarget{class_a_hero_base_abee004cc0b5510c9488607f913170151}\label{class_a_hero_base_abee004cc0b5510c9488607f913170151}} 
+\index{AHeroBase@{AHeroBase}!TimerHandle\_AbilityOneCooldown@{TimerHandle\_AbilityOneCooldown}}
+\index{TimerHandle\_AbilityOneCooldown@{TimerHandle\_AbilityOneCooldown}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{TimerHandle\_AbilityOneCooldown}{TimerHandle\_AbilityOneCooldown}}
+{\footnotesize\ttfamily F\+Timer\+Handle A\+Hero\+Base\+::\+Timer\+Handle\+\_\+\+Ability\+One\+Cooldown\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Timer\+Handle to control the current cooldown of ability one. 
+
+\mbox{\Hypertarget{class_a_hero_base_a5a566cec412787e4797a0e9dc9dc778e}\label{class_a_hero_base_a5a566cec412787e4797a0e9dc9dc778e}} 
+\index{AHeroBase@{AHeroBase}!TimerHandle\_AbilityThreeCooldown@{TimerHandle\_AbilityThreeCooldown}}
+\index{TimerHandle\_AbilityThreeCooldown@{TimerHandle\_AbilityThreeCooldown}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{TimerHandle\_AbilityThreeCooldown}{TimerHandle\_AbilityThreeCooldown}}
+{\footnotesize\ttfamily F\+Timer\+Handle A\+Hero\+Base\+::\+Timer\+Handle\+\_\+\+Ability\+Three\+Cooldown\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Timer\+Handle to control the current cooldown of ability three. 
+
+\mbox{\Hypertarget{class_a_hero_base_aedeab9e5e79e6453134cc25258499457}\label{class_a_hero_base_aedeab9e5e79e6453134cc25258499457}} 
+\index{AHeroBase@{AHeroBase}!TimerHandle\_AbilityTwoCooldown@{TimerHandle\_AbilityTwoCooldown}}
+\index{TimerHandle\_AbilityTwoCooldown@{TimerHandle\_AbilityTwoCooldown}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{TimerHandle\_AbilityTwoCooldown}{TimerHandle\_AbilityTwoCooldown}}
+{\footnotesize\ttfamily F\+Timer\+Handle A\+Hero\+Base\+::\+Timer\+Handle\+\_\+\+Ability\+Two\+Cooldown\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Timer\+Handle to control the current cooldown of ability two. 
+
+\mbox{\Hypertarget{class_a_hero_base_ab48b89b992ce96c1bedb20106be8cac8}\label{class_a_hero_base_ab48b89b992ce96c1bedb20106be8cac8}} 
+\index{AHeroBase@{AHeroBase}!TimerHandle\_AttackCooldown@{TimerHandle\_AttackCooldown}}
+\index{TimerHandle\_AttackCooldown@{TimerHandle\_AttackCooldown}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{TimerHandle\_AttackCooldown}{TimerHandle\_AttackCooldown}}
+{\footnotesize\ttfamily F\+Timer\+Handle A\+Hero\+Base\+::\+Timer\+Handle\+\_\+\+Attack\+Cooldown\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+/// Timer\+Handle to control the current cooldown of the current attack 
+
+\mbox{\Hypertarget{class_a_hero_base_ab084538e94ea9a600d97eac5754b8baa}\label{class_a_hero_base_ab084538e94ea9a600d97eac5754b8baa}} 
+\index{AHeroBase@{AHeroBase}!TimerHandle\_UltimateCooldown@{TimerHandle\_UltimateCooldown}}
+\index{TimerHandle\_UltimateCooldown@{TimerHandle\_UltimateCooldown}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{TimerHandle\_UltimateCooldown}{TimerHandle\_UltimateCooldown}}
+{\footnotesize\ttfamily F\+Timer\+Handle A\+Hero\+Base\+::\+Timer\+Handle\+\_\+\+Ultimate\+Cooldown\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Timer\+Handle to control the current cooldown of ulitmate. 
+
+\mbox{\Hypertarget{class_a_hero_base_aaf1cf46f30a2cc160003db4dd84f6bf5}\label{class_a_hero_base_aaf1cf46f30a2cc160003db4dd84f6bf5}} 
+\index{AHeroBase@{AHeroBase}!UltimateCooldown@{UltimateCooldown}}
+\index{UltimateCooldown@{UltimateCooldown}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{UltimateCooldown}{UltimateCooldown}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Ultimate\+Cooldown}
+
+
+
+Total cooldown time in seconds of ulitmate. 
+
+\mbox{\Hypertarget{class_a_hero_base_a3b6e421e22aa4c7c36f768b815fb1b31}\label{class_a_hero_base_a3b6e421e22aa4c7c36f768b815fb1b31}} 
+\index{AHeroBase@{AHeroBase}!WalkLoopDelay@{WalkLoopDelay}}
+\index{WalkLoopDelay@{WalkLoopDelay}!AHeroBase@{AHeroBase}}
+\doxysubsubsection{\texorpdfstring{WalkLoopDelay}{WalkLoopDelay}}
+{\footnotesize\ttfamily float A\+Hero\+Base\+::\+Walk\+Loop\+Delay}
+
+
+
+Amount of time in seconds to play foot steps. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Zeroes/\+Heroes/\mbox{\hyperlink{_hero_base_8h}{Hero\+Base.\+h}}\item 
+Source/\+Zeroes/\+Heroes/\mbox{\hyperlink{_hero_base_8cpp}{Hero\+Base.\+cpp}}\end{DoxyCompactItemize}

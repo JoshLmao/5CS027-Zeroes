@@ -7,7 +7,7 @@
 #include "AnimNotify_HeroStepSound.generated.h"
 
 /**
- * 
+ * AnimNotify of when to play the WalkSound of a walking/jog animation
  */
 UCLASS()
 class ZEROES_API UAnimNotify_HeroStepSound : public UAnimNotify

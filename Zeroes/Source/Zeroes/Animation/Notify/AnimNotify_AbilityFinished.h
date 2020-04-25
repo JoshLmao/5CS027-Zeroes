@@ -7,7 +7,7 @@
 #include "AnimNotify_AbilityFinished.generated.h"
 
 /**
- * 
+ * Animation Notify of once an ability is finished, using it's AbilityIndex (starting from 0)
  */
 UCLASS()
 class ZEROES_API UAnimNotify_AbilityFinished : public UAnimNotify

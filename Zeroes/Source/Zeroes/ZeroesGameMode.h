@@ -6,6 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "ZeroesGameMode.generated.h"
 
+/* Main game mode of Zeroes level. Listens for win/loss
+*/
 UCLASS(minimalapi)
 class AZeroesGameMode : public AGameModeBase
 {
@@ -27,9 +29,11 @@ private:
 	/// Instance of Win widget displayed once game is won
 	class UUserWidget* WinWidget;
 
+	/// Function to listen to when the player dies in the level, invoking a "loss"
 	UFUNCTION()
 	void OnPlayerDeath();
 
+	/// Function to listen to when the main leader of the level dies, invoking a "win"
 	UFUNCTION()
 	void OnLeaderDeath();
 

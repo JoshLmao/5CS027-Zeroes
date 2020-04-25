@@ -1,0 +1,229 @@
+\hypertarget{class_a_arc_dagger}{}\doxysection{A\+Arc\+Dagger Class Reference}
+\label{class_a_arc_dagger}\index{AArcDagger@{AArcDagger}}
+
+
+{\ttfamily \#include $<$Arc\+Dagger.\+h$>$}
+
+Inheritance diagram for A\+Arc\+Dagger\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_arc_dagger}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_arc_dagger_afa61edab1f1d0cc99854748a27578547}{A\+Arc\+Dagger}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_arc_dagger_a6e2fcc09cf5a5d41ca05ee9141d8d968}{Tick}} (float Delta\+Time) override
+\item 
+void \mbox{\hyperlink{class_a_arc_dagger_a52c61845e62c833574d16f721782b412}{On\+Overlap\+Begin}} (U\+Primitive\+Component $\ast$Overlapped\+Component, A\+Actor $\ast$Other\+Actor, U\+Primitive\+Component $\ast$Other\+Comp, int32 Other\+Body\+Index, bool b\+From\+Sweep, const F\+Hit\+Result \&Sweep\+Result)
+\begin{DoxyCompactList}\small\item\em Overlap function to listen to the capsule component\textquotesingle{}s On\+Component\+Overlap\+Begin. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_arc_dagger_a1347114dc81dbef3fa45d00d95b622a2}{Get\+Damage}} ()
+\begin{DoxyCompactList}\small\item\em Gets current damage that collided enemy will recieve. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_arc_dagger_ac6c435ed967995d314a35b8a0dfc9e6b}{Set\+Damage}} (float dmg)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_a_arc_dagger_a1cd67ac34f5ec10c2577d065ad428d46}{Arc\+Speed}}
+\begin{DoxyCompactList}\small\item\em Speed to go around the arc. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_arc_dagger_aac4060a1ffe594264468644da0722d68}{Max\+Distance}}
+\begin{DoxyCompactList}\small\item\em Maximum ability distance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_arc_dagger_a343f2aebe28b8b3a43b902731250f208}{Begin\+Play}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}} $\ast$ \mbox{\hyperlink{class_a_arc_dagger_a250bcf22d43b52a97286c396606eb292}{Find\+Enemy}} ()
+\begin{DoxyCompactList}\small\item\em Finds an enemy to arc toward and deal damage. \end{DoxyCompactList}\item 
+F\+Vector \mbox{\hyperlink{class_a_arc_dagger_a5dfe2a2e9b5318a5131a091ac3294fb3}{Quadratic\+Get\+Point}} (float alpha, F\+Vector from, F\+Vector arc\+To, F\+Vector to)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class U\+Capsule\+Component $\ast$ \mbox{\hyperlink{class_a_arc_dagger_a1da59148119811fbde5ffdda763fd622}{m\+\_\+capsule}}
+\begin{DoxyCompactList}\small\item\em Root component, capsule component. \end{DoxyCompactList}\item 
+class U\+Static\+Mesh\+Component $\ast$ \mbox{\hyperlink{class_a_arc_dagger_a85a4a145890380c509d4cb454c815ddb}{m\+\_\+mesh}}
+\begin{DoxyCompactList}\small\item\em Visual mesh of the dagger. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_arc_dagger_a86505732e7a0f2f32362f780bd4265ac}{m\+\_\+damage}}
+\begin{DoxyCompactList}\small\item\em Amount of damage the dagger will give to the enemy. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}} $\ast$ \mbox{\hyperlink{class_a_arc_dagger_a54a21c3df0e447b3405a33105b9f75b8}{m\+\_\+target\+Enemy}}
+\begin{DoxyCompactList}\small\item\em Current target enemy. \end{DoxyCompactList}\item 
+F\+Vector \mbox{\hyperlink{class_a_arc_dagger_a6fd7288fe826c840aad1de825a364d37}{m\+\_\+start\+Position}}
+\begin{DoxyCompactList}\small\item\em Starting spawn position to arc from. \end{DoxyCompactList}\item 
+F\+Vector \mbox{\hyperlink{class_a_arc_dagger_af1adf9839095f723dff66803b946c3e5}{m\+\_\+arc\+To\+Position}}
+\begin{DoxyCompactList}\small\item\em Position to arc out toward. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_arc_dagger_a83eff128a346167cf8546a22ef70b521}{m\+\_\+arc\+Alpha}}
+\begin{DoxyCompactList}\small\item\em Current alpha value which determines the current position alog the arc. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Arc Dagger Ability Actor Determines the nearest \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}} actor and flies toward it in an arc. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_a_arc_dagger_afa61edab1f1d0cc99854748a27578547}\label{class_a_arc_dagger_afa61edab1f1d0cc99854748a27578547}} 
+\index{AArcDagger@{AArcDagger}!AArcDagger@{AArcDagger}}
+\index{AArcDagger@{AArcDagger}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{AArcDagger()}{AArcDagger()}}
+{\footnotesize\ttfamily A\+Arc\+Dagger\+::\+A\+Arc\+Dagger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_arc_dagger_a343f2aebe28b8b3a43b902731250f208}\label{class_a_arc_dagger_a343f2aebe28b8b3a43b902731250f208}} 
+\index{AArcDagger@{AArcDagger}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void A\+Arc\+Dagger\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_a_arc_dagger_a250bcf22d43b52a97286c396606eb292}\label{class_a_arc_dagger_a250bcf22d43b52a97286c396606eb292}} 
+\index{AArcDagger@{AArcDagger}!FindEnemy@{FindEnemy}}
+\index{FindEnemy@{FindEnemy}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{FindEnemy()}{FindEnemy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}} $\ast$ A\+Arc\+Dagger\+::\+Find\+Enemy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Finds an enemy to arc toward and deal damage. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a1347114dc81dbef3fa45d00d95b622a2}\label{class_a_arc_dagger_a1347114dc81dbef3fa45d00d95b622a2}} 
+\index{AArcDagger@{AArcDagger}!GetDamage@{GetDamage}}
+\index{GetDamage@{GetDamage}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{GetDamage()}{GetDamage()}}
+{\footnotesize\ttfamily float A\+Arc\+Dagger\+::\+Get\+Damage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets current damage that collided enemy will recieve. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a52c61845e62c833574d16f721782b412}\label{class_a_arc_dagger_a52c61845e62c833574d16f721782b412}} 
+\index{AArcDagger@{AArcDagger}!OnOverlapBegin@{OnOverlapBegin}}
+\index{OnOverlapBegin@{OnOverlapBegin}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{OnOverlapBegin()}{OnOverlapBegin()}}
+{\footnotesize\ttfamily void A\+Arc\+Dagger\+::\+On\+Overlap\+Begin (\begin{DoxyParamCaption}\item[{U\+Primitive\+Component $\ast$}]{Overlapped\+Component,  }\item[{A\+Actor $\ast$}]{Other\+Actor,  }\item[{U\+Primitive\+Component $\ast$}]{Other\+Comp,  }\item[{int32}]{Other\+Body\+Index,  }\item[{bool}]{b\+From\+Sweep,  }\item[{const F\+Hit\+Result \&}]{Sweep\+Result }\end{DoxyParamCaption})}
+
+
+
+Overlap function to listen to the capsule component\textquotesingle{}s On\+Component\+Overlap\+Begin. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a5dfe2a2e9b5318a5131a091ac3294fb3}\label{class_a_arc_dagger_a5dfe2a2e9b5318a5131a091ac3294fb3}} 
+\index{AArcDagger@{AArcDagger}!QuadraticGetPoint@{QuadraticGetPoint}}
+\index{QuadraticGetPoint@{QuadraticGetPoint}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{QuadraticGetPoint()}{QuadraticGetPoint()}}
+{\footnotesize\ttfamily F\+Vector A\+Arc\+Dagger\+::\+Quadratic\+Get\+Point (\begin{DoxyParamCaption}\item[{float}]{alpha,  }\item[{F\+Vector}]{from,  }\item[{F\+Vector}]{arc\+To,  }\item[{F\+Vector}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Gets the relevant position along a spline from the \textquotesingle{}From\textquotesingle{} vector to the \textquotesingle{}to\textquotesingle{} vector, using the \textquotesingle{}arc\+To\textquotesingle{} vector to control where to arc to \mbox{\Hypertarget{class_a_arc_dagger_ac6c435ed967995d314a35b8a0dfc9e6b}\label{class_a_arc_dagger_ac6c435ed967995d314a35b8a0dfc9e6b}} 
+\index{AArcDagger@{AArcDagger}!SetDamage@{SetDamage}}
+\index{SetDamage@{SetDamage}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{SetDamage()}{SetDamage()}}
+{\footnotesize\ttfamily void A\+Arc\+Dagger\+::\+Set\+Damage (\begin{DoxyParamCaption}\item[{float}]{dmg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_a_arc_dagger_a6e2fcc09cf5a5d41ca05ee9141d8d968}\label{class_a_arc_dagger_a6e2fcc09cf5a5d41ca05ee9141d8d968}} 
+\index{AArcDagger@{AArcDagger}!Tick@{Tick}}
+\index{Tick@{Tick}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily void A\+Arc\+Dagger\+::\+Tick (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_arc_dagger_a1cd67ac34f5ec10c2577d065ad428d46}\label{class_a_arc_dagger_a1cd67ac34f5ec10c2577d065ad428d46}} 
+\index{AArcDagger@{AArcDagger}!ArcSpeed@{ArcSpeed}}
+\index{ArcSpeed@{ArcSpeed}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{ArcSpeed}{ArcSpeed}}
+{\footnotesize\ttfamily float A\+Arc\+Dagger\+::\+Arc\+Speed}
+
+
+
+Speed to go around the arc. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a83eff128a346167cf8546a22ef70b521}\label{class_a_arc_dagger_a83eff128a346167cf8546a22ef70b521}} 
+\index{AArcDagger@{AArcDagger}!m\_arcAlpha@{m\_arcAlpha}}
+\index{m\_arcAlpha@{m\_arcAlpha}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{m\_arcAlpha}{m\_arcAlpha}}
+{\footnotesize\ttfamily float A\+Arc\+Dagger\+::m\+\_\+arc\+Alpha\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current alpha value which determines the current position alog the arc. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_af1adf9839095f723dff66803b946c3e5}\label{class_a_arc_dagger_af1adf9839095f723dff66803b946c3e5}} 
+\index{AArcDagger@{AArcDagger}!m\_arcToPosition@{m\_arcToPosition}}
+\index{m\_arcToPosition@{m\_arcToPosition}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{m\_arcToPosition}{m\_arcToPosition}}
+{\footnotesize\ttfamily F\+Vector A\+Arc\+Dagger\+::m\+\_\+arc\+To\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position to arc out toward. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a1da59148119811fbde5ffdda763fd622}\label{class_a_arc_dagger_a1da59148119811fbde5ffdda763fd622}} 
+\index{AArcDagger@{AArcDagger}!m\_capsule@{m\_capsule}}
+\index{m\_capsule@{m\_capsule}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{m\_capsule}{m\_capsule}}
+{\footnotesize\ttfamily class U\+Capsule\+Component$\ast$ A\+Arc\+Dagger\+::m\+\_\+capsule\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Root component, capsule component. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a86505732e7a0f2f32362f780bd4265ac}\label{class_a_arc_dagger_a86505732e7a0f2f32362f780bd4265ac}} 
+\index{AArcDagger@{AArcDagger}!m\_damage@{m\_damage}}
+\index{m\_damage@{m\_damage}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{m\_damage}{m\_damage}}
+{\footnotesize\ttfamily float A\+Arc\+Dagger\+::m\+\_\+damage\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Amount of damage the dagger will give to the enemy. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a85a4a145890380c509d4cb454c815ddb}\label{class_a_arc_dagger_a85a4a145890380c509d4cb454c815ddb}} 
+\index{AArcDagger@{AArcDagger}!m\_mesh@{m\_mesh}}
+\index{m\_mesh@{m\_mesh}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{m\_mesh}{m\_mesh}}
+{\footnotesize\ttfamily class U\+Static\+Mesh\+Component$\ast$ A\+Arc\+Dagger\+::m\+\_\+mesh\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Visual mesh of the dagger. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a6fd7288fe826c840aad1de825a364d37}\label{class_a_arc_dagger_a6fd7288fe826c840aad1de825a364d37}} 
+\index{AArcDagger@{AArcDagger}!m\_startPosition@{m\_startPosition}}
+\index{m\_startPosition@{m\_startPosition}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{m\_startPosition}{m\_startPosition}}
+{\footnotesize\ttfamily F\+Vector A\+Arc\+Dagger\+::m\+\_\+start\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Starting spawn position to arc from. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a54a21c3df0e447b3405a33105b9f75b8}\label{class_a_arc_dagger_a54a21c3df0e447b3405a33105b9f75b8}} 
+\index{AArcDagger@{AArcDagger}!m\_targetEnemy@{m\_targetEnemy}}
+\index{m\_targetEnemy@{m\_targetEnemy}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{m\_targetEnemy}{m\_targetEnemy}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}}$\ast$ A\+Arc\+Dagger\+::m\+\_\+target\+Enemy\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current target enemy. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_aac4060a1ffe594264468644da0722d68}\label{class_a_arc_dagger_aac4060a1ffe594264468644da0722d68}} 
+\index{AArcDagger@{AArcDagger}!MaxDistance@{MaxDistance}}
+\index{MaxDistance@{MaxDistance}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{MaxDistance}{MaxDistance}}
+{\footnotesize\ttfamily float A\+Arc\+Dagger\+::\+Max\+Distance}
+
+
+
+Maximum ability distance. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Zeroes/\+Heroes/\+Daoko/\mbox{\hyperlink{_arc_dagger_8h}{Arc\+Dagger.\+h}}\item 
+Source/\+Zeroes/\+Heroes/\+Daoko/\mbox{\hyperlink{_arc_dagger_8cpp}{Arc\+Dagger.\+cpp}}\end{DoxyCompactItemize}

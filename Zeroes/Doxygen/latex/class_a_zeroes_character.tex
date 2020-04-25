@@ -1,0 +1,162 @@
+\hypertarget{class_a_zeroes_character}{}\doxysection{A\+Zeroes\+Character Class Reference}
+\label{class_a_zeroes_character}\index{AZeroesCharacter@{AZeroesCharacter}}
+
+
+{\ttfamily \#include $<$Zeroes\+Character.\+h$>$}
+
+Inheritance diagram for A\+Zeroes\+Character\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_a_zeroes_character}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_zeroes_character_aee0ff99530494fd82b50eb114da2cf33}{A\+Zeroes\+Character}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_zeroes_character_acec8cdf598773c338a568bfb33cc7898}{Tick}} (float Delta\+Seconds) override
+\item 
+F\+O\+R\+C\+E\+I\+N\+L\+I\+NE class U\+Camera\+Component $\ast$ \mbox{\hyperlink{class_a_zeroes_character_a37777a258937ec9157b06e0a73dcd138}{Get\+Top\+Down\+Camera\+Component}} () const
+\item 
+F\+O\+R\+C\+E\+I\+N\+L\+I\+NE class U\+Spring\+Arm\+Component $\ast$ \mbox{\hyperlink{class_a_zeroes_character_a15d410713843af76e1295fcbd6d6a279}{Get\+Camera\+Boom}} () const
+\item 
+F\+O\+R\+C\+E\+I\+N\+L\+I\+NE class U\+Decal\+Component $\ast$ \mbox{\hyperlink{class_a_zeroes_character_acc7120992b7f8ae42b76a10cd00b1d0c}{Get\+Cursor\+To\+World}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_zeroes_character_a7818d07c88b578924d2d9e805ee27454}{Set\+Prevent\+Movement}} (bool should\+Prevent\+Movement)
+\begin{DoxyCompactList}\small\item\em Sets if the character should prevent movement from the player. Stops any movement if true. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class U\+Camera\+Component $\ast$ \mbox{\hyperlink{class_a_zeroes_character_af47fad0473f509c2ed42534e1e2658d9}{Top\+Down\+Camera\+Component}}
+\item 
+class U\+Spring\+Arm\+Component $\ast$ \mbox{\hyperlink{class_a_zeroes_character_a92e82d5d893b9cc43fa6944a07e16525}{Camera\+Boom}}
+\item 
+class U\+Decal\+Component $\ast$ \mbox{\hyperlink{class_a_zeroes_character_ac2114b2e507ef8ac9cb95b9752c18ca2}{Cursor\+To\+World}}
+\item 
+A\+Actor $\ast$ \mbox{\hyperlink{class_a_zeroes_character_a2b8cf61b78325fc9b2c7eb0debdb1257}{Destination\+Actor}}
+\begin{DoxyCompactList}\small\item\em Current actor selected to walk towards. \end{DoxyCompactList}\item 
+F\+Vector \mbox{\hyperlink{class_a_zeroes_character_a460701bad4162923065706072f7b9a1e}{Current\+Mouse\+World\+Position}}
+\begin{DoxyCompactList}\small\item\em Current world position where the mouse hits the world. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_zeroes_character_af9480ba4d5a598bdb69207cd17f74afb}{Check\+For\+Blocking\+Actor}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class U\+Material\+Instance\+Dynamic $\ast$ \mbox{\hyperlink{class_a_zeroes_character_a7e813390f5fa5b649219f2df00adf29f}{decal\+Dynamic\+Material}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_a_zeroes_character_aee0ff99530494fd82b50eb114da2cf33}\label{class_a_zeroes_character_aee0ff99530494fd82b50eb114da2cf33}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!AZeroesCharacter@{AZeroesCharacter}}
+\index{AZeroesCharacter@{AZeroesCharacter}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{AZeroesCharacter()}{AZeroesCharacter()}}
+{\footnotesize\ttfamily A\+Zeroes\+Character\+::\+A\+Zeroes\+Character (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_zeroes_character_af9480ba4d5a598bdb69207cd17f74afb}\label{class_a_zeroes_character_af9480ba4d5a598bdb69207cd17f74afb}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!CheckForBlockingActor@{CheckForBlockingActor}}
+\index{CheckForBlockingActor@{CheckForBlockingActor}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{CheckForBlockingActor()}{CheckForBlockingActor()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Character\+::\+Check\+For\+Blocking\+Actor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_zeroes_character_a15d410713843af76e1295fcbd6d6a279}\label{class_a_zeroes_character_a15d410713843af76e1295fcbd6d6a279}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!GetCameraBoom@{GetCameraBoom}}
+\index{GetCameraBoom@{GetCameraBoom}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{GetCameraBoom()}{GetCameraBoom()}}
+{\footnotesize\ttfamily F\+O\+R\+C\+E\+I\+N\+L\+I\+NE class U\+Spring\+Arm\+Component$\ast$ A\+Zeroes\+Character\+::\+Get\+Camera\+Boom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns Camera\+Boom subobject \mbox{\Hypertarget{class_a_zeroes_character_acc7120992b7f8ae42b76a10cd00b1d0c}\label{class_a_zeroes_character_acc7120992b7f8ae42b76a10cd00b1d0c}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!GetCursorToWorld@{GetCursorToWorld}}
+\index{GetCursorToWorld@{GetCursorToWorld}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{GetCursorToWorld()}{GetCursorToWorld()}}
+{\footnotesize\ttfamily F\+O\+R\+C\+E\+I\+N\+L\+I\+NE class U\+Decal\+Component$\ast$ A\+Zeroes\+Character\+::\+Get\+Cursor\+To\+World (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns Cursor\+To\+World subobject \mbox{\Hypertarget{class_a_zeroes_character_a37777a258937ec9157b06e0a73dcd138}\label{class_a_zeroes_character_a37777a258937ec9157b06e0a73dcd138}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!GetTopDownCameraComponent@{GetTopDownCameraComponent}}
+\index{GetTopDownCameraComponent@{GetTopDownCameraComponent}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{GetTopDownCameraComponent()}{GetTopDownCameraComponent()}}
+{\footnotesize\ttfamily F\+O\+R\+C\+E\+I\+N\+L\+I\+NE class U\+Camera\+Component$\ast$ A\+Zeroes\+Character\+::\+Get\+Top\+Down\+Camera\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns Top\+Down\+Camera\+Component subobject \mbox{\Hypertarget{class_a_zeroes_character_a7818d07c88b578924d2d9e805ee27454}\label{class_a_zeroes_character_a7818d07c88b578924d2d9e805ee27454}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!SetPreventMovement@{SetPreventMovement}}
+\index{SetPreventMovement@{SetPreventMovement}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{SetPreventMovement()}{SetPreventMovement()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Character\+::\+Set\+Prevent\+Movement (\begin{DoxyParamCaption}\item[{bool}]{should\+Prevent\+Movement }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Sets if the character should prevent movement from the player. Stops any movement if true. 
+
+\mbox{\Hypertarget{class_a_zeroes_character_acec8cdf598773c338a568bfb33cc7898}\label{class_a_zeroes_character_acec8cdf598773c338a568bfb33cc7898}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!Tick@{Tick}}
+\index{Tick@{Tick}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily void A\+Zeroes\+Character\+::\+Tick (\begin{DoxyParamCaption}\item[{float}]{Delta\+Seconds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_hero_base_ab6357446865009f98dc4016787a8518d}{A\+Hero\+Base}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_zeroes_character_a92e82d5d893b9cc43fa6944a07e16525}\label{class_a_zeroes_character_a92e82d5d893b9cc43fa6944a07e16525}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!CameraBoom@{CameraBoom}}
+\index{CameraBoom@{CameraBoom}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{CameraBoom}{CameraBoom}}
+{\footnotesize\ttfamily class U\+Spring\+Arm\+Component$\ast$ A\+Zeroes\+Character\+::\+Camera\+Boom\hspace{0.3cm}{\ttfamily [protected]}}
+
+Camera boom positioning the camera above the character \mbox{\Hypertarget{class_a_zeroes_character_a460701bad4162923065706072f7b9a1e}\label{class_a_zeroes_character_a460701bad4162923065706072f7b9a1e}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!CurrentMouseWorldPosition@{CurrentMouseWorldPosition}}
+\index{CurrentMouseWorldPosition@{CurrentMouseWorldPosition}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{CurrentMouseWorldPosition}{CurrentMouseWorldPosition}}
+{\footnotesize\ttfamily F\+Vector A\+Zeroes\+Character\+::\+Current\+Mouse\+World\+Position\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Current world position where the mouse hits the world. 
+
+\mbox{\Hypertarget{class_a_zeroes_character_ac2114b2e507ef8ac9cb95b9752c18ca2}\label{class_a_zeroes_character_ac2114b2e507ef8ac9cb95b9752c18ca2}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!CursorToWorld@{CursorToWorld}}
+\index{CursorToWorld@{CursorToWorld}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{CursorToWorld}{CursorToWorld}}
+{\footnotesize\ttfamily class U\+Decal\+Component$\ast$ A\+Zeroes\+Character\+::\+Cursor\+To\+World\hspace{0.3cm}{\ttfamily [protected]}}
+
+A decal that projects to the cursor location. \mbox{\Hypertarget{class_a_zeroes_character_a7e813390f5fa5b649219f2df00adf29f}\label{class_a_zeroes_character_a7e813390f5fa5b649219f2df00adf29f}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!decalDynamicMaterial@{decalDynamicMaterial}}
+\index{decalDynamicMaterial@{decalDynamicMaterial}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{decalDynamicMaterial}{decalDynamicMaterial}}
+{\footnotesize\ttfamily class U\+Material\+Instance\+Dynamic$\ast$ A\+Zeroes\+Character\+::decal\+Dynamic\+Material\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_a_zeroes_character_a2b8cf61b78325fc9b2c7eb0debdb1257}\label{class_a_zeroes_character_a2b8cf61b78325fc9b2c7eb0debdb1257}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!DestinationActor@{DestinationActor}}
+\index{DestinationActor@{DestinationActor}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{DestinationActor}{DestinationActor}}
+{\footnotesize\ttfamily A\+Actor$\ast$ A\+Zeroes\+Character\+::\+Destination\+Actor\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Current actor selected to walk towards. 
+
+\mbox{\Hypertarget{class_a_zeroes_character_af47fad0473f509c2ed42534e1e2658d9}\label{class_a_zeroes_character_af47fad0473f509c2ed42534e1e2658d9}} 
+\index{AZeroesCharacter@{AZeroesCharacter}!TopDownCameraComponent@{TopDownCameraComponent}}
+\index{TopDownCameraComponent@{TopDownCameraComponent}!AZeroesCharacter@{AZeroesCharacter}}
+\doxysubsubsection{\texorpdfstring{TopDownCameraComponent}{TopDownCameraComponent}}
+{\footnotesize\ttfamily class U\+Camera\+Component$\ast$ A\+Zeroes\+Character\+::\+Top\+Down\+Camera\+Component\hspace{0.3cm}{\ttfamily [protected]}}
+
+Top down camera 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Zeroes/\mbox{\hyperlink{_zeroes_character_8h}{Zeroes\+Character.\+h}}\item 
+Source/\+Zeroes/\mbox{\hyperlink{_zeroes_character_8cpp}{Zeroes\+Character.\+cpp}}\end{DoxyCompactItemize}

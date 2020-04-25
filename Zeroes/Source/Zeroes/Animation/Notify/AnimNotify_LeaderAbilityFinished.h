@@ -7,7 +7,7 @@
 #include "AnimNotify_LeaderAbilityFinished.generated.h"
 
 /**
- * 
+ * AnimNotift of when a Leader has finished an ability animation
  */
 UCLASS()
 class ZEROES_API UAnimNotify_LeaderAbilityFinished : public UAnimNotify

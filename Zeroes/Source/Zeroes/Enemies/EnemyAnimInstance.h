@@ -7,7 +7,7 @@
 #include "EnemyAnimInstance.generated.h"
 
 /**
- * 
+ * Enemy Animation Instance - Contains useful variables for knowing states of enemy
  */
 UCLASS()
 class ZEROES_API UEnemyAnimInstance : public UAnimInstance
@@ -34,6 +34,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
 	int AttackCount;
 
+	/// Current owning enemy of the animation instance, can be null if cast fails
 	class AEnemyBase* OwningEnemy;
 
 	virtual void NativeInitializeAnimation() override; 
@@ -48,13 +49,14 @@ protected:
 	void UpdateAnimationProperties();
 
 private:
-	FTimerHandle TimerHandle_AttackExpired;
-
+	/// Current owning pawn of the animation instance
 	APawn* m_owningPawn;
 
+	/// Callback function to handle listening to AEnemyBase's OnEnemyBeginAttack event
 	UFUNCTION()
 	void OnAttacking();
 
+	/// Callback function to handle listening to AEnemyBase's OnEnemyDeath event
 	UFUNCTION()
 	void OnDeath();
 };

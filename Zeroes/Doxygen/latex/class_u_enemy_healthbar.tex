@@ -1,0 +1,90 @@
+\hypertarget{class_u_enemy_healthbar}{}\doxysection{U\+Enemy\+Healthbar Class Reference}
+\label{class_u_enemy_healthbar}\index{UEnemyHealthbar@{UEnemyHealthbar}}
+
+
+{\ttfamily \#include $<$Enemy\+Healthbar.\+h$>$}
+
+Inheritance diagram for U\+Enemy\+Healthbar\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_u_enemy_healthbar}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_u_enemy_healthbar_a2a8b1008fa27f2d9e2197a8742b24e4b}{Health}}
+\begin{DoxyCompactList}\small\item\em Current health of the enemy. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_u_enemy_healthbar_a8646fecab3faaf80c89f14c5b62a1aa1}{Max\+Health}}
+\item 
+float \mbox{\hyperlink{class_u_enemy_healthbar_a62b0254ff94c6ef0fcaa4dacb852cb74}{Health\+Percent}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_enemy_healthbar_af1b59a8f5253d46a2da4d2ed0d691ada}{Native\+Tick}} (const F\+Geometry \&My\+Geometry, float In\+Delta\+Time) override
+\item 
+virtual void \mbox{\hyperlink{class_u_enemy_healthbar_a6e484ed3d05fd90b5b7c82cf186e58f1}{Set\+Owning\+Actor}} (A\+Actor $\ast$New\+Owner) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}} $\ast$ \mbox{\hyperlink{class_u_enemy_healthbar_a664cdff5f1e40597ca70521074a38c89}{m\+\_\+enemy}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_u_enemy_healthbar_af1b59a8f5253d46a2da4d2ed0d691ada}\label{class_u_enemy_healthbar_af1b59a8f5253d46a2da4d2ed0d691ada}} 
+\index{UEnemyHealthbar@{UEnemyHealthbar}!NativeTick@{NativeTick}}
+\index{NativeTick@{NativeTick}!UEnemyHealthbar@{UEnemyHealthbar}}
+\doxysubsubsection{\texorpdfstring{NativeTick()}{NativeTick()}}
+{\footnotesize\ttfamily void U\+Enemy\+Healthbar\+::\+Native\+Tick (\begin{DoxyParamCaption}\item[{const F\+Geometry \&}]{My\+Geometry,  }\item[{float}]{In\+Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_u_enemy_healthbar_a6e484ed3d05fd90b5b7c82cf186e58f1}\label{class_u_enemy_healthbar_a6e484ed3d05fd90b5b7c82cf186e58f1}} 
+\index{UEnemyHealthbar@{UEnemyHealthbar}!SetOwningActor@{SetOwningActor}}
+\index{SetOwningActor@{SetOwningActor}!UEnemyHealthbar@{UEnemyHealthbar}}
+\doxysubsubsection{\texorpdfstring{SetOwningActor()}{SetOwningActor()}}
+{\footnotesize\ttfamily void U\+Enemy\+Healthbar\+::\+Set\+Owning\+Actor (\begin{DoxyParamCaption}\item[{A\+Actor $\ast$}]{New\+Owner }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_u_s_actor_widget_abba5d2575f75f9de60e27d8f4d762106}{U\+S\+Actor\+Widget}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_u_enemy_healthbar_a2a8b1008fa27f2d9e2197a8742b24e4b}\label{class_u_enemy_healthbar_a2a8b1008fa27f2d9e2197a8742b24e4b}} 
+\index{UEnemyHealthbar@{UEnemyHealthbar}!Health@{Health}}
+\index{Health@{Health}!UEnemyHealthbar@{UEnemyHealthbar}}
+\doxysubsubsection{\texorpdfstring{Health}{Health}}
+{\footnotesize\ttfamily float U\+Enemy\+Healthbar\+::\+Health}
+
+
+
+Current health of the enemy. 
+
+\mbox{\Hypertarget{class_u_enemy_healthbar_a62b0254ff94c6ef0fcaa4dacb852cb74}\label{class_u_enemy_healthbar_a62b0254ff94c6ef0fcaa4dacb852cb74}} 
+\index{UEnemyHealthbar@{UEnemyHealthbar}!HealthPercent@{HealthPercent}}
+\index{HealthPercent@{HealthPercent}!UEnemyHealthbar@{UEnemyHealthbar}}
+\doxysubsubsection{\texorpdfstring{HealthPercent}{HealthPercent}}
+{\footnotesize\ttfamily float U\+Enemy\+Healthbar\+::\+Health\+Percent}
+
+\mbox{\Hypertarget{class_u_enemy_healthbar_a664cdff5f1e40597ca70521074a38c89}\label{class_u_enemy_healthbar_a664cdff5f1e40597ca70521074a38c89}} 
+\index{UEnemyHealthbar@{UEnemyHealthbar}!m\_enemy@{m\_enemy}}
+\index{m\_enemy@{m\_enemy}!UEnemyHealthbar@{UEnemyHealthbar}}
+\doxysubsubsection{\texorpdfstring{m\_enemy}{m\_enemy}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}}$\ast$ U\+Enemy\+Healthbar\+::m\+\_\+enemy\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_u_enemy_healthbar_a8646fecab3faaf80c89f14c5b62a1aa1}\label{class_u_enemy_healthbar_a8646fecab3faaf80c89f14c5b62a1aa1}} 
+\index{UEnemyHealthbar@{UEnemyHealthbar}!MaxHealth@{MaxHealth}}
+\index{MaxHealth@{MaxHealth}!UEnemyHealthbar@{UEnemyHealthbar}}
+\doxysubsubsection{\texorpdfstring{MaxHealth}{MaxHealth}}
+{\footnotesize\ttfamily float U\+Enemy\+Healthbar\+::\+Max\+Health}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Zeroes/\+U\+I/\+Enemies/\mbox{\hyperlink{_enemy_healthbar_8h}{Enemy\+Healthbar.\+h}}\item 
+Source/\+Zeroes/\+U\+I/\+Enemies/\mbox{\hyperlink{_enemy_healthbar_8cpp}{Enemy\+Healthbar.\+cpp}}\end{DoxyCompactItemize}

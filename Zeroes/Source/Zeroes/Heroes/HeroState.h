@@ -41,7 +41,9 @@ public:
 	/// Sets the current regenerate rate per second of health for the player
 	void SetHealthRegenRate(float healthRegenRate);
 
+	/// Gets if an ability can be used, by it's ability index (starting from 0)
 	bool GetAbilityCanUse(int index);
+	/// Sets if an ability can be used by it's ability index (starting from 0)
 	void SetAbilityCanUse(int index, bool isInUse);
 
 private:
@@ -54,5 +56,6 @@ private:
 	/// Can the player attack an enemy
 	bool bCanAttack;
 
+	/// Map of all ability states (by index) and if they can be used/casted (true if can be cast)
 	class TMap<int, bool> AbilityStates;
 };

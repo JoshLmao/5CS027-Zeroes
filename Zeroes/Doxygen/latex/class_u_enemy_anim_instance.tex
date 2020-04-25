@@ -1,0 +1,189 @@
+\hypertarget{class_u_enemy_anim_instance}{}\doxysection{U\+Enemy\+Anim\+Instance Class Reference}
+\label{class_u_enemy_anim_instance}\index{UEnemyAnimInstance@{UEnemyAnimInstance}}
+
+
+{\ttfamily \#include $<$Enemy\+Anim\+Instance.\+h$>$}
+
+Inheritance diagram for U\+Enemy\+Anim\+Instance\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_u_enemy_anim_instance}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_u_enemy_anim_instance_ae9b4ef25e9d12d41703652af74b6df4f}{U\+Enemy\+Anim\+Instance}} ()
+\item 
+virtual void \mbox{\hyperlink{class_u_enemy_anim_instance_aa31cfdab6012f0bd65015d17fc7731af}{Native\+Initialize\+Animation}} () override
+\item 
+virtual void \mbox{\hyperlink{class_u_enemy_anim_instance_a61bbf0cab6cda243272b25d0756eedf1}{Native\+Update\+Animation}} (float Delta\+TimeX) override
+\item 
+void \mbox{\hyperlink{class_u_enemy_anim_instance_a66b41aad253a47d610c0ca7ab77177ff}{On\+Attack\+Complete}} ()
+\begin{DoxyCompactList}\small\item\em Called from Anim\+Notify to stop attacking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_u_enemy_anim_instance_aee22f085167cc3122c5423cf1b9c8817}{Speed\+Sq}}
+\begin{DoxyCompactList}\small\item\em Current speed squared of the enemy. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_u_enemy_anim_instance_a44485978ea5b5ad5c5f8fee9155df280}{b\+Is\+Attacking}}
+\begin{DoxyCompactList}\small\item\em Is the enemy currently attacking. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_u_enemy_anim_instance_ac8265e9944a75cfab904955e507ed6f4}{b\+Is\+Dead}}
+\begin{DoxyCompactList}\small\item\em Is the enemy dead. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_u_enemy_anim_instance_a56f452ec3410d36633332bc097cb9794}{Attack\+Count}}
+\begin{DoxyCompactList}\small\item\em Current amount of attacks. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}} $\ast$ \mbox{\hyperlink{class_u_enemy_anim_instance_ab633a7de27136ed0a6c154453b0a5b57}{Owning\+Enemy}}
+\begin{DoxyCompactList}\small\item\em Current owning enemy of the animation instance, can be null if cast fails. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_enemy_anim_instance_af2b2e583d78ce45aad74b1a9165b68b2}{Update\+Animation\+Properties}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_enemy_anim_instance_aeb5fbab1249d978699da15089b51b08d}{On\+Attacking}} ()
+\begin{DoxyCompactList}\small\item\em Callback function to handle listening to \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}}\textquotesingle{}s On\+Enemy\+Begin\+Attack event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_enemy_anim_instance_af49e1ab577cf175ffe6e9db307f07a3e}{On\+Death}} ()
+\begin{DoxyCompactList}\small\item\em Callback function to handle listening to \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}}\textquotesingle{}s On\+Enemy\+Death event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+A\+Pawn $\ast$ \mbox{\hyperlink{class_u_enemy_anim_instance_aabacb2c8c3762395d5d8f50fc905137d}{m\+\_\+owning\+Pawn}}
+\begin{DoxyCompactList}\small\item\em Current owning pawn of the animation instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Enemy Animation Instance -\/ Contains useful variables for knowing states of enemy 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_u_enemy_anim_instance_ae9b4ef25e9d12d41703652af74b6df4f}\label{class_u_enemy_anim_instance_ae9b4ef25e9d12d41703652af74b6df4f}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{UEnemyAnimInstance()}{UEnemyAnimInstance()}}
+{\footnotesize\ttfamily U\+Enemy\+Anim\+Instance\+::\+U\+Enemy\+Anim\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_u_enemy_anim_instance_aa31cfdab6012f0bd65015d17fc7731af}\label{class_u_enemy_anim_instance_aa31cfdab6012f0bd65015d17fc7731af}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!NativeInitializeAnimation@{NativeInitializeAnimation}}
+\index{NativeInitializeAnimation@{NativeInitializeAnimation}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{NativeInitializeAnimation()}{NativeInitializeAnimation()}}
+{\footnotesize\ttfamily void U\+Enemy\+Anim\+Instance\+::\+Native\+Initialize\+Animation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_u_leader_anim_instance_a1f3e568b59906592b5ca3166f18b306b}{U\+Leader\+Anim\+Instance}}.
+
+\mbox{\Hypertarget{class_u_enemy_anim_instance_a61bbf0cab6cda243272b25d0756eedf1}\label{class_u_enemy_anim_instance_a61bbf0cab6cda243272b25d0756eedf1}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!NativeUpdateAnimation@{NativeUpdateAnimation}}
+\index{NativeUpdateAnimation@{NativeUpdateAnimation}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{NativeUpdateAnimation()}{NativeUpdateAnimation()}}
+{\footnotesize\ttfamily void U\+Enemy\+Anim\+Instance\+::\+Native\+Update\+Animation (\begin{DoxyParamCaption}\item[{float}]{Delta\+TimeX }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_u_enemy_anim_instance_a66b41aad253a47d610c0ca7ab77177ff}\label{class_u_enemy_anim_instance_a66b41aad253a47d610c0ca7ab77177ff}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!OnAttackComplete@{OnAttackComplete}}
+\index{OnAttackComplete@{OnAttackComplete}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OnAttackComplete()}{OnAttackComplete()}}
+{\footnotesize\ttfamily void U\+Enemy\+Anim\+Instance\+::\+On\+Attack\+Complete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Called from Anim\+Notify to stop attacking. 
+
+\mbox{\Hypertarget{class_u_enemy_anim_instance_aeb5fbab1249d978699da15089b51b08d}\label{class_u_enemy_anim_instance_aeb5fbab1249d978699da15089b51b08d}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!OnAttacking@{OnAttacking}}
+\index{OnAttacking@{OnAttacking}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OnAttacking()}{OnAttacking()}}
+{\footnotesize\ttfamily void U\+Enemy\+Anim\+Instance\+::\+On\+Attacking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Callback function to handle listening to \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}}\textquotesingle{}s On\+Enemy\+Begin\+Attack event. 
+
+\mbox{\Hypertarget{class_u_enemy_anim_instance_af49e1ab577cf175ffe6e9db307f07a3e}\label{class_u_enemy_anim_instance_af49e1ab577cf175ffe6e9db307f07a3e}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!OnDeath@{OnDeath}}
+\index{OnDeath@{OnDeath}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OnDeath()}{OnDeath()}}
+{\footnotesize\ttfamily void U\+Enemy\+Anim\+Instance\+::\+On\+Death (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Callback function to handle listening to \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}}\textquotesingle{}s On\+Enemy\+Death event. 
+
+\mbox{\Hypertarget{class_u_enemy_anim_instance_af2b2e583d78ce45aad74b1a9165b68b2}\label{class_u_enemy_anim_instance_af2b2e583d78ce45aad74b1a9165b68b2}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!UpdateAnimationProperties@{UpdateAnimationProperties}}
+\index{UpdateAnimationProperties@{UpdateAnimationProperties}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{UpdateAnimationProperties()}{UpdateAnimationProperties()}}
+{\footnotesize\ttfamily void U\+Enemy\+Anim\+Instance\+::\+Update\+Animation\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_u_enemy_anim_instance_a56f452ec3410d36633332bc097cb9794}\label{class_u_enemy_anim_instance_a56f452ec3410d36633332bc097cb9794}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!AttackCount@{AttackCount}}
+\index{AttackCount@{AttackCount}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{AttackCount}{AttackCount}}
+{\footnotesize\ttfamily int U\+Enemy\+Anim\+Instance\+::\+Attack\+Count}
+
+
+
+Current amount of attacks. 
+
+\mbox{\Hypertarget{class_u_enemy_anim_instance_a44485978ea5b5ad5c5f8fee9155df280}\label{class_u_enemy_anim_instance_a44485978ea5b5ad5c5f8fee9155df280}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!bIsAttacking@{bIsAttacking}}
+\index{bIsAttacking@{bIsAttacking}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{bIsAttacking}{bIsAttacking}}
+{\footnotesize\ttfamily bool U\+Enemy\+Anim\+Instance\+::b\+Is\+Attacking}
+
+
+
+Is the enemy currently attacking. 
+
+\mbox{\Hypertarget{class_u_enemy_anim_instance_ac8265e9944a75cfab904955e507ed6f4}\label{class_u_enemy_anim_instance_ac8265e9944a75cfab904955e507ed6f4}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!bIsDead@{bIsDead}}
+\index{bIsDead@{bIsDead}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{bIsDead}{bIsDead}}
+{\footnotesize\ttfamily bool U\+Enemy\+Anim\+Instance\+::b\+Is\+Dead}
+
+
+
+Is the enemy dead. 
+
+\mbox{\Hypertarget{class_u_enemy_anim_instance_aabacb2c8c3762395d5d8f50fc905137d}\label{class_u_enemy_anim_instance_aabacb2c8c3762395d5d8f50fc905137d}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!m\_owningPawn@{m\_owningPawn}}
+\index{m\_owningPawn@{m\_owningPawn}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{m\_owningPawn}{m\_owningPawn}}
+{\footnotesize\ttfamily A\+Pawn$\ast$ U\+Enemy\+Anim\+Instance\+::m\+\_\+owning\+Pawn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current owning pawn of the animation instance. 
+
+\mbox{\Hypertarget{class_u_enemy_anim_instance_ab633a7de27136ed0a6c154453b0a5b57}\label{class_u_enemy_anim_instance_ab633a7de27136ed0a6c154453b0a5b57}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!OwningEnemy@{OwningEnemy}}
+\index{OwningEnemy@{OwningEnemy}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OwningEnemy}{OwningEnemy}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}}$\ast$ U\+Enemy\+Anim\+Instance\+::\+Owning\+Enemy}
+
+
+
+Current owning enemy of the animation instance, can be null if cast fails. 
+
+\mbox{\Hypertarget{class_u_enemy_anim_instance_aee22f085167cc3122c5423cf1b9c8817}\label{class_u_enemy_anim_instance_aee22f085167cc3122c5423cf1b9c8817}} 
+\index{UEnemyAnimInstance@{UEnemyAnimInstance}!SpeedSq@{SpeedSq}}
+\index{SpeedSq@{SpeedSq}!UEnemyAnimInstance@{UEnemyAnimInstance}}
+\doxysubsubsection{\texorpdfstring{SpeedSq}{SpeedSq}}
+{\footnotesize\ttfamily float U\+Enemy\+Anim\+Instance\+::\+Speed\+Sq}
+
+
+
+Current speed squared of the enemy. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Zeroes/\+Enemies/\mbox{\hyperlink{_enemy_anim_instance_8h}{Enemy\+Anim\+Instance.\+h}}\item 
+Source/\+Zeroes/\+Enemies/\mbox{\hyperlink{_enemy_anim_instance_8cpp}{Enemy\+Anim\+Instance.\+cpp}}\end{DoxyCompactItemize}

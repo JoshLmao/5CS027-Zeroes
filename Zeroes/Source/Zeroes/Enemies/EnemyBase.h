@@ -26,6 +26,9 @@ enum class EBehaviourStates : uint8
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEnemyAttackSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEnemyDeathSignature);
 
+/*
+* Enemy base class for creating new enemies that can attack the player
+*/
 UCLASS()
 class ZEROES_API AEnemyBase : public ACharacter
 {
@@ -54,6 +57,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Properties")
 	float Health;
 
+	/// Maximum health of the enemy
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Properties")
 	float MaxHealth;
 
@@ -82,9 +86,11 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	int AttackCount;
 
+	/// Current widget component that represents the enemy's healthbar
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USActorWidgetComponent* WidgetComponent;
 
+	/// Class to use to display above the enemy as their healthbar
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category  = "Enemy Properties")
 	TSubclassOf<class USActorWidget> HealthbarWidget;
 
@@ -92,12 +98,16 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Enemy Properties")
 	class USoundBase* AttackSound;
 
+	/// Sound to use when the enemy dies
 	UPROPERTY(EditAnywhere, Category = "Enemy Properties")
 	class USoundBase* DeathSound;
 
+	/// Current state of the enemy
 	EBehaviourStates State = EBehaviourStates::IDLE;
 
+	/// events of the enemy's state machine
 	enum GameEvents { ON_START, ON_UPDATE };
+	/// Current event of the enemy's state machine
 	GameEvents Event = GameEvents::ON_START;
 
 	/* Events */
@@ -113,8 +123,11 @@ public:
 	bool bCanPerformAttack;
 
 	/* Functions */
+	/// Gets the current health of the enemy
 	float GetHealth();
+	/// Gets the max health of the enemy
 	float GetMaxHealth();
+	/// Get the current attack count of the enemy
 	int GetAttackCount();
 
 	/// Called by AnimNotify to deal damage to the current taregt
@@ -122,8 +135,10 @@ public:
 
 	void Notify_FinishedAttackAnim();
 
+	/// Update's the finite state machine of the enemy
 	virtual void FSMUpdate(float DeltaTime);
 
+	/// Set the state of the FSM to a new state
 	void SetState(EBehaviourStates newState);
 
 protected:
@@ -134,6 +149,7 @@ protected:
 	/// Reference to animation instance
 	class UEnemyAnimInstance* AnimInstance;
 
+	/// Once the enemy dies
 	virtual void OnDeath();
 
 private:
@@ -158,7 +174,9 @@ private:
 	void DeadStart();
 	void DeadUpdate();
 
+	/// TimerHandle to control the enemy's current attack
 	FTimerHandle TimerHandle_AttackCooldown;
+	/// Timer reciever to allow the enemy to attack once cooldown is complete
 	void OnAtkCooldownFinished();
 
 };
