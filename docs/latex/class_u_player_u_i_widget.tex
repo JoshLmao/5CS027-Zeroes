@@ -1,0 +1,105 @@
+\hypertarget{class_u_player_u_i_widget}{}\doxysection{U\+Player\+U\+I\+Widget Class Reference}
+\label{class_u_player_u_i_widget}\index{UPlayerUIWidget@{UPlayerUIWidget}}
+
+
+{\ttfamily \#include $<$Player\+U\+I\+Widget.\+h$>$}
+
+Inheritance diagram for U\+Player\+U\+I\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_player_u_i_widget}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_a_hero_state}{A\+Hero\+State}} $\ast$ \mbox{\hyperlink{class_u_player_u_i_widget_aea3a6c8c90bf74fd2c1957029b8dee65}{Player\+State}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_player_u_i_widget_af69976982faa9d312073ba8bf665086c}{Native\+Construct}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_u_player_u_i_widget_abd893c6456cade51691532044ae01495}{Get\+Can\+Attack\+Boolean}} ()
+\begin{DoxyCompactList}\small\item\em Returns a boolean of if the player can attack. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_u_player_u_i_widget_ae58f9e79bf751e06b25a80a8dba4837f}{Get\+Health}} ()
+\item 
+float \mbox{\hyperlink{class_u_player_u_i_widget_a400e3336d2f80b9e150645f97309ab94}{Get\+Max\+Health}} ()
+\item 
+float \mbox{\hyperlink{class_u_player_u_i_widget_a78a7851febf90dba3bc9c800c8d209ef}{Get\+Health\+Percentage}} ()
+\begin{DoxyCompactList}\small\item\em Returns a value between 0 and 1 of the player\textquotesingle{}s health. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_u_player_u_i_widget_ac846fc7bb27771947bebdafa5347cba1}{Get\+Health\+Regen\+Rate}} ()
+\item 
+bool \mbox{\hyperlink{class_u_player_u_i_widget_a8f7c7819469da0970c68710bb773f0a9}{Get\+Ability\+Can\+Use}} (int index)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_u_player_u_i_widget_a8f7c7819469da0970c68710bb773f0a9}\label{class_u_player_u_i_widget_a8f7c7819469da0970c68710bb773f0a9}} 
+\index{UPlayerUIWidget@{UPlayerUIWidget}!GetAbilityCanUse@{GetAbilityCanUse}}
+\index{GetAbilityCanUse@{GetAbilityCanUse}!UPlayerUIWidget@{UPlayerUIWidget}}
+\doxysubsubsection{\texorpdfstring{GetAbilityCanUse()}{GetAbilityCanUse()}}
+{\footnotesize\ttfamily bool U\+Player\+U\+I\+Widget\+::\+Get\+Ability\+Can\+Use (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_u_player_u_i_widget_abd893c6456cade51691532044ae01495}\label{class_u_player_u_i_widget_abd893c6456cade51691532044ae01495}} 
+\index{UPlayerUIWidget@{UPlayerUIWidget}!GetCanAttackBoolean@{GetCanAttackBoolean}}
+\index{GetCanAttackBoolean@{GetCanAttackBoolean}!UPlayerUIWidget@{UPlayerUIWidget}}
+\doxysubsubsection{\texorpdfstring{GetCanAttackBoolean()}{GetCanAttackBoolean()}}
+{\footnotesize\ttfamily bool U\+Player\+U\+I\+Widget\+::\+Get\+Can\+Attack\+Boolean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Returns a boolean of if the player can attack. 
+
+\mbox{\Hypertarget{class_u_player_u_i_widget_ae58f9e79bf751e06b25a80a8dba4837f}\label{class_u_player_u_i_widget_ae58f9e79bf751e06b25a80a8dba4837f}} 
+\index{UPlayerUIWidget@{UPlayerUIWidget}!GetHealth@{GetHealth}}
+\index{GetHealth@{GetHealth}!UPlayerUIWidget@{UPlayerUIWidget}}
+\doxysubsubsection{\texorpdfstring{GetHealth()}{GetHealth()}}
+{\footnotesize\ttfamily float U\+Player\+U\+I\+Widget\+::\+Get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_u_player_u_i_widget_a78a7851febf90dba3bc9c800c8d209ef}\label{class_u_player_u_i_widget_a78a7851febf90dba3bc9c800c8d209ef}} 
+\index{UPlayerUIWidget@{UPlayerUIWidget}!GetHealthPercentage@{GetHealthPercentage}}
+\index{GetHealthPercentage@{GetHealthPercentage}!UPlayerUIWidget@{UPlayerUIWidget}}
+\doxysubsubsection{\texorpdfstring{GetHealthPercentage()}{GetHealthPercentage()}}
+{\footnotesize\ttfamily float U\+Player\+U\+I\+Widget\+::\+Get\+Health\+Percentage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Returns a value between 0 and 1 of the player\textquotesingle{}s health. 
+
+\mbox{\Hypertarget{class_u_player_u_i_widget_ac846fc7bb27771947bebdafa5347cba1}\label{class_u_player_u_i_widget_ac846fc7bb27771947bebdafa5347cba1}} 
+\index{UPlayerUIWidget@{UPlayerUIWidget}!GetHealthRegenRate@{GetHealthRegenRate}}
+\index{GetHealthRegenRate@{GetHealthRegenRate}!UPlayerUIWidget@{UPlayerUIWidget}}
+\doxysubsubsection{\texorpdfstring{GetHealthRegenRate()}{GetHealthRegenRate()}}
+{\footnotesize\ttfamily float U\+Player\+U\+I\+Widget\+::\+Get\+Health\+Regen\+Rate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_u_player_u_i_widget_a400e3336d2f80b9e150645f97309ab94}\label{class_u_player_u_i_widget_a400e3336d2f80b9e150645f97309ab94}} 
+\index{UPlayerUIWidget@{UPlayerUIWidget}!GetMaxHealth@{GetMaxHealth}}
+\index{GetMaxHealth@{GetMaxHealth}!UPlayerUIWidget@{UPlayerUIWidget}}
+\doxysubsubsection{\texorpdfstring{GetMaxHealth()}{GetMaxHealth()}}
+{\footnotesize\ttfamily float U\+Player\+U\+I\+Widget\+::\+Get\+Max\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_u_player_u_i_widget_af69976982faa9d312073ba8bf665086c}\label{class_u_player_u_i_widget_af69976982faa9d312073ba8bf665086c}} 
+\index{UPlayerUIWidget@{UPlayerUIWidget}!NativeConstruct@{NativeConstruct}}
+\index{NativeConstruct@{NativeConstruct}!UPlayerUIWidget@{UPlayerUIWidget}}
+\doxysubsubsection{\texorpdfstring{NativeConstruct()}{NativeConstruct()}}
+{\footnotesize\ttfamily void U\+Player\+U\+I\+Widget\+::\+Native\+Construct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_u_player_u_i_widget_aea3a6c8c90bf74fd2c1957029b8dee65}\label{class_u_player_u_i_widget_aea3a6c8c90bf74fd2c1957029b8dee65}} 
+\index{UPlayerUIWidget@{UPlayerUIWidget}!PlayerState@{PlayerState}}
+\index{PlayerState@{PlayerState}!UPlayerUIWidget@{UPlayerUIWidget}}
+\doxysubsubsection{\texorpdfstring{PlayerState}{PlayerState}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_a_hero_state}{A\+Hero\+State}}$\ast$ U\+Player\+U\+I\+Widget\+::\+Player\+State}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Zeroes/\+Source/\+Zeroes/\+U\+I/\mbox{\hyperlink{_player_u_i_widget_8h}{Player\+U\+I\+Widget.\+h}}\item 
+Zeroes/\+Source/\+Zeroes/\+U\+I/\mbox{\hyperlink{_player_u_i_widget_8cpp}{Player\+U\+I\+Widget.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,146 @@
+\hypertarget{class_a_ranged_projectile}{}\doxysection{A\+Ranged\+Projectile Class Reference}
+\label{class_a_ranged_projectile}\index{ARangedProjectile@{ARangedProjectile}}
+
+
+{\ttfamily \#include $<$Ranged\+Projectile.\+h$>$}
+
+Inheritance diagram for A\+Ranged\+Projectile\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_ranged_projectile}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_ranged_projectile_a9ab56eda7b1b9a62e4072d521c9d71ae}{A\+Ranged\+Projectile}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_ranged_projectile_ac1f8626de366215bd8493282eba1212e}{Tick}} (float Delta\+Time) override
+\item 
+void \mbox{\hyperlink{class_a_ranged_projectile_a7bbe13b69bf7c2639d88e547c4a1b2aa}{On\+Hit}} (U\+Primitive\+Component $\ast$Hit\+Comp, A\+Actor $\ast$Other\+Actor, U\+Primitive\+Component $\ast$Other\+Comp, F\+Vector Normal\+Impulse, const F\+Hit\+Result \&Hit)
+\item 
+float \mbox{\hyperlink{class_a_ranged_projectile_a7921b3207a0ae2e21c81b6fdc3fdcba5}{Get\+Damage}} ()
+\begin{DoxyCompactList}\small\item\em Gets the amount of damage the projectile will deal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_ranged_projectile_a4efb2d5e5bcb3c646bf866d6e64fd649}{Set\+Damage}} (float dmg\+Amount)
+\begin{DoxyCompactList}\small\item\em Sets the amount of damage the projectile. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_ranged_projectile_a3a4bab89cdb4282bf88a92209f8b8ae0}{Fire\+In\+Direction}} (F\+Vector direction)
+\begin{DoxyCompactList}\small\item\em Set the current fire direction of the projectile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class U\+Sphere\+Component $\ast$ \mbox{\hyperlink{class_a_ranged_projectile_ab5e2231a661de153e1c2dd92696cd9a6}{m\+\_\+sphere}}
+\begin{DoxyCompactList}\small\item\em Sphere component collider to handle collision. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_a_ranged_projectile_a14d05545bb55bdf1e8f049f119e93b5a}{Begin\+Play}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class U\+Projectile\+Movement\+Component $\ast$ \mbox{\hyperlink{class_a_ranged_projectile_ab18b4cf108f0fb880fb98f3fb3a45244}{m\+\_\+projectile\+Movement}}
+\begin{DoxyCompactList}\small\item\em Current projectile movement component on the projectile. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_a_ranged_projectile_a9e5d736e6e2de27cc3f2a0332f918fdf}{m\+\_\+damage\+Amount}}
+\begin{DoxyCompactList}\small\item\em Amount of damage to deal to the player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Projectile of a ranged enemy to be fired 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_a_ranged_projectile_a9ab56eda7b1b9a62e4072d521c9d71ae}\label{class_a_ranged_projectile_a9ab56eda7b1b9a62e4072d521c9d71ae}} 
+\index{ARangedProjectile@{ARangedProjectile}!ARangedProjectile@{ARangedProjectile}}
+\index{ARangedProjectile@{ARangedProjectile}!ARangedProjectile@{ARangedProjectile}}
+\doxysubsubsection{\texorpdfstring{ARangedProjectile()}{ARangedProjectile()}}
+{\footnotesize\ttfamily A\+Ranged\+Projectile\+::\+A\+Ranged\+Projectile (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_ranged_projectile_a14d05545bb55bdf1e8f049f119e93b5a}\label{class_a_ranged_projectile_a14d05545bb55bdf1e8f049f119e93b5a}} 
+\index{ARangedProjectile@{ARangedProjectile}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!ARangedProjectile@{ARangedProjectile}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void A\+Ranged\+Projectile\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_a_ranged_projectile_a3a4bab89cdb4282bf88a92209f8b8ae0}\label{class_a_ranged_projectile_a3a4bab89cdb4282bf88a92209f8b8ae0}} 
+\index{ARangedProjectile@{ARangedProjectile}!FireInDirection@{FireInDirection}}
+\index{FireInDirection@{FireInDirection}!ARangedProjectile@{ARangedProjectile}}
+\doxysubsubsection{\texorpdfstring{FireInDirection()}{FireInDirection()}}
+{\footnotesize\ttfamily void A\+Ranged\+Projectile\+::\+Fire\+In\+Direction (\begin{DoxyParamCaption}\item[{F\+Vector}]{direction }\end{DoxyParamCaption})}
+
+
+
+Set the current fire direction of the projectile. 
+
+\mbox{\Hypertarget{class_a_ranged_projectile_a7921b3207a0ae2e21c81b6fdc3fdcba5}\label{class_a_ranged_projectile_a7921b3207a0ae2e21c81b6fdc3fdcba5}} 
+\index{ARangedProjectile@{ARangedProjectile}!GetDamage@{GetDamage}}
+\index{GetDamage@{GetDamage}!ARangedProjectile@{ARangedProjectile}}
+\doxysubsubsection{\texorpdfstring{GetDamage()}{GetDamage()}}
+{\footnotesize\ttfamily float A\+Ranged\+Projectile\+::\+Get\+Damage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the amount of damage the projectile will deal. 
+
+\mbox{\Hypertarget{class_a_ranged_projectile_a7bbe13b69bf7c2639d88e547c4a1b2aa}\label{class_a_ranged_projectile_a7bbe13b69bf7c2639d88e547c4a1b2aa}} 
+\index{ARangedProjectile@{ARangedProjectile}!OnHit@{OnHit}}
+\index{OnHit@{OnHit}!ARangedProjectile@{ARangedProjectile}}
+\doxysubsubsection{\texorpdfstring{OnHit()}{OnHit()}}
+{\footnotesize\ttfamily void A\+Ranged\+Projectile\+::\+On\+Hit (\begin{DoxyParamCaption}\item[{U\+Primitive\+Component $\ast$}]{Hit\+Comp,  }\item[{A\+Actor $\ast$}]{Other\+Actor,  }\item[{U\+Primitive\+Component $\ast$}]{Other\+Comp,  }\item[{F\+Vector}]{Normal\+Impulse,  }\item[{const F\+Hit\+Result \&}]{Hit }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_a_ranged_projectile_a4efb2d5e5bcb3c646bf866d6e64fd649}\label{class_a_ranged_projectile_a4efb2d5e5bcb3c646bf866d6e64fd649}} 
+\index{ARangedProjectile@{ARangedProjectile}!SetDamage@{SetDamage}}
+\index{SetDamage@{SetDamage}!ARangedProjectile@{ARangedProjectile}}
+\doxysubsubsection{\texorpdfstring{SetDamage()}{SetDamage()}}
+{\footnotesize\ttfamily void A\+Ranged\+Projectile\+::\+Set\+Damage (\begin{DoxyParamCaption}\item[{float}]{dmg\+Amount }\end{DoxyParamCaption})}
+
+
+
+Sets the amount of damage the projectile. 
+
+\mbox{\Hypertarget{class_a_ranged_projectile_ac1f8626de366215bd8493282eba1212e}\label{class_a_ranged_projectile_ac1f8626de366215bd8493282eba1212e}} 
+\index{ARangedProjectile@{ARangedProjectile}!Tick@{Tick}}
+\index{Tick@{Tick}!ARangedProjectile@{ARangedProjectile}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily void A\+Ranged\+Projectile\+::\+Tick (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_ranged_projectile_a9e5d736e6e2de27cc3f2a0332f918fdf}\label{class_a_ranged_projectile_a9e5d736e6e2de27cc3f2a0332f918fdf}} 
+\index{ARangedProjectile@{ARangedProjectile}!m\_damageAmount@{m\_damageAmount}}
+\index{m\_damageAmount@{m\_damageAmount}!ARangedProjectile@{ARangedProjectile}}
+\doxysubsubsection{\texorpdfstring{m\_damageAmount}{m\_damageAmount}}
+{\footnotesize\ttfamily float A\+Ranged\+Projectile\+::m\+\_\+damage\+Amount\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Amount of damage to deal to the player. 
+
+\mbox{\Hypertarget{class_a_ranged_projectile_ab18b4cf108f0fb880fb98f3fb3a45244}\label{class_a_ranged_projectile_ab18b4cf108f0fb880fb98f3fb3a45244}} 
+\index{ARangedProjectile@{ARangedProjectile}!m\_projectileMovement@{m\_projectileMovement}}
+\index{m\_projectileMovement@{m\_projectileMovement}!ARangedProjectile@{ARangedProjectile}}
+\doxysubsubsection{\texorpdfstring{m\_projectileMovement}{m\_projectileMovement}}
+{\footnotesize\ttfamily class U\+Projectile\+Movement\+Component$\ast$ A\+Ranged\+Projectile\+::m\+\_\+projectile\+Movement\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current projectile movement component on the projectile. 
+
+\mbox{\Hypertarget{class_a_ranged_projectile_ab5e2231a661de153e1c2dd92696cd9a6}\label{class_a_ranged_projectile_ab5e2231a661de153e1c2dd92696cd9a6}} 
+\index{ARangedProjectile@{ARangedProjectile}!m\_sphere@{m\_sphere}}
+\index{m\_sphere@{m\_sphere}!ARangedProjectile@{ARangedProjectile}}
+\doxysubsubsection{\texorpdfstring{m\_sphere}{m\_sphere}}
+{\footnotesize\ttfamily class U\+Sphere\+Component$\ast$ A\+Ranged\+Projectile\+::m\+\_\+sphere}
+
+
+
+Sphere component collider to handle collision. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Zeroes/\+Source/\+Zeroes/\+Enemies/\+Projectile/\mbox{\hyperlink{_ranged_projectile_8h}{Ranged\+Projectile.\+h}}\item 
+Zeroes/\+Source/\+Zeroes/\+Enemies/\+Projectile/\mbox{\hyperlink{_ranged_projectile_8cpp}{Ranged\+Projectile.\+cpp}}\end{DoxyCompactItemize}

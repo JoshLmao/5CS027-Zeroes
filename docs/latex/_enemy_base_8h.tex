@@ -1,0 +1,80 @@
+\hypertarget{_enemy_base_8h}{}\doxysection{Zeroes/\+Source/\+Zeroes/\+Enemies/\+Enemy\+Base.h File Reference}
+\label{_enemy_base_8h}\index{Zeroes/Source/Zeroes/Enemies/EnemyBase.h@{Zeroes/Source/Zeroes/Enemies/EnemyBase.h}}
+{\ttfamily \#include \char`\"{}Core\+Minimal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Game\+Framework/\+Character.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Enemy\+Base.\+generated.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8}{E\+Behaviour\+States}} \+: uint8 \{ \newline
+\mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8aa5daf7f2ebbba4975d61dab1c40188c7}{E\+Behaviour\+States\+::\+I\+D\+LE}}, 
+\mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8a2f0492938095f67d986cf0fb13f02385}{E\+Behaviour\+States\+::\+C\+H\+A\+SE}}, 
+\mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8ac6ddd0f72ff2fd344693b9ca8d483871}{E\+Behaviour\+States\+::\+A\+T\+T\+A\+CK}}, 
+\mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8a86789d0837c6aaefd406bb93a0f5ae16}{E\+Behaviour\+States\+::\+A\+B\+I\+L\+I\+TY}}, 
+\newline
+\mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8abb4784231ff45108ee20bad16e4a2e8c}{E\+Behaviour\+States\+::\+D\+E\+AD}}, 
+\mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8ac8492d2e618a9e40ff4f53bb5ca8b42c}{E\+Behaviour\+States\+::\+S\+T\+R\+A\+FE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_enemy_base_8h_a93f027431eda320f10160690efab2474}{D\+E\+C\+L\+A\+R\+E\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+U\+L\+T\+I\+C\+A\+S\+T\+\_\+\+D\+E\+L\+E\+G\+A\+TE}} (F\+Enemy\+Attack\+Signature)
+\item 
+\mbox{\hyperlink{_enemy_base_8h_aee359d8015fef316fe0c267171a4e5c0}{D\+E\+C\+L\+A\+R\+E\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+U\+L\+T\+I\+C\+A\+S\+T\+\_\+\+D\+E\+L\+E\+G\+A\+TE}} (F\+Enemy\+Death\+Signature)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8}\label{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8}} 
+\index{EnemyBase.h@{EnemyBase.h}!EBehaviourStates@{EBehaviourStates}}
+\index{EBehaviourStates@{EBehaviourStates}!EnemyBase.h@{EnemyBase.h}}
+\doxysubsubsection{\texorpdfstring{EBehaviourStates}{EBehaviourStates}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8}{E\+Behaviour\+States}} \+: uint8\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDLE@{IDLE}!EnemyBase.h@{EnemyBase.h}}\index{EnemyBase.h@{EnemyBase.h}!IDLE@{IDLE}}}\mbox{\Hypertarget{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8aa5daf7f2ebbba4975d61dab1c40188c7}\label{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8aa5daf7f2ebbba4975d61dab1c40188c7}} 
+I\+D\+LE&Enemy is idle, waiting for combat. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHASE@{CHASE}!EnemyBase.h@{EnemyBase.h}}\index{EnemyBase.h@{EnemyBase.h}!CHASE@{CHASE}}}\mbox{\Hypertarget{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8a2f0492938095f67d986cf0fb13f02385}\label{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8a2f0492938095f67d986cf0fb13f02385}} 
+C\+H\+A\+SE&Chases the player to within melee/ranged distance. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ATTACK@{ATTACK}!EnemyBase.h@{EnemyBase.h}}\index{EnemyBase.h@{EnemyBase.h}!ATTACK@{ATTACK}}}\mbox{\Hypertarget{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8ac6ddd0f72ff2fd344693b9ca8d483871}\label{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8ac6ddd0f72ff2fd344693b9ca8d483871}} 
+A\+T\+T\+A\+CK&Enemy uses their standard attack. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ABILITY@{ABILITY}!EnemyBase.h@{EnemyBase.h}}\index{EnemyBase.h@{EnemyBase.h}!ABILITY@{ABILITY}}}\mbox{\Hypertarget{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8a86789d0837c6aaefd406bb93a0f5ae16}\label{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8a86789d0837c6aaefd406bb93a0f5ae16}} 
+A\+B\+I\+L\+I\+TY&Enemy use their ability. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEAD@{DEAD}!EnemyBase.h@{EnemyBase.h}}\index{EnemyBase.h@{EnemyBase.h}!DEAD@{DEAD}}}\mbox{\Hypertarget{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8abb4784231ff45108ee20bad16e4a2e8c}\label{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8abb4784231ff45108ee20bad16e4a2e8c}} 
+D\+E\+AD&Enemy is dead. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRAFE@{STRAFE}!EnemyBase.h@{EnemyBase.h}}\index{EnemyBase.h@{EnemyBase.h}!STRAFE@{STRAFE}}}\mbox{\Hypertarget{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8ac8492d2e618a9e40ff4f53bb5ca8b42c}\label{_enemy_base_8h_a3dd0721887f0555f851e4a8663bd5ef8ac8492d2e618a9e40ff4f53bb5ca8b42c}} 
+S\+T\+R\+A\+FE&Circle strafe around the enemy. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_enemy_base_8h_a93f027431eda320f10160690efab2474}\label{_enemy_base_8h_a93f027431eda320f10160690efab2474}} 
+\index{EnemyBase.h@{EnemyBase.h}!DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE}}
+\index{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE}!EnemyBase.h@{EnemyBase.h}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE()}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily D\+E\+C\+L\+A\+R\+E\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+U\+L\+T\+I\+C\+A\+S\+T\+\_\+\+D\+E\+L\+E\+G\+A\+TE (\begin{DoxyParamCaption}\item[{F\+Enemy\+Attack\+Signature}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_enemy_base_8h_aee359d8015fef316fe0c267171a4e5c0}\label{_enemy_base_8h_aee359d8015fef316fe0c267171a4e5c0}} 
+\index{EnemyBase.h@{EnemyBase.h}!DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE}}
+\index{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE@{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE}!EnemyBase.h@{EnemyBase.h}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE()}{DECLARE\_DYNAMIC\_MULTICAST\_DELEGATE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily D\+E\+C\+L\+A\+R\+E\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+U\+L\+T\+I\+C\+A\+S\+T\+\_\+\+D\+E\+L\+E\+G\+A\+TE (\begin{DoxyParamCaption}\item[{F\+Enemy\+Death\+Signature}]{ }\end{DoxyParamCaption})}
+

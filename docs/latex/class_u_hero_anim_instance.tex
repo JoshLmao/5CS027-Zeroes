@@ -1,0 +1,210 @@
+\hypertarget{class_u_hero_anim_instance}{}\doxysection{U\+Hero\+Anim\+Instance Class Reference}
+\label{class_u_hero_anim_instance}\index{UHeroAnimInstance@{UHeroAnimInstance}}
+
+
+{\ttfamily \#include $<$Hero\+Anim\+Instance.\+h$>$}
+
+Inheritance diagram for U\+Hero\+Anim\+Instance\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_hero_anim_instance}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_hero_anim_instance_abf482a44a84f397271212c67aab785fd}{Native\+Initialize\+Animation}} () override
+\item 
+virtual void \mbox{\hyperlink{class_u_hero_anim_instance_aebd080ea90127d08dbd19eafdd7171fa}{Native\+Update\+Animation}} (float Delta\+TimeX) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_u_hero_anim_instance_a125b2b72cdfcb1d381c11b668620e642}{Speed\+Sq}}
+\begin{DoxyCompactList}\small\item\em Current speed squared of the hero. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_u_hero_anim_instance_aedd72c3b80ec85f37fd458b3746da269}{b\+Is\+Attacking}}
+\begin{DoxyCompactList}\small\item\em Is the hero attacking. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_u_hero_anim_instance_aeb6fa81da42a9b64fe289a4d375508bf}{b\+Ability\+One\+Use}}
+\begin{DoxyCompactList}\small\item\em Is Ability One used, and it\textquotesingle{}s animation is being played. Once animation is finished, will be false. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_u_hero_anim_instance_a413436546829d1d302991da4f7ba54dd}{b\+Ability\+Two\+Use}}
+\begin{DoxyCompactList}\small\item\em Is Ability Two used, and it\textquotesingle{}s animation is being played. Once animation is finished, will be false. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_u_hero_anim_instance_a9f9a079af2e9c7caa3a1d7f0d164c2da}{b\+Ability\+Three\+Use}}
+\begin{DoxyCompactList}\small\item\em Is Ability Three used, and it\textquotesingle{}s animation is being played. Once animation is finished, will be false. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_u_hero_anim_instance_a9c760ec41292f40b8c50188e78b473f6}{b\+Ability\+Ultimate\+Use}}
+\begin{DoxyCompactList}\small\item\em Is Ultimate used, and it\textquotesingle{}s animation is being played. Once animation is finished, will be false. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_a_hero_base}{A\+Hero\+Base}} $\ast$ \mbox{\hyperlink{class_u_hero_anim_instance_a78f5876963f2e92a2632692442f77622}{Owning\+Hero}}
+\begin{DoxyCompactList}\small\item\em Owning hero of this animation instance, could be nullptr if cast failed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_u_hero_anim_instance_a6bc1fdd983e21fde00454ce42b0f65cf}{U\+Hero\+Anim\+Instance}} ()
+\item 
+void \mbox{\hyperlink{class_u_hero_anim_instance_abace01bc6b11cf9851f49d6a71099a48}{On\+Attacking}} ()
+\begin{DoxyCompactList}\small\item\em Listens to \mbox{\hyperlink{class_a_hero_base}{A\+Hero\+Base}}\textquotesingle{}s On\+Begin\+Attack event to track if the hero is attacking. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_hero_anim_instance_aeebff1904cadad0bb691195da025b7a1}{On\+Attack\+Complete}} ()
+\begin{DoxyCompactList}\small\item\em Listens to \mbox{\hyperlink{class_a_hero_base}{A\+Hero\+Base}}\textquotesingle{}s On\+Completed\+Attack event to track when the hero finishes an attack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_hero_anim_instance_a2e878759a731e50c3bfe5540ec9ad324}{On\+Begin\+Ability}} (int ability\+Index)
+\begin{DoxyCompactList}\small\item\em Listens to \mbox{\hyperlink{class_a_hero_base}{A\+Hero\+Base}}\textquotesingle{}s On\+Begin\+Ability event to track when an ability is started. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_hero_anim_instance_a5b5a0a8016bbee6cca3a6ce6740deb60}{On\+Complete\+Ability}} (int ability\+Index)
+\begin{DoxyCompactList}\small\item\em Listens to \mbox{\hyperlink{class_a_hero_base}{A\+Hero\+Base}}\textquotesingle{}s On\+Begin\+Ability event to track when an ability is finished. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+A\+Pawn $\ast$ \mbox{\hyperlink{class_u_hero_anim_instance_abe0d79598832c817ba53659ee9e33d6d}{m\+\_\+owning\+Pawn}}
+\begin{DoxyCompactList}\small\item\em Owning pawn of the anim instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Animation instance for player heroes to listen to it\textquotesingle{}s events for animations 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_u_hero_anim_instance_a6bc1fdd983e21fde00454ce42b0f65cf}\label{class_u_hero_anim_instance_a6bc1fdd983e21fde00454ce42b0f65cf}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!UHeroAnimInstance@{UHeroAnimInstance}}
+\index{UHeroAnimInstance@{UHeroAnimInstance}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{UHeroAnimInstance()}{UHeroAnimInstance()}}
+{\footnotesize\ttfamily U\+Hero\+Anim\+Instance\+::\+U\+Hero\+Anim\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_u_hero_anim_instance_abf482a44a84f397271212c67aab785fd}\label{class_u_hero_anim_instance_abf482a44a84f397271212c67aab785fd}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!NativeInitializeAnimation@{NativeInitializeAnimation}}
+\index{NativeInitializeAnimation@{NativeInitializeAnimation}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{NativeInitializeAnimation()}{NativeInitializeAnimation()}}
+{\footnotesize\ttfamily void U\+Hero\+Anim\+Instance\+::\+Native\+Initialize\+Animation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_aebd080ea90127d08dbd19eafdd7171fa}\label{class_u_hero_anim_instance_aebd080ea90127d08dbd19eafdd7171fa}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!NativeUpdateAnimation@{NativeUpdateAnimation}}
+\index{NativeUpdateAnimation@{NativeUpdateAnimation}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{NativeUpdateAnimation()}{NativeUpdateAnimation()}}
+{\footnotesize\ttfamily void U\+Hero\+Anim\+Instance\+::\+Native\+Update\+Animation (\begin{DoxyParamCaption}\item[{float}]{Delta\+TimeX }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_aeebff1904cadad0bb691195da025b7a1}\label{class_u_hero_anim_instance_aeebff1904cadad0bb691195da025b7a1}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!OnAttackComplete@{OnAttackComplete}}
+\index{OnAttackComplete@{OnAttackComplete}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OnAttackComplete()}{OnAttackComplete()}}
+{\footnotesize\ttfamily void U\+Hero\+Anim\+Instance\+::\+On\+Attack\+Complete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Listens to \mbox{\hyperlink{class_a_hero_base}{A\+Hero\+Base}}\textquotesingle{}s On\+Completed\+Attack event to track when the hero finishes an attack. 
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_abace01bc6b11cf9851f49d6a71099a48}\label{class_u_hero_anim_instance_abace01bc6b11cf9851f49d6a71099a48}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!OnAttacking@{OnAttacking}}
+\index{OnAttacking@{OnAttacking}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OnAttacking()}{OnAttacking()}}
+{\footnotesize\ttfamily void U\+Hero\+Anim\+Instance\+::\+On\+Attacking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Listens to \mbox{\hyperlink{class_a_hero_base}{A\+Hero\+Base}}\textquotesingle{}s On\+Begin\+Attack event to track if the hero is attacking. 
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_a2e878759a731e50c3bfe5540ec9ad324}\label{class_u_hero_anim_instance_a2e878759a731e50c3bfe5540ec9ad324}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!OnBeginAbility@{OnBeginAbility}}
+\index{OnBeginAbility@{OnBeginAbility}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OnBeginAbility()}{OnBeginAbility()}}
+{\footnotesize\ttfamily void U\+Hero\+Anim\+Instance\+::\+On\+Begin\+Ability (\begin{DoxyParamCaption}\item[{int}]{ability\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Listens to \mbox{\hyperlink{class_a_hero_base}{A\+Hero\+Base}}\textquotesingle{}s On\+Begin\+Ability event to track when an ability is started. 
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_a5b5a0a8016bbee6cca3a6ce6740deb60}\label{class_u_hero_anim_instance_a5b5a0a8016bbee6cca3a6ce6740deb60}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!OnCompleteAbility@{OnCompleteAbility}}
+\index{OnCompleteAbility@{OnCompleteAbility}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OnCompleteAbility()}{OnCompleteAbility()}}
+{\footnotesize\ttfamily void U\+Hero\+Anim\+Instance\+::\+On\+Complete\+Ability (\begin{DoxyParamCaption}\item[{int}]{ability\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Listens to \mbox{\hyperlink{class_a_hero_base}{A\+Hero\+Base}}\textquotesingle{}s On\+Begin\+Ability event to track when an ability is finished. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_u_hero_anim_instance_aeb6fa81da42a9b64fe289a4d375508bf}\label{class_u_hero_anim_instance_aeb6fa81da42a9b64fe289a4d375508bf}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!bAbilityOneUse@{bAbilityOneUse}}
+\index{bAbilityOneUse@{bAbilityOneUse}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{bAbilityOneUse}{bAbilityOneUse}}
+{\footnotesize\ttfamily bool U\+Hero\+Anim\+Instance\+::b\+Ability\+One\+Use}
+
+
+
+Is Ability One used, and it\textquotesingle{}s animation is being played. Once animation is finished, will be false. 
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_a9f9a079af2e9c7caa3a1d7f0d164c2da}\label{class_u_hero_anim_instance_a9f9a079af2e9c7caa3a1d7f0d164c2da}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!bAbilityThreeUse@{bAbilityThreeUse}}
+\index{bAbilityThreeUse@{bAbilityThreeUse}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{bAbilityThreeUse}{bAbilityThreeUse}}
+{\footnotesize\ttfamily bool U\+Hero\+Anim\+Instance\+::b\+Ability\+Three\+Use}
+
+
+
+Is Ability Three used, and it\textquotesingle{}s animation is being played. Once animation is finished, will be false. 
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_a413436546829d1d302991da4f7ba54dd}\label{class_u_hero_anim_instance_a413436546829d1d302991da4f7ba54dd}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!bAbilityTwoUse@{bAbilityTwoUse}}
+\index{bAbilityTwoUse@{bAbilityTwoUse}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{bAbilityTwoUse}{bAbilityTwoUse}}
+{\footnotesize\ttfamily bool U\+Hero\+Anim\+Instance\+::b\+Ability\+Two\+Use}
+
+
+
+Is Ability Two used, and it\textquotesingle{}s animation is being played. Once animation is finished, will be false. 
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_a9c760ec41292f40b8c50188e78b473f6}\label{class_u_hero_anim_instance_a9c760ec41292f40b8c50188e78b473f6}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!bAbilityUltimateUse@{bAbilityUltimateUse}}
+\index{bAbilityUltimateUse@{bAbilityUltimateUse}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{bAbilityUltimateUse}{bAbilityUltimateUse}}
+{\footnotesize\ttfamily bool U\+Hero\+Anim\+Instance\+::b\+Ability\+Ultimate\+Use}
+
+
+
+Is Ultimate used, and it\textquotesingle{}s animation is being played. Once animation is finished, will be false. 
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_aedd72c3b80ec85f37fd458b3746da269}\label{class_u_hero_anim_instance_aedd72c3b80ec85f37fd458b3746da269}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!bIsAttacking@{bIsAttacking}}
+\index{bIsAttacking@{bIsAttacking}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{bIsAttacking}{bIsAttacking}}
+{\footnotesize\ttfamily bool U\+Hero\+Anim\+Instance\+::b\+Is\+Attacking}
+
+
+
+Is the hero attacking. 
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_abe0d79598832c817ba53659ee9e33d6d}\label{class_u_hero_anim_instance_abe0d79598832c817ba53659ee9e33d6d}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!m\_owningPawn@{m\_owningPawn}}
+\index{m\_owningPawn@{m\_owningPawn}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{m\_owningPawn}{m\_owningPawn}}
+{\footnotesize\ttfamily A\+Pawn$\ast$ U\+Hero\+Anim\+Instance\+::m\+\_\+owning\+Pawn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Owning pawn of the anim instance. 
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_a78f5876963f2e92a2632692442f77622}\label{class_u_hero_anim_instance_a78f5876963f2e92a2632692442f77622}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!OwningHero@{OwningHero}}
+\index{OwningHero@{OwningHero}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OwningHero}{OwningHero}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_a_hero_base}{A\+Hero\+Base}}$\ast$ U\+Hero\+Anim\+Instance\+::\+Owning\+Hero}
+
+
+
+Owning hero of this animation instance, could be nullptr if cast failed. 
+
+\mbox{\Hypertarget{class_u_hero_anim_instance_a125b2b72cdfcb1d381c11b668620e642}\label{class_u_hero_anim_instance_a125b2b72cdfcb1d381c11b668620e642}} 
+\index{UHeroAnimInstance@{UHeroAnimInstance}!SpeedSq@{SpeedSq}}
+\index{SpeedSq@{SpeedSq}!UHeroAnimInstance@{UHeroAnimInstance}}
+\doxysubsubsection{\texorpdfstring{SpeedSq}{SpeedSq}}
+{\footnotesize\ttfamily float U\+Hero\+Anim\+Instance\+::\+Speed\+Sq}
+
+
+
+Current speed squared of the hero. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Zeroes/\+Source/\+Zeroes/\+Heroes/\mbox{\hyperlink{_hero_anim_instance_8h}{Hero\+Anim\+Instance.\+h}}\item 
+Zeroes/\+Source/\+Zeroes/\+Heroes/\mbox{\hyperlink{_hero_anim_instance_8cpp}{Hero\+Anim\+Instance.\+cpp}}\end{DoxyCompactItemize}

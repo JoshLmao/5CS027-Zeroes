@@ -1,0 +1,111 @@
+\hypertarget{class_u_leader_anim_instance}{}\doxysection{U\+Leader\+Anim\+Instance Class Reference}
+\label{class_u_leader_anim_instance}\index{ULeaderAnimInstance@{ULeaderAnimInstance}}
+
+
+{\ttfamily \#include $<$Leader\+Anim\+Instance.\+h$>$}
+
+Inheritance diagram for U\+Leader\+Anim\+Instance\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_u_leader_anim_instance}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_u_leader_anim_instance_a44f29ee38a07b44f8234929384019713}{U\+Leader\+Anim\+Instance}} ()
+\item 
+virtual void \mbox{\hyperlink{class_u_leader_anim_instance_a1f3e568b59906592b5ca3166f18b306b}{Native\+Initialize\+Animation}} () override
+\item 
+void \mbox{\hyperlink{class_u_leader_anim_instance_a78d286c8ed0641c0020a24ea02db53ba}{On\+Ability\+Complete}} ()
+\begin{DoxyCompactList}\small\item\em Called from Anim\+Notify to stop ability. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_u_leader_anim_instance_acea4dd877e2fa9c251507be6056edfd1}{b\+Is\+Using\+Ability}}
+\begin{DoxyCompactList}\small\item\em Is the enemy currently attacking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_leader_anim_instance_a1f21b54abd436d689f9990068cd634e4}{On\+Begin\+Ability}} ()
+\begin{DoxyCompactList}\small\item\em Event listener function of the \mbox{\hyperlink{class_a_leader_base}{A\+Leader\+Base}}\textquotesingle{}s On\+Leader\+Begin\+Ability event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_a_leader_base}{A\+Leader\+Base}} $\ast$ \mbox{\hyperlink{class_u_leader_anim_instance_abede6237b26b31f01896196ca0cac822}{Owning\+Leader}}
+\begin{DoxyCompactList}\small\item\em Owning leader of the animation instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Animation instance of a Leader 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_u_leader_anim_instance_a44f29ee38a07b44f8234929384019713}\label{class_u_leader_anim_instance_a44f29ee38a07b44f8234929384019713}} 
+\index{ULeaderAnimInstance@{ULeaderAnimInstance}!ULeaderAnimInstance@{ULeaderAnimInstance}}
+\index{ULeaderAnimInstance@{ULeaderAnimInstance}!ULeaderAnimInstance@{ULeaderAnimInstance}}
+\doxysubsubsection{\texorpdfstring{ULeaderAnimInstance()}{ULeaderAnimInstance()}}
+{\footnotesize\ttfamily U\+Leader\+Anim\+Instance\+::\+U\+Leader\+Anim\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_u_leader_anim_instance_a1f3e568b59906592b5ca3166f18b306b}\label{class_u_leader_anim_instance_a1f3e568b59906592b5ca3166f18b306b}} 
+\index{ULeaderAnimInstance@{ULeaderAnimInstance}!NativeInitializeAnimation@{NativeInitializeAnimation}}
+\index{NativeInitializeAnimation@{NativeInitializeAnimation}!ULeaderAnimInstance@{ULeaderAnimInstance}}
+\doxysubsubsection{\texorpdfstring{NativeInitializeAnimation()}{NativeInitializeAnimation()}}
+{\footnotesize\ttfamily void U\+Leader\+Anim\+Instance\+::\+Native\+Initialize\+Animation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_u_enemy_anim_instance_aa31cfdab6012f0bd65015d17fc7731af}{U\+Enemy\+Anim\+Instance}}.
+
+\mbox{\Hypertarget{class_u_leader_anim_instance_a78d286c8ed0641c0020a24ea02db53ba}\label{class_u_leader_anim_instance_a78d286c8ed0641c0020a24ea02db53ba}} 
+\index{ULeaderAnimInstance@{ULeaderAnimInstance}!OnAbilityComplete@{OnAbilityComplete}}
+\index{OnAbilityComplete@{OnAbilityComplete}!ULeaderAnimInstance@{ULeaderAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OnAbilityComplete()}{OnAbilityComplete()}}
+{\footnotesize\ttfamily void U\+Leader\+Anim\+Instance\+::\+On\+Ability\+Complete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Called from Anim\+Notify to stop ability. 
+
+\mbox{\Hypertarget{class_u_leader_anim_instance_a1f21b54abd436d689f9990068cd634e4}\label{class_u_leader_anim_instance_a1f21b54abd436d689f9990068cd634e4}} 
+\index{ULeaderAnimInstance@{ULeaderAnimInstance}!OnBeginAbility@{OnBeginAbility}}
+\index{OnBeginAbility@{OnBeginAbility}!ULeaderAnimInstance@{ULeaderAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OnBeginAbility()}{OnBeginAbility()}}
+{\footnotesize\ttfamily void U\+Leader\+Anim\+Instance\+::\+On\+Begin\+Ability (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Event listener function of the \mbox{\hyperlink{class_a_leader_base}{A\+Leader\+Base}}\textquotesingle{}s On\+Leader\+Begin\+Ability event. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_u_leader_anim_instance_acea4dd877e2fa9c251507be6056edfd1}\label{class_u_leader_anim_instance_acea4dd877e2fa9c251507be6056edfd1}} 
+\index{ULeaderAnimInstance@{ULeaderAnimInstance}!bIsUsingAbility@{bIsUsingAbility}}
+\index{bIsUsingAbility@{bIsUsingAbility}!ULeaderAnimInstance@{ULeaderAnimInstance}}
+\doxysubsubsection{\texorpdfstring{bIsUsingAbility}{bIsUsingAbility}}
+{\footnotesize\ttfamily bool U\+Leader\+Anim\+Instance\+::b\+Is\+Using\+Ability}
+
+
+
+Is the enemy currently attacking. 
+
+\mbox{\Hypertarget{class_u_leader_anim_instance_abede6237b26b31f01896196ca0cac822}\label{class_u_leader_anim_instance_abede6237b26b31f01896196ca0cac822}} 
+\index{ULeaderAnimInstance@{ULeaderAnimInstance}!OwningLeader@{OwningLeader}}
+\index{OwningLeader@{OwningLeader}!ULeaderAnimInstance@{ULeaderAnimInstance}}
+\doxysubsubsection{\texorpdfstring{OwningLeader}{OwningLeader}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{class_a_leader_base}{A\+Leader\+Base}}$\ast$ U\+Leader\+Anim\+Instance\+::\+Owning\+Leader\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Owning leader of the animation instance. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Zeroes/\+Source/\+Zeroes/\+Leaders/\mbox{\hyperlink{_leader_anim_instance_8h}{Leader\+Anim\+Instance.\+h}}\item 
+Zeroes/\+Source/\+Zeroes/\+Leaders/\mbox{\hyperlink{_leader_anim_instance_8cpp}{Leader\+Anim\+Instance.\+cpp}}\end{DoxyCompactItemize}

@@ -76,6 +76,7 @@ DerivedDataCache/*
 # Ignore big asset files, import at end
 Content/ParagonMinions/*
 Content/ParagonShinbi/*
+Content/ParagonAurora/*
 Content/Mannequin/*
 Content/TopDownCPP/*
 Content/ParagonGrux/*
