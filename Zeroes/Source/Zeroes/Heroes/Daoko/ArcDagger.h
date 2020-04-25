@@ -50,6 +50,11 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	class UStaticMeshComponent* m_mesh;
 
+	/// Sound to play if destroyed with no target
+	class USoundBase* m_destroySound;
+	/// Sound to play once dagger hits target
+	class USoundBase* m_hitTargetSound;
+
 	/// Amount of damage the dagger will give to the enemy
 	float m_damage;
 	/// Current target enemy
@@ -68,4 +73,7 @@ private:
 	* using the 'arcTo' vector to control where to arc to
 	*/
 	FVector QuadraticGetPoint(float alpha, FVector from, FVector arcTo, FVector to);
+
+	/// Destroys the dagger and plays sound and performs clean up
+	void DestroyDagger(bool didHitTarget);
 };

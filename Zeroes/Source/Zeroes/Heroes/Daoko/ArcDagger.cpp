@@ -14,6 +14,7 @@
 #include "ZeroesHelper.h"
 #include "Kismet\KismetMathLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Kismet\GameplayStatics.h"
 
 // Sets default values
 AArcDagger::AArcDagger()
@@ -54,6 +55,14 @@ AArcDagger::AArcDagger()
 	{
 		UE_LOG(LogZeroes, Error, TEXT("Unable to find mesh for %s"), *this->GetName());
 	}
+
+	static ConstructorHelpers::FObjectFinder<USoundBase> daggerHitSound(TEXT("/Game/Audio/dagger_target_recieve"));
+	if (daggerHitSound.Succeeded())
+		m_hitTargetSound = daggerHitSound.Object;
+
+	static ConstructorHelpers::FObjectFinder<USoundBase> destroySound(TEXT("/Game/Audio/dagger_fall"));
+	if (destroySound.Succeeded())
+		m_destroySound = destroySound.Object;
 }
 
 // Called when the game starts or when spawned
@@ -77,7 +86,7 @@ void AArcDagger::BeginPlay()
 	{
 		UE_LOG(LogZeroes, Log, TEXT("Arc unable to find enemy - Destroying"));
 		m_targetEnemy = nullptr;
-		Destroy();
+		DestroyDagger(false);
 	}
 }
 
@@ -134,7 +143,7 @@ void AArcDagger::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 		UE_LOG(LogZeroes, Log, TEXT("%s: Dealt '%f' damage to %s, destroying!"), *this->GetName(), m_damage, *enemy->GetName());
 		m_targetEnemy = nullptr;
 
-		Destroy();
+		DestroyDagger(true);
 	}
 }
 
@@ -178,4 +187,20 @@ FVector AArcDagger::QuadraticGetPoint(float alpha, FVector from, FVector arcTo, 
 	currentTargetPosition.Z = to.Z; // Keep z the same height.
 
 	return currentTargetPosition;
+}
+
+void AArcDagger::DestroyDagger(bool didHitTarget)
+{
+	if (didHitTarget)
+	{
+		if (m_hitTargetSound)
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), m_hitTargetSound, GetActorLocation(), 1.0f, FMath::RandRange(0.9f, 1.1f));
+	}
+	else
+	{
+		if (m_destroySound)
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), m_destroySound, GetActorLocation(), 1.0f, FMath::RandRange(0.9f, 1.1f));
+	}
+
+	Destroy();
 }

@@ -21,10 +21,6 @@ ADaoko::ADaoko()
 	m_missileCount = 0;
 
 	// Load sounds ready to be played
-	// Walking Sound
-	static ConstructorHelpers::FObjectFinder<USoundBase> WalkSound(TEXT("/Game/Audio/Footstep02"));
-	if (WalkSound.Succeeded())
-		WalkingSound = WalkSound.Object;
 	// Attack sound
 	static ConstructorHelpers::FObjectFinder<USoundBase> attackSound(TEXT("/Game/Audio/riki_attack"));
 	if (attackSound.Succeeded())
