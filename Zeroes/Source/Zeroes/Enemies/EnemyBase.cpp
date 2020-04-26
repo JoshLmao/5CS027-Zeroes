@@ -47,8 +47,8 @@ AEnemyBase::AEnemyBase()
 	// Set maximum movemenet speed
 	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 
-	GetCapsuleComponent()->SetMassScale(NAME_None, 1000.0f);
-	GetMesh()->SetMassScale(NAME_None, 1000.0f);
+	//GetCapsuleComponent()->SetMassScale(NAME_None, 1000.0f);
+	//GetMesh()->SetMassScale(NAME_None, 1000.0f);
 
 	WidgetComponent = CreateDefaultSubobject<USActorWidgetComponent>("PopupWidget");
 	WidgetComponent->SetupAttachment(RootComponent);

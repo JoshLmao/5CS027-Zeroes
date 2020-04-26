@@ -11,9 +11,9 @@ UEnemyAnimInstance::UEnemyAnimInstance()
 	bIsAttacking = false;
 }
 
-void UEnemyAnimInstance::NativeInitializeAnimation()
+void UEnemyAnimInstance::NativeBeginPlay()
 {
-	Super::NativeInitializeAnimation();
+	Super::NativeBeginPlay();
 
 	m_owningPawn = TryGetPawnOwner();
 	if (m_owningPawn)

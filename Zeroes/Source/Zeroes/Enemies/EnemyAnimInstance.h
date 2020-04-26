@@ -37,7 +37,7 @@ public:
 	/// Current owning enemy of the animation instance, can be null if cast fails
 	class AEnemyBase* OwningEnemy;
 
-	virtual void NativeInitializeAnimation() override; 
+	virtual void NativeBeginPlay() override;
 
 	virtual void NativeUpdateAnimation(float DeltaTimeX) override;
 

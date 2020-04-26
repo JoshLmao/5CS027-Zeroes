@@ -15,6 +15,7 @@
 #include "Enemies\EnemyBase.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "ZeroesPlayerController.h"
+#include "Engine\Engine.h"
 
 AZeroesCharacter::AZeroesCharacter()
 {
