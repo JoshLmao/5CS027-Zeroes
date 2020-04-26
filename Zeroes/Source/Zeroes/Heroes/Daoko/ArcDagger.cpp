@@ -104,8 +104,6 @@ void AArcDagger::Tick(float DeltaTime)
 		// Set after rotation has been set in beginplay
 		if (m_arcToPosition.Equals(FVector::ZeroVector)) {
 			m_arcToPosition = UZeroesMathHelper::GetAnyPointAlongLine(m_startPosition, m_targetEnemy->GetActorLocation(), 0.5f) + (GetActorRightVector() * 500.0f);
-			
-			DrawDebugSphere(GetWorld(), m_arcToPosition, 20.0f, 20.0f, FColor::Blue, true, -1.0f, 0, 1.0f);
 		}
 
 		// Set dagger to arc towards target using quadratic bezier
@@ -126,8 +124,8 @@ void AArcDagger::Tick(float DeltaTime)
 
 		// Debug Spheres for From Location, Arc Point and To Location
 		//DrawDebugSphere(GetWorld(), m_startPosition, 20.0f, 20.0f, FColor::Red, false, -1.0f, 0, 1.0f);
-		//DrawDebugSphere(GetWorld(), m_targetEnemy->GetActorLocation(), 20.0f, 20.0f, FColor::Red, false, -1.0f, 0, 1.0f);
 		//DrawDebugSphere(GetWorld(), m_arcToPosition, 20.0f, 20.0f, FColor::Blue, false, -1.0f, 0, 1.0f);
+		//DrawDebugSphere(GetWorld(), m_targetEnemy->GetActorLocation(), 20.0f, 20.0f, FColor::Red, false, -1.0f, 0, 1.0f);
 	}
 }
 

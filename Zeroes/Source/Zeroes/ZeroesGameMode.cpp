@@ -86,6 +86,10 @@ void AZeroesGameMode::OnLeaderDeath()
 		WinWidget = CreateWidget<UUserWidget>(GetWorld(), WinWidgetClass);
 		WinWidget->AddToViewport();
 	}
+
+	AZeroesCharacter* player = Cast<AZeroesCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	AZeroesPlayerController* controller = Cast<AZeroesPlayerController>(player->GetController());
+	controller->DisableInput(controller);
 }
 
 ALeaderBase* AZeroesGameMode::FindLeader()

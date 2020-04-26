@@ -137,7 +137,8 @@ void ADaoko::SpawnSpike()
 
 	// Spawn spike and set damage
 	ASpike* spike = GetWorld()->SpawnActor<ASpike>(ASpike::StaticClass(), spikePoint, FRotator::ZeroRotator);
-	spike->SetDamage(FMath::RandRange(90.0f, 125.0f));
+	if (spike)
+		spike->SetDamage(FMath::RandRange(90.0f, 125.0f));
 
 	m_spikeCount++;
 
@@ -152,7 +153,8 @@ void ADaoko::OnPreventMovementFinished()
 void ADaoko::OnSpawnMissiles()
 {
 	AHomingMissile* missile = GetWorld()->SpawnActor<AHomingMissile>(AHomingMissile::StaticClass(), GetActorLocation(), FRotator::ZeroRotator);
-	missile->SetDamage(FMath::RandRange(80.0f, 150.0f));
+	if (missile)
+		missile->SetDamage(FMath::RandRange(80.0f, 150.0f));
 
 	//UE_LOG(LogZeroes, Log, TEXT("Spawned Daoko missile, deals '%f' damage"), missile->GetDamage());
 
