@@ -144,6 +144,9 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a250bcf22d43b52a97286c396606eb292"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5dfe2a2e9b5318a5131a091ac3294fb3"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_arc_dagger.html#a5dfe2a2e9b5318a5131a091ac3294fb3">QuadraticGetPoint</a> (float alpha, FVector from, FVector arcTo, FVector to)</td></tr>
 <tr class="separator:a5dfe2a2e9b5318a5131a091ac3294fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab533913a581cb16ee53017146563730"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_arc_dagger.html#aab533913a581cb16ee53017146563730">DestroyDagger</a> (bool didHitTarget)</td></tr>
+<tr class="memdesc:aab533913a581cb16ee53017146563730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the dagger and plays sound and performs clean up.  <a href="class_a_arc_dagger.html#aab533913a581cb16ee53017146563730">More...</a><br /></td></tr>
+<tr class="separator:aab533913a581cb16ee53017146563730"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -153,6 +156,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a85a4a145890380c509d4cb454c815ddb"><td class="memItemLeft" align="right" valign="top">class UStaticMeshComponent *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_arc_dagger.html#a85a4a145890380c509d4cb454c815ddb">m_mesh</a></td></tr>
 <tr class="memdesc:a85a4a145890380c509d4cb454c815ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visual mesh of the dagger.  <a href="class_a_arc_dagger.html#a85a4a145890380c509d4cb454c815ddb">More...</a><br /></td></tr>
 <tr class="separator:a85a4a145890380c509d4cb454c815ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa43d6869c58224ecc7c6a89b976238"><td class="memItemLeft" align="right" valign="top">class USoundBase *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_arc_dagger.html#a2fa43d6869c58224ecc7c6a89b976238">m_destroySound</a></td></tr>
+<tr class="memdesc:a2fa43d6869c58224ecc7c6a89b976238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sound to play if destroyed with no target.  <a href="class_a_arc_dagger.html#a2fa43d6869c58224ecc7c6a89b976238">More...</a><br /></td></tr>
+<tr class="separator:a2fa43d6869c58224ecc7c6a89b976238"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56bd7c7d929fc452c969786f883dc2fd"><td class="memItemLeft" align="right" valign="top">class USoundBase *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_arc_dagger.html#a56bd7c7d929fc452c969786f883dc2fd">m_hitTargetSound</a></td></tr>
+<tr class="memdesc:a56bd7c7d929fc452c969786f883dc2fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sound to play once dagger hits target.  <a href="class_a_arc_dagger.html#a56bd7c7d929fc452c969786f883dc2fd">More...</a><br /></td></tr>
+<tr class="separator:a56bd7c7d929fc452c969786f883dc2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86505732e7a0f2f32362f780bd4265ac"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_arc_dagger.html#a86505732e7a0f2f32362f780bd4265ac">m_damage</a></td></tr>
 <tr class="memdesc:a86505732e7a0f2f32362f780bd4265ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Amount of damage the dagger will give to the enemy.  <a href="class_a_arc_dagger.html#a86505732e7a0f2f32362f780bd4265ac">More...</a><br /></td></tr>
 <tr class="separator:a86505732e7a0f2f32362f780bd4265ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,6 +221,34 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab533913a581cb16ee53017146563730"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab533913a581cb16ee53017146563730">&#9670;&nbsp;</a></span>DestroyDagger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AArcDagger::DestroyDagger </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>didHitTarget</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destroys the dagger and plays sound and performs clean up. </p>
 
 </div>
 </div>
@@ -518,6 +555,54 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Amount of damage the dagger will give to the enemy. </p>
+
+</div>
+</div>
+<a id="a2fa43d6869c58224ecc7c6a89b976238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fa43d6869c58224ecc7c6a89b976238">&#9670;&nbsp;</a></span>m_destroySound</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">class USoundBase* AArcDagger::m_destroySound</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sound to play if destroyed with no target. </p>
+
+</div>
+</div>
+<a id="a56bd7c7d929fc452c969786f883dc2fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56bd7c7d929fc452c969786f883dc2fd">&#9670;&nbsp;</a></span>m_hitTargetSound</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">class USoundBase* AArcDagger::m_hitTargetSound</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sound to play once dagger hits target. </p>
 
 </div>
 </div>

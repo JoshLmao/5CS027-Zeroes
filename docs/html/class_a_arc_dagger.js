@@ -2,6 +2,7 @@ var class_a_arc_dagger =
 [
     [ "AArcDagger", "class_a_arc_dagger.html#afa61edab1f1d0cc99854748a27578547", null ],
     [ "BeginPlay", "class_a_arc_dagger.html#a343f2aebe28b8b3a43b902731250f208", null ],
+    [ "DestroyDagger", "class_a_arc_dagger.html#aab533913a581cb16ee53017146563730", null ],
     [ "FindEnemy", "class_a_arc_dagger.html#a250bcf22d43b52a97286c396606eb292", null ],
     [ "GetDamage", "class_a_arc_dagger.html#a1347114dc81dbef3fa45d00d95b622a2", null ],
     [ "OnOverlapBegin", "class_a_arc_dagger.html#a52c61845e62c833574d16f721782b412", null ],
@@ -13,6 +14,8 @@ var class_a_arc_dagger =
     [ "m_arcToPosition", "class_a_arc_dagger.html#af1adf9839095f723dff66803b946c3e5", null ],
     [ "m_capsule", "class_a_arc_dagger.html#a1da59148119811fbde5ffdda763fd622", null ],
     [ "m_damage", "class_a_arc_dagger.html#a86505732e7a0f2f32362f780bd4265ac", null ],
+    [ "m_destroySound", "class_a_arc_dagger.html#a2fa43d6869c58224ecc7c6a89b976238", null ],
+    [ "m_hitTargetSound", "class_a_arc_dagger.html#a56bd7c7d929fc452c969786f883dc2fd", null ],
     [ "m_mesh", "class_a_arc_dagger.html#a85a4a145890380c509d4cb454c815ddb", null ],
     [ "m_startPosition", "class_a_arc_dagger.html#a6fd7288fe826c840aad1de825a364d37", null ],
     [ "m_targetEnemy", "class_a_arc_dagger.html#a54a21c3df0e447b3405a33105b9f75b8", null ],

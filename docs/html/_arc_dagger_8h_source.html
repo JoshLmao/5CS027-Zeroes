@@ -135,16 +135,21 @@ $(document).ready(function(){initNavTree('_arc_dagger_8h_source.html','');});
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    UPROPERTY(VisibleAnywhere)</div>
 <div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a85a4a145890380c509d4cb454c815ddb">   51</a></span>&#160;    class UStaticMeshComponent* m_mesh;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a86505732e7a0f2f32362f780bd4265ac">   54</a></span>&#160;    <span class="keywordtype">float</span> m_damage;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a54a21c3df0e447b3405a33105b9f75b8">   56</a></span>&#160;    class <a class="code" href="class_a_enemy_base.html">AEnemyBase</a>* m_targetEnemy;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a6fd7288fe826c840aad1de825a364d37">   58</a></span>&#160;    FVector m_startPosition;</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#af1adf9839095f723dff66803b946c3e5">   60</a></span>&#160;    FVector m_arcToPosition;</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a83eff128a346167cf8546a22ef70b521">   62</a></span>&#160;    <span class="keywordtype">float</span> m_arcAlpha;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    class <a class="code" href="class_a_enemy_base.html">AEnemyBase</a>* FindEnemy();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    FVector QuadraticGetPoint(<span class="keywordtype">float</span> alpha, FVector from, FVector arcTo, FVector to);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;};</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a2fa43d6869c58224ecc7c6a89b976238">   54</a></span>&#160;    class USoundBase* m_destroySound;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a56bd7c7d929fc452c969786f883dc2fd">   56</a></span>&#160;    class USoundBase* m_hitTargetSound;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a86505732e7a0f2f32362f780bd4265ac">   59</a></span>&#160;    <span class="keywordtype">float</span> m_damage;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a54a21c3df0e447b3405a33105b9f75b8">   61</a></span>&#160;    class <a class="code" href="class_a_enemy_base.html">AEnemyBase</a>* m_targetEnemy;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a6fd7288fe826c840aad1de825a364d37">   63</a></span>&#160;    FVector m_startPosition;</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#af1adf9839095f723dff66803b946c3e5">   65</a></span>&#160;    FVector m_arcToPosition;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_a_arc_dagger.html#a83eff128a346167cf8546a22ef70b521">   67</a></span>&#160;    <span class="keywordtype">float</span> m_arcAlpha;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    class <a class="code" href="class_a_enemy_base.html">AEnemyBase</a>* FindEnemy();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    FVector QuadraticGetPoint(<span class="keywordtype">float</span> alpha, FVector from, FVector arcTo, FVector to);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> DestroyDagger(<span class="keywordtype">bool</span> didHitTarget);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_a_arc_dagger_html"><div class="ttname"><a href="class_a_arc_dagger.html">AArcDagger</a></div><div class="ttdef"><b>Definition:</b> ArcDagger.h:13</div></div>

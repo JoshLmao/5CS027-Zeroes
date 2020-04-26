@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"class_a_hero_base.html#a539f96bcecc0b432328da16504414e00":[0,1,4,38],
+"class_a_hero_base.html#a55dd01ff7077665f648874ae6f5ddcaf":[0,1,4,48],
+"class_a_hero_base.html#a5a566cec412787e4797a0e9dc9dc778e":[0,1,4,67],
 "class_a_hero_base.html#a5d81431d1e8ea2532c54526b23150751":[0,1,4,24],
 "class_a_hero_base.html#a5fe93adfa73f0529276d189144266163":[0,1,4,1],
 "class_a_hero_base.html#a5fe93adfa73f0529276d189144266163a2fa03d56cac44a3999e97f06a2afc4b4":[0,1,4,1,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "class_u_anim_notify___hero_step_sound.html#a56bc391388e5984f5033c9a5475eaf13":[0,1,20,2],
 "class_u_anim_notify___hero_step_sound.html#a65574c968c1b08a70f82c60c9a8a9418":[0,1,20,0],
 "class_u_anim_notify___hero_step_sound.html#acca315b07fd231dbf1d26e8469e1a354":[0,1,20,1],
-"class_u_anim_notify___leader_ability_finished.html":[0,1,21],
-"class_u_anim_notify___leader_ability_finished.html#ae878c6694508bafdc76bb67df5344469":[0,1,21,0],
-"class_u_enemy_anim_instance.html":[0,1,22],
-"class_u_enemy_anim_instance.html#a44485978ea5b5ad5c5f8fee9155df280":[0,1,22,8]
+"class_u_anim_notify___leader_ability_finished.html":[0,1,21]
 };

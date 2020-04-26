@@ -12,7 +12,8 @@ var searchData=
   ['declare_5fdynamic_5fmulticast_5fdelegate_5foneparam_98',['DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam',['../_hero_base_8h.html#ac61eccb9fafb9c70c988bfe75f88aceb',1,'DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHeroBeginAbilitySignature, int, abilityIndex):&#160;HeroBase.h'],['../_hero_base_8h.html#a6d778249a7bb832c6c1d7d61ba8dc5b8',1,'DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHeroCompleteAbilitySignature, int, abilityIndex):&#160;HeroBase.h']]],
   ['defaultcamerazoom_99',['DefaultCameraZoom',['../class_a_hero_base.html#a7fe1bc00ad34ec8e9250e8539ada0994',1,'AHeroBase']]],
   ['destinationactor_100',['DestinationActor',['../class_a_zeroes_character.html#a2b8cf61b78325fc9b2c7eb0debdb1257',1,'AZeroesCharacter']]],
-  ['destroymissile_101',['DestroyMissile',['../class_a_homing_missile.html#ab0b7b5f41e2daab4efc0df3ba834f16b',1,'AHomingMissile']]],
-  ['doanimation_102',['DoAnimation',['../class_a_spike.html#a4886eaafd3b3acb86ad861c7cdb98470',1,'ASpike']]],
-  ['drawhud_103',['DrawHUD',['../class_a_player_h_u_d.html#a8530b94ec1dfbff908e9322b9943c294',1,'APlayerHUD']]]
+  ['destroydagger_101',['DestroyDagger',['../class_a_arc_dagger.html#aab533913a581cb16ee53017146563730',1,'AArcDagger']]],
+  ['destroymissile_102',['DestroyMissile',['../class_a_homing_missile.html#ab0b7b5f41e2daab4efc0df3ba834f16b',1,'AHomingMissile']]],
+  ['doanimation_103',['DoAnimation',['../class_a_spike.html#a4886eaafd3b3acb86ad861c7cdb98470',1,'ASpike']]],
+  ['drawhud_104',['DrawHUD',['../class_a_player_h_u_d.html#a8530b94ec1dfbff908e9322b9943c294',1,'APlayerHUD']]]
 ];

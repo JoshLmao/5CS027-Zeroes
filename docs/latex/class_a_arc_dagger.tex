@@ -41,7 +41,9 @@ virtual void \mbox{\hyperlink{class_a_arc_dagger_a343f2aebe28b8b3a43b902731250f2
 class \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}} $\ast$ \mbox{\hyperlink{class_a_arc_dagger_a250bcf22d43b52a97286c396606eb292}{Find\+Enemy}} ()
 \begin{DoxyCompactList}\small\item\em Finds an enemy to arc toward and deal damage. \end{DoxyCompactList}\item 
 F\+Vector \mbox{\hyperlink{class_a_arc_dagger_a5dfe2a2e9b5318a5131a091ac3294fb3}{Quadratic\+Get\+Point}} (float alpha, F\+Vector from, F\+Vector arc\+To, F\+Vector to)
-\end{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_a_arc_dagger_aab533913a581cb16ee53017146563730}{Destroy\+Dagger}} (bool did\+Hit\+Target)
+\begin{DoxyCompactList}\small\item\em Destroys the dagger and plays sound and performs clean up. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -49,6 +51,10 @@ class U\+Capsule\+Component $\ast$ \mbox{\hyperlink{class_a_arc_dagger_a1da59148
 \begin{DoxyCompactList}\small\item\em Root component, capsule component. \end{DoxyCompactList}\item 
 class U\+Static\+Mesh\+Component $\ast$ \mbox{\hyperlink{class_a_arc_dagger_a85a4a145890380c509d4cb454c815ddb}{m\+\_\+mesh}}
 \begin{DoxyCompactList}\small\item\em Visual mesh of the dagger. \end{DoxyCompactList}\item 
+class U\+Sound\+Base $\ast$ \mbox{\hyperlink{class_a_arc_dagger_a2fa43d6869c58224ecc7c6a89b976238}{m\+\_\+destroy\+Sound}}
+\begin{DoxyCompactList}\small\item\em Sound to play if destroyed with no target. \end{DoxyCompactList}\item 
+class U\+Sound\+Base $\ast$ \mbox{\hyperlink{class_a_arc_dagger_a56bd7c7d929fc452c969786f883dc2fd}{m\+\_\+hit\+Target\+Sound}}
+\begin{DoxyCompactList}\small\item\em Sound to play once dagger hits target. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{class_a_arc_dagger_a86505732e7a0f2f32362f780bd4265ac}{m\+\_\+damage}}
 \begin{DoxyCompactList}\small\item\em Amount of damage the dagger will give to the enemy. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_a_enemy_base}{A\+Enemy\+Base}} $\ast$ \mbox{\hyperlink{class_a_arc_dagger_a54a21c3df0e447b3405a33105b9f75b8}{m\+\_\+target\+Enemy}}
@@ -79,6 +85,16 @@ Arc Dagger Ability Actor Determines the nearest \mbox{\hyperlink{class_a_enemy_b
 \index{BeginPlay@{BeginPlay}!AArcDagger@{AArcDagger}}
 \doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
 {\footnotesize\ttfamily void A\+Arc\+Dagger\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_a_arc_dagger_aab533913a581cb16ee53017146563730}\label{class_a_arc_dagger_aab533913a581cb16ee53017146563730}} 
+\index{AArcDagger@{AArcDagger}!DestroyDagger@{DestroyDagger}}
+\index{DestroyDagger@{DestroyDagger}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{DestroyDagger()}{DestroyDagger()}}
+{\footnotesize\ttfamily void A\+Arc\+Dagger\+::\+Destroy\+Dagger (\begin{DoxyParamCaption}\item[{bool}]{did\+Hit\+Target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Destroys the dagger and plays sound and performs clean up. 
 
 \mbox{\Hypertarget{class_a_arc_dagger_a250bcf22d43b52a97286c396606eb292}\label{class_a_arc_dagger_a250bcf22d43b52a97286c396606eb292}} 
 \index{AArcDagger@{AArcDagger}!FindEnemy@{FindEnemy}}
@@ -180,6 +196,26 @@ Root component, capsule component.
 
 
 Amount of damage the dagger will give to the enemy. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a2fa43d6869c58224ecc7c6a89b976238}\label{class_a_arc_dagger_a2fa43d6869c58224ecc7c6a89b976238}} 
+\index{AArcDagger@{AArcDagger}!m\_destroySound@{m\_destroySound}}
+\index{m\_destroySound@{m\_destroySound}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{m\_destroySound}{m\_destroySound}}
+{\footnotesize\ttfamily class U\+Sound\+Base$\ast$ A\+Arc\+Dagger\+::m\+\_\+destroy\+Sound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sound to play if destroyed with no target. 
+
+\mbox{\Hypertarget{class_a_arc_dagger_a56bd7c7d929fc452c969786f883dc2fd}\label{class_a_arc_dagger_a56bd7c7d929fc452c969786f883dc2fd}} 
+\index{AArcDagger@{AArcDagger}!m\_hitTargetSound@{m\_hitTargetSound}}
+\index{m\_hitTargetSound@{m\_hitTargetSound}!AArcDagger@{AArcDagger}}
+\doxysubsubsection{\texorpdfstring{m\_hitTargetSound}{m\_hitTargetSound}}
+{\footnotesize\ttfamily class U\+Sound\+Base$\ast$ A\+Arc\+Dagger\+::m\+\_\+hit\+Target\+Sound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sound to play once dagger hits target. 
 
 \mbox{\Hypertarget{class_a_arc_dagger_a85a4a145890380c509d4cb454c815ddb}\label{class_a_arc_dagger_a85a4a145890380c509d4cb454c815ddb}} 
 \index{AArcDagger@{AArcDagger}!m\_mesh@{m\_mesh}}
