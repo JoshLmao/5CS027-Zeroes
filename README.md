@@ -22,3 +22,7 @@ After cloning, you need to download the following assets from the marketplace an
 - Daoko ([Shinbi](https://www.unrealengine.com/marketplace/en-US/product/paragon-shinbi))
 - Enemies ([Paragon Minions](https://www.unrealengine.com/marketplace/en-US/product/paragon-minions))
 - Fantasy Music ([Fantasy Orchestral Music](https://www.unrealengine.com/marketplace/en-US/product/fantasy-orchestral-music))
+
+## Documentation
+
+The repository contains automaticlly genereated documentation at ```/docs```, created using [DoxyGen](https://www.doxygen.nl/index.html). Open Doxygen and open the ```zeroes.doxy``` file to generate the documentation
